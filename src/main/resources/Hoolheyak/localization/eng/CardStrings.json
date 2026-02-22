@@ -1,0 +1,213 @@
+{
+  "Hoolheyak:Strike": {
+    "NAME": "打击",
+    "DESCRIPTION": "造成 !D! 点伤害。"
+  },
+  "Hoolheyak:Defend": {
+    "NAME": "防御",
+    "DESCRIPTION": "获得 !B! 点 格挡 。"
+  },
+  "Hoolheyak:FeatherStrike": {
+    "NAME": "羽击",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 升力。"
+  },
+  "Hoolheyak:Linger": {
+    "NAME": "盘亘",
+    "DESCRIPTION": "获得 !B! 层 格挡 。 NL 抽 !M! 张牌。"
+  },
+  "Hoolheyak:ControlGroup": {
+    "NAME": "对照组",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 1 层 失重 。 NL 这张卡将被视为 变量 ： NL 攻击卡 ； NL 技能卡 。",
+    "EXTENDED_DESCRIPTION": [
+      " 攻击卡 。",
+      " 技能卡 。"
+    ]
+  },
+  "Hoolheyak:Research": {
+    "NAME": "考据",
+    "DESCRIPTION": "抽 !M! 张牌。 NL 获得 1 点 逶迤 。"
+  },
+  "Hoolheyak:LaminarFlow": {
+    "NAME": "层流",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 抽 !M! 张牌。"
+  },
+  "Hoolheyak:DistilledTime": {
+    "NAME": "岁月蒸馏",
+    "DESCRIPTION": "在你的回合开始时，随机获得 !M! 瓶攻击药水、技能药水或能力药水。"
+  },
+  "Hoolheyak:Compose": {
+    "NAME": "撰写",
+    "DESCRIPTION": "消耗 。 NL 直到回合结束， 变量 ： NL 将一张手牌的费用减 3 ； NL  将所有手牌的费用减 1 。",
+    "EXTENDED_DESCRIPTION": [
+      "将一张手牌的费用减 3 。",
+      "将所有手牌的费用减 1 。",
+      "选择一张牌将其本回合费用减 3 。"
+    ]
+  },
+  "Hoolheyak:Refutation": {
+    "NAME": "驳论",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 随机使目标身上的增益效果减少 1 层。"
+  },
+  "Hoolheyak:Headwind": {
+    "NAME": "逆风",
+    "DESCRIPTION": "对随机敌人造成 !D! 点伤害 !M! 次。 NL 每次造成伤害，给予一层 升力 。"
+  },
+  "Hoolheyak:WindShear": {
+    "NAME": "切变",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 再次打出本牌。"
+  },
+  "Hoolheyak:Turbulence": {
+    "NAME": "湍流",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 一回合一次，本场对战，你每打出过两张 湍流 ，就将一张 湍流 置入你的手牌。"
+  },
+  "Hoolheyak:TailSting": {
+    "NAME": "尾刺",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 易伤 。"
+  },
+  "Hoolheyak:Convection": {
+    "NAME": "对流",
+    "DESCRIPTION": "消耗 。 NL 造成 !D! 点伤害。 NL 你在本回合每打出过一张攻击牌，费用 -1 。"
+  },
+  "Hoolheyak:Archive": {
+    "NAME": "归档",
+    "DESCRIPTION": "消耗 。 NL 造成 !D! 点伤害。 NL 斩杀 时， 变量 ： NL 在战斗结束后，额外选择一张随机颜色牌 ； NL 在战斗结束后，额外选择一张无色牌。",
+    "EXTENDED_DESCRIPTION": [
+      "在战斗结束后，额外选择一张随机颜色牌。",
+      "在战斗结束后，额外选择一张无色牌。"
+    ]
+  },
+  "Hoolheyak:Coercion": {
+    "NAME": "强压",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果目标处于 浮空 ，立即结束目标 浮空 状态，并返还 !M! 点能量。"
+  },
+  "Hoolheyak:Surveying": {
+    "NAME": "测绘",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 解析 。"
+  },
+  "Hoolheyak:Brushstroke": {
+    "NAME": "笔锋",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 博览 。"
+  },
+  "Hoolheyak:MadWords": {
+    "NAME": "博览者的狂语",
+    "DESCRIPTION": "造成 !D! 点伤害，给予 !Hoolheyak:LIFT! 层 升力 。 NL 重复打出 !M! 次。"
+  },
+  "Hoolheyak:CrossExperiment": {
+    "NAME": "交叉实验",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !B! 层 格挡 。 NL 打出时，该卡永久获得 变量 ： NL + !M! 伤害 ； NL + !M! 格挡。",
+    "EXTENDED_DESCRIPTION": [
+      "+ !M! 伤害。",
+      "+ !M! 格挡。"
+    ]
+  },
+  "Hoolheyak:Revision": {
+    "NAME": "修订",
+    "DESCRIPTION": "消耗 。 NL 消耗你手中的一张牌，并随机获得一张与其同类型的牌。",
+    "UPGRADE_DESCRIPTION": "消耗 。 NL 消耗你手中的一张牌，并随机获得一张与其同类型的牌。使其在本回合中降为 0 费。",
+    "EXTENDED_DESCRIPTION": [
+      "选择一张牌消耗。"
+    ]
+  },
+  "Hoolheyak:Foreshadowing": {
+    "NAME": "伏笔",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 点 博览 。 NL 获得 !Hoolheyak:MEANDER! 点 逶迤 。"
+  },
+  "Hoolheyak:Observation": {
+    "NAME": "观测",
+    "DESCRIPTION": "抽 !M! 张牌。 NL 获得 !Hoolheyak:ENERGY! 点 能量 。"
+  },
+  "Hoolheyak:Footnote": {
+    "NAME": "脚注",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 抽 1 张技能牌。"
+  },
+  "Hoolheyak:Tamper": {
+    "NAME": "篡改",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 如果本牌触发了 逶迤 ，再次打出本牌。"
+  },
+  "Hoolheyak:ParameterCorrection": {
+    "NAME": "参数修正",
+    "DESCRIPTION": "消耗 。 NL 回合结束时，若此卡在你手中，则可以至多给另 !M! 张手牌在本回合中获得 保留 。 NL 此卡被丢弃时，视为被打出。"
+  },
+  "Hoolheyak:AirflowDisturbance": {
+    "NAME": "气流扰动",
+    "DESCRIPTION": "给予 !M! 层 升力 。 NL 如果敌人已经 浮空 ，则抽 2 张牌。"
+  },
+  "Hoolheyak:MassOffset": {
+    "NAME": "质量抵消",
+    "DESCRIPTION": "使所有敌人获得 X 点 升力 ，并获得 X 点 解析 。",
+    "UPGRADE_DESCRIPTION": "使所有敌人获得 X+1 点 升力 ，并获得 X+1 点 解析 。"
+  },
+  "Hoolheyak:FlyUp": {
+    "NAME": "飞起来！",
+    "DESCRIPTION": "触发 X 次 变量 ： NL 博览 ； NL 逶迤 。 NL X 等同于你的 解析 。",
+    "EXTENDED_DESCRIPTION": [
+      "触发博览",
+      "触发逶迤",
+      " NL （目前 ",
+      " 次。）"
+    ]
+  },
+  "Hoolheyak:ColdEye": {
+    "NAME": "冷眼",
+    "DESCRIPTION": "如果目标在本回合中受到过来自你的伤害，则获得 !M! 点 解析 ；如果没有，则获得 !B! 点 格挡 。"
+  },
+  "Hoolheyak:InheritedEnd": {
+    "NAME": "传承终焉",
+    "DESCRIPTION": "消耗 。 NL 在本回合中，当你连续交替打出一次攻击牌与技能牌时，获得 1 点能量，并抽 1 张牌。"
+  },
+  "Hoolheyak:PoweredExoskeleton": {
+    "NAME": "动力外骨骼",
+    "DESCRIPTION": "获得 !M! 层 多重护甲 。"
+  },
+  "Hoolheyak:Stargazing": {
+    "NAME": "观星",
+    "DESCRIPTION": "预见 !M! 。 NL 选择至多 3 张卡， 变量 ： NL 弃掉它们 ； NL 将它们置于抽牌堆底部。",
+    "EXTENDED_DESCRIPTION": [
+      "弃掉它们。",
+      "将它们置于抽牌堆底部。",
+      "选择你要弃掉的牌",
+      "选择你要置于抽牌堆底部的牌"
+    ]
+  },
+  "Hoolheyak:RecursiveExperiment": {
+    "NAME": "递归实验",
+    "DESCRIPTION": "消耗 。 NL 以 1 点费用开启一次实验。 NL 变量 ： NL 终止本次实验； NL 随机打出 1 张牌并将其从卡组中永久移除。战斗结束后，额外获得一组相同类型的选牌奖励。然后再开启一次实验。",
+    "EXTENDED_DESCRIPTION": [
+      "终止本次实验。",
+      "随机打出 1 张牌并将其从卡组中永久移除。战斗结束后，额外获得一组相同类型的选牌奖励。然后再开启一次实验。"
+    ]
+  },
+  "Hoolheyak:RedundantExperiment": {
+    "NAME": "冗余实验",
+    "DESCRIPTION": "选择手牌中的 !M! 张牌，在本回合中，被选中的牌在被丢弃时视为被打出。",
+    "EXTENDED_DESCRIPTION": [
+      "选择牌作为实验目标"
+    ]
+  },
+  "Hoolheyak:BygoneWings": {
+    "NAME": "曾有羽翼",
+    "DESCRIPTION": "生命值不高于一半的敌人永久获得 失重 。"
+  },
+  "Hoolheyak:InheritedMemories": {
+    "NAME": "传承记忆",
+    "DESCRIPTION": "你每触发一次 逶迤 或者 博览 ，就获得 1 点 解析 。",
+    "UPGRADE_DESCRIPTION": "固有 。 NL 你每触发一次 逶迤 或者 博览 ，就获得 1 点 解析 。"
+  },
+  "Hoolheyak:ForbiddenKnowledge": {
+    "NAME": "禁忌知识",
+    "DESCRIPTION": "变量 ： NL 打出能力牌时，获得 2 点 博览 ； NL 打出能力牌时，获得 2 点 逶迤 。",
+    "UPGRADE_DESCRIPTION": "固有 。 NL 变量 ： NL 打出能力牌时，获得 2 点 博览 ； NL 打出能力牌时，获得 2 点 逶迤 。",
+    "EXTENDED_DESCRIPTION": [
+      "打出能力牌时，获得 2 点 博览 。",
+      "打出能力牌时，获得 2 点 逶迤 。"
+    ]
+  },
+  "Hoolheyak:Cyclone": {
+    "NAME": "气旋",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 博览 。"
+  },
+  "Hoolheyak:Wingblade": {
+    "NAME": "翼刃",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果本牌触发了 博览 ，获得 !M! 逶迤 。"
+  }
+}

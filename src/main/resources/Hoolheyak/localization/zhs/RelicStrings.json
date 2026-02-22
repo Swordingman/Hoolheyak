@@ -1,0 +1,9 @@
+{
+  "Hoolheyak:Bibliotheca": {
+    "NAME": "“图书馆”",
+    "FLAVOR": "这个小小的盒子中，储藏着羽蛇一族几百年的历史。",
+    "DESCRIPTIONS": [
+      "战斗开始时，获得 #b2 点 解析 。"
+    ]
+  }
+}

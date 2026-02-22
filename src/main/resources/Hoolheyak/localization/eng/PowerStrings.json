@@ -1,0 +1,67 @@
+{
+  "Hoolheyak:Analysis": {
+    "NAME": "解析",
+    "DESCRIPTIONS": [
+      "用于增强特定效果的数值。"
+    ]
+  },
+  "Hoolheyak:Meander": {
+    "NAME": "逶迤",
+    "DESCRIPTIONS": [
+      "一种可累积的计数，上限为4。每当你打出 #y技能牌 ，计数+1。当前计数： #b",
+      " 。 NL 计数充满时：对随机敌人造成4点伤害并给予1层 #y升力 。此效果重复触发X次（X为你的 #y解析 层数）。触发后重置计数。"
+    ]
+  },
+  "Hoolheyak:Erudition": {
+    "NAME": "博览",
+    "DESCRIPTIONS": [
+      "一种可累积的计数，上限为4。每当你打出 #y攻击牌 ，计数+1。当前计数： #b",
+      " 。 NL 计数充满时：对随机敌人造成X点伤害（X为你的 #y解析 层数）并给予1层 #y升力 。此效果重复触发4次。触发后重置计数。"
+    ]
+  },
+  "Hoolheyak:Gravity": {
+    "NAME": "重力",
+    "DESCRIPTIONS": [
+      "敌人的固有属性。敌人每拥有10点最大生命值，该数值+1。重力用于抵抗 #y升力 。当前重力： #b",
+      " 。"
+    ]
+  },
+  "Hoolheyak:Lift": {
+    "NAME": "升力",
+    "DESCRIPTIONS": [
+      "当目标拥有的 #y升力 层数不小于其 #y重力 时，消耗所有 #y升力 并给予其 #y浮空 。"
+    ]
+  },
+  "Hoolheyak:Levitate": {
+    "NAME": "浮空",
+    "DESCRIPTIONS": [
+      "受到伤害增加50%，造成的伤害与获得的格挡减少70%。进入此状态时，移除所有格挡。 NL 目标的回合结束时，解除此状态并受到伤害，数值为：( #y重力 +剩余 #y升力 )×2。随后移除所有 #y升力 。"
+    ]
+  },
+  "Hoolheyak:Weightless": {
+    "NAME": "失重",
+    "DESCRIPTIONS": [
+      "获得的 #y升力 增加100%。回合结束时层数-1。"
+    ]
+  },
+  "Hoolheyak:DistilledTimePower": {
+    "NAME": "岁月蒸馏",
+    "DESCRIPTIONS": [
+      "在你的回合开始时，随机获得 #b",
+      " 瓶攻击药水、技能药水或能力药水。"
+    ]
+  },
+  "Hoolheyak:InheritedEndPower": {
+    "NAME": "传承终焉",
+    "DESCRIPTIONS": [
+      "在本回合中，当你连续交替打出攻击牌与技能牌时，获得 #b1 点能量，并抽 #b1 张牌。"
+    ]
+  },
+  "Hoolheyak:RedundantExperimentPower": {
+    "NAME": "冗余实验",
+    "DESCRIPTIONS": [
+      "本回合内，有 #b",
+      " 张指定的牌在被丢弃时会视为被打出。"
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "thePenance:BarrierPotion": {
+    "NAME": "Barrier Potion",
+    "DESCRIPTIONS": [
+      "Gain #b",
+      " #yBarrier ."
+    ]
+  },
+  "thePenance:BottleOfWolfBlood": {
+    "NAME": "Bottle of Wolf Blood",
+    "DESCRIPTIONS": [
+      "Choose #b",
+      " #yWolfpack #yCurses to add to your hand."
+    ]
+  },
+  "thePenance:JudgementPotion": {
+    "NAME": "Judgment Potion",
+    "DESCRIPTIONS": [
+      "Gain #b",
+      " #yJudgment ."
+    ]
+  }
+}

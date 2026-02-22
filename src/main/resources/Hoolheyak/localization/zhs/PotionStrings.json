@@ -1,0 +1,23 @@
+{
+  "thePenance:BarrierPotion": {
+    "NAME": "屏障合剂",
+    "DESCRIPTIONS": [
+      "获得 #b",
+      " 层 #y屏障 。"
+    ]
+  },
+  "thePenance:BottleOfWolfBlood": {
+    "NAME": "瓶装狼血",
+    "DESCRIPTIONS": [
+      "选择 #b",
+      " 张 #y狼群诅咒 加入手牌。"
+    ]
+  },
+  "thePenance:JudgementPotion": {
+    "NAME": "裁决药剂",
+    "DESCRIPTIONS": [
+      "获得 #b",
+      " 层 #y裁决 。"
+    ]
+  }
+}

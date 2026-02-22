@@ -1,0 +1,84 @@
+{
+  "thePenance:GreyDealEvent": {
+    "NAME": "The Grey Deal",
+    "DESCRIPTIONS": [
+      "You discover a hidden dossier in a secret stronghold. It contains absolute proof of crimes committed by the head of a major family. NL At that moment, the patriarch's agent steps out of the shadows, smiling as he hands you a heavy check. NL @\"Your Honor, just tear out this page, and everyone can have a good new year.\"@ ",
+      "You take the check, and the agent leaves satisfied. You stare at the check in your hand. The string of zeros is enough to buy half the block. The evidence, once so heavy, now feels as light as a scrap of waste paper.",
+      " #y\"Justice cannot be bought!\" you shout sternly. The agent's smile freezes; he drops a grim threat before disappearing into the shadows. You know you are in big trouble now.",
+      "You decide not to wade into these muddy waters and turn to leave the stronghold."
+    ],
+    "OPTIONS": [
+      "[Accept Bribe] Gain #y",
+      " Gold. Gain a #rNormality .",
+      "[Uphold the Law] Gain Relic: #y\"Not Guilty\" . Gain Curse: #rDeadly Enemy .",
+      "[Ignore] Leave.",
+      "[Leave] Leave."
+    ]
+  },
+  "thePenance:VolsiniiCourtEvent": {
+    "NAME": "Volsinii Court",
+    "DESCRIPTIONS": [
+      "In Syracusa, the law is subject to the will of one man. As an agent of that will, Lavinia often finds herself unable to protect even the most ordinary citizen. NL A cry for help echoes from an alleyway; several family thugs are surrounding an innocent civilian.",
+      "You clench your fist, but eventually let go. You cannot expose yourself now, nor can you save everyone. NL You turn away, the #rscreams behind you cutting you to the bone.",
+      "The civilian has long since fled without a trace, leaving only a hastily written note on the ground.",
+      "Silence returns to the alley. You tried, but it wasn't enough. NL The civilian is dead; a piece of torn fabric from their clothes remains in your hand.",
+      "You pick up the letter, feeling a warmth in your hand.",
+      "You clench the fabric and continue your journey."
+    ],
+    "OPTIONS": [
+      "[Step Forward] Enter Combat. Special Condition: #bProtect the Civilian .",
+      "[Turn Away] Gain a #rRegret .",
+      "[Leave] Leave the alley.",
+      "[Read Note] Gain #yLetter of Thanks .",
+      "[Pick up Fabric] Gain #yBloodstained Fabric ."
+    ]
+  },
+  "thePenance:RainyNightInspectionEvent": {
+    "NAME": "Rainy Night Inspection",
+    "DESCRIPTIONS": [
+      "Cold rain washes the streets of Volsinii. You stop a hurried courier. NL According to the \"Volsinii Security Regulations,\" he lacks a night pass; he should be detained and his goods confiscated. NL \"Your Honor,\" he pleads, protecting the package in his arms, soaked to the bone. \"The children at the orphanage can't wait until morning. Please... just pretend you didn't see me.\"",
+      "The law is the law. You confiscate the goods and fulfill your duty. The despair in the courier's eyes looks exceptionally piercing in the rain.",
+      "You turn sideways. The courier hurries past you, and you hear a faint \"Thank you.\" Your conscience is at peace, though this violation will force you to rack your brains when writing the report."
+    ],
+    "OPTIONS": [
+      "[Confiscate by Law] Gain #y",
+      " Gold. Gain 1 #gRandom Potion .",
+      "[Turn a Blind Eye] #rRemove a card.",
+      "[Leave]",
+      "Select a card to remove."
+    ]
+  },
+  "thePenance:OpeningMomentEvent": {
+    "NAME": "The Opening Moment",
+    "DESCRIPTIONS": [
+      "Remove the filthy entrails and fill the void with our order. Old traditions are renewed; a parade of floats and lights celebrates Syracusa entering a new era. NL But can conspiracies truly be burned away by fireworks? Can sinners truly be hidden by fine clothes? NL Be wary on this night of revelry; the wolves still prowl the city.",
+      "Behold, this is Syracusa— @The Lord of Revelry invites you to enjoy the show!@ ",
+      "This city is still waiting for the sound of a gunshot."
+    ],
+    "OPTIONS": [
+      "[Join the Revelry] Lose #y",
+      " Gold. Gain Relic: #yTime of Revelry .",
+      "[Locked] Requires #y",
+      " Gold.",
+      "[Stay Alert] #yUpgrade 1 card. #rRemove 1 card.",
+      "[Locked] Deck must contain upgradeable and removable cards.",
+      "Select a card to upgrade.",
+      "[Leave]",
+      "Select a card to remove."
+    ]
+  },
+  "thePenance:CaseFile1184Event": {
+    "NAME": "Case File 1184",
+    "DESCRIPTIONS": [
+      "The gavel hangs in mid-air; the entire courtroom is silent. NL The Godfather in the defendant's seat looks at you with a mocking smile. You know he will walk out of here tomorrow and continue the slaughter. NL Hidden in your sleeve is a set of forged accounts—the only #y\"Evidence\" that can send him to the gallows. NL If you submit it: You trample the procedural justice you have guarded all your life. NL If you pass on it: The dignity of the law is preserved, but the innocent will continue to bleed. NL NL Where should the gavel fall?",
+      "You submit the forged accounts. The Godfather's smile freezes. NL You won. Syracusa has one less villain, and one more lying judge.",
+      "\"Insufficient evidence. Released.\" NL The gavel falls with a hollow sound. You held the bottom line of the law, but as you walk out of the court, the spit of the public and the retreating figure of the Godfather fill you with immense distress."
+    ],
+    "OPTIONS": [
+      "[Submit Perjury] Gain #y99 Gold. #yUpgrade 2 random Attacks. Gain 1 #rDoubt .",
+      "[Release Defendant] #gHeal to full HP . #gGain 5 Max HP . Gain 1 #rWrithe .",
+      "[Private Judgment] Enter Combat. Reward: #yRare Relic .",
+      "[Leave] Leave"
+    ]
+  }
+}

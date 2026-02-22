@@ -1,0 +1,27 @@
+{
+  "thePenance:VolsiniiCivilian": {
+    "NAME": "Volsinii Civilian",
+    "MOVES": [],
+    "DIALOG": [
+      "Help!",
+      "Ahh...",
+      "Thanks! I gotta go first..."
+    ]
+  },
+  "thePenance:VolsiniiMob": {
+    "NAME": "Volsinii Mob",
+    "MOVES": [],
+    "DIALOG": [
+      "Volsinii Scout",
+      "Volsinii Mob"
+    ]
+  },
+  "thePenance:MafiaGodfather": {
+    "NAME": "Mafia Godfather",
+    "MOVES": []
+  },
+  "thePenance:FamilyCleaner": {
+    "NAME": "Family Cleaner",
+    "MOVES": []
+  }
+}

@@ -1,0 +1,237 @@
+
+enemy_1282_sgelder_2.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+C_Tail_01
+  rotate: false
+  xy: 50, 147
+  size: 53, 45
+  orig: 53, 45
+  offset: 0, 0
+  index: -1
+C_Collar_01
+  rotate: false
+  xy: 151, 1
+  size: 81, 45
+  orig: 81, 45
+  offset: 0, 0
+  index: -1
+C_R_Arm_01
+  rotate: false
+  xy: 71, 221
+  size: 25, 33
+  orig: 25, 34
+  offset: 0, 1
+  index: -1
+C_R_Forearm_01
+  rotate: false
+  xy: 117, 204
+  size: 29, 24
+  orig: 30, 25
+  offset: 1, 1
+  index: -1
+C_R_Hand_01
+  rotate: false
+  xy: 138, 106
+  size: 28, 23
+  orig: 29, 23
+  offset: 1, 0
+  index: -1
+C_Cigar_01
+  rotate: false
+  xy: 50, 55
+  size: 27, 16
+  orig: 27, 16
+  offset: 0, 0
+  index: -1
+C_Cigar_03
+  rotate: false
+  xy: 90, 203
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+C_Cigar_02
+  rotate: false
+  xy: 90, 194
+  size: 6, 7
+  orig: 6, 7
+  offset: 0, 0
+  index: -1
+C_Smoke_01
+  rotate: false
+  xy: 50, 77
+  size: 47, 68
+  orig: 47, 68
+  offset: 0, 0
+  index: -1
+C_R_Finger_01
+  rotate: false
+  xy: 148, 236
+  size: 15, 11
+  orig: 15, 11
+  offset: 0, 0
+  index: -1
+C_R_Coat_03
+  rotate: false
+  xy: 99, 77
+  size: 37, 55
+  orig: 37, 55
+  offset: 0, 0
+  index: -1
+C_R_Foot_01
+  rotate: false
+  xy: 1, 228
+  size: 34, 21
+  orig: 34, 21
+  offset: 0, 0
+  index: -1
+C_R_Claf_01
+  rotate: false
+  xy: 216, 92
+  size: 28, 41
+  orig: 28, 41
+  offset: 0, 0
+  index: -1
+C_R_Leg_01
+  rotate: false
+  xy: 216, 48
+  size: 28, 42
+  orig: 28, 42
+  offset: 0, 0
+  index: -1
+C_Hip_01
+  rotate: false
+  xy: 37, 194
+  size: 51, 25
+  orig: 51, 25
+  offset: 0, 0
+  index: -1
+C_L_Foot_01
+  rotate: false
+  xy: 129, 134
+  size: 32, 21
+  orig: 32, 21
+  offset: 0, 0
+  index: -1
+C_L_Claf_01
+  rotate: false
+  xy: 1, 182
+  size: 34, 44
+  orig: 34, 44
+  offset: 0, 0
+  index: -1
+C_L_Leg_01
+  rotate: false
+  xy: 1, 136
+  size: 34, 44
+  orig: 34, 44
+  offset: 0, 0
+  index: -1
+C_Body_01
+  rotate: false
+  xy: 95, 1
+  size: 54, 74
+  orig: 54, 74
+  offset: 0, 0
+  index: -1
+C_R_Coat_02
+  rotate: false
+  xy: 234, 1
+  size: 16, 42
+  orig: 16, 42
+  offset: 0, 0
+  index: -1
+C_R_Coat_01
+  rotate: false
+  xy: 98, 204
+  size: 17, 47
+  orig: 17, 47
+  offset: 0, 0
+  index: -1
+C_L_Coat_01
+  rotate: false
+  xy: 1, 55
+  size: 47, 79
+  orig: 47, 79
+  offset: 0, 0
+  index: -1
+C_Stick_01
+  rotate: false
+  xy: 105, 134
+  size: 22, 68
+  orig: 23, 68
+  offset: 1, 0
+  index: -1
+C_L_Hand_01
+  rotate: false
+  xy: 37, 221
+  size: 32, 29
+  orig: 32, 29
+  offset: 0, 0
+  index: -1
+C_L_Arm_01
+  rotate: false
+  xy: 129, 157
+  size: 19, 30
+  orig: 19, 31
+  offset: 0, 1
+  index: -1
+C_L_Forearm_01
+  rotate: false
+  xy: 148, 204
+  size: 23, 30
+  orig: 23, 30
+  offset: 0, 0
+  index: -1
+C_BowTie_01
+  rotate: false
+  xy: 129, 189
+  size: 24, 12
+  orig: 24, 12
+  offset: 0, 0
+  index: -1
+C_Head_01
+  rotate: false
+  xy: 151, 48
+  size: 63, 56
+  orig: 63, 56
+  offset: 0, 0
+  index: -1
+C_R_Ear_01
+  rotate: false
+  xy: 194, 106
+  size: 13, 23
+  orig: 13, 23
+  offset: 0, 0
+  index: -1
+C_Hat_01
+  rotate: false
+  xy: 1, 1
+  size: 92, 52
+  orig: 92, 52
+  offset: 0, 0
+  index: -1
+C_L_Ear_01
+  rotate: false
+  xy: 163, 131
+  size: 22, 27
+  orig: 22, 27
+  offset: 0, 0
+  index: -1
+C_R_Hand_02
+  rotate: false
+  xy: 117, 230
+  size: 29, 23
+  orig: 29, 23
+  offset: 0, 0
+  index: -1
+C_R_Finger_02
+  rotate: false
+  xy: 168, 106
+  size: 24, 15
+  orig: 24, 15
+  offset: 0, 0
+  index: -1

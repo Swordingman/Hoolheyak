@@ -1,0 +1,27 @@
+{
+  "thePenance:VolsiniiCivilian": {
+    "NAME": "沃尔西尼市民",
+    "MOVES": [],
+    "DIALOG": [
+      "救救我！",
+      "呃啊...",
+      "谢谢你！我得赶紧走了！"
+    ]
+  },
+  "thePenance:VolsiniiMob": {
+    "NAME": "沃尔西尼暴徒",
+    "MOVES": [],
+    "DIALOG": [
+      "沃尔西尼斥候",
+      "沃尔西尼暴徒"
+    ]
+  },
+  "thePenance:MafiaGodfather": {
+    "NAME": "黑帮教父",
+    "MOVES": []
+  },
+  "thePenance:FamilyCleaner": {
+    "NAME": "家族灭迹人",
+    "MOVES": []
+  }
+}
