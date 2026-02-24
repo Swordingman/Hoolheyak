@@ -11,11 +11,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 public class ParameterCorrection extends BaseCard {
     public static final String ID = makeID("ParameterCorrection");
 
-    private static final int COST = -2; // 默认无法手动打出
+    // 【核心修改 1】：把费用改成 0 费（或其他任意 >= -1 的费用）
+    private static final int COST = 0;
     private static final int MAGIC = 1; // 保留 1 张
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
-    // 【新增】：用于绕过底层 canUse 检查的“通行证”开关
+    // 用于绕过 canUse 检查的“通行证”开关
     private boolean isDiscardAutoplay = false;
 
     public ParameterCorrection() {
@@ -27,48 +28,45 @@ public class ParameterCorrection extends BaseCard {
                 COST
         ));
         setMagic(MAGIC, UPGRADE_PLUS_MAGIC);
-        setExhaust(true); // 被打出时会消耗
+        setExhaust(true);
     }
 
-    // 【核心修复】：接管 canUse 判定
+    // 【核心修改 2】：彻底接管能否打出的判定
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        // 如果是被丢弃触发的自动打出，亮起绿灯，允许打出！
+        // 如果是系统丢弃自动打出，亮起绿灯！
         if (this.isDiscardAutoplay) {
             return true;
         }
-        // 否则（玩家试图在手牌中选中/打出它时），亮起红灯
+
+        // 如果是玩家手动点击，亮起红灯，并弹出提示。
+        // （你可以把这段文字写进你的 JSON EXTENDED_DESCRIPTION 里以支持多语言）
+        this.cantUseMessage = "我不能手动打出这张牌。";
         return false;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        // 打出成功后，安全起见将通行证重置
+        // 成功打出后，重置通行证
         this.isDiscardAutoplay = false;
-
-        // 卡牌自带 Exhaust，这里什么都不用做，引擎会自动判定它被视作“打出技能牌”
-        // 并触发逶迤、博览等能力，最后将其送入消耗堆。
     }
 
-    // 在手牌中结束回合时，触发保留效果
     @Override
     public void triggerOnEndOfTurnForPlayingCard() {
         addToBot(new RetainCardsAction(AbstractDungeon.player, this.magicNumber));
     }
 
-    // 当被手动丢弃时，视为被打出
     @Override
     public void triggerOnManualDiscard() {
-        // 1. 开启自动打出通行证
+        // 1. 发放自动打出通行证
         this.isDiscardAutoplay = true;
 
-        // 2. 将它从弃牌堆中拽出来
+        // 2. 把它从弃牌堆里捞出来（防止被视作已在弃牌堆而产生报错）
         if (AbstractDungeon.player.discardPile.contains(this)) {
             AbstractDungeon.player.discardPile.removeCard(this);
         }
 
-        // 3. 排入行动队列打出
-        // 参数依次为：(要打出的卡牌, 是否随机目标, 是否自动打出不耗能, 是否排队)
+        // 3. 强行排入队列打出
         addToBot(new NewQueueCardAction(this, true, true, true));
     }
 }

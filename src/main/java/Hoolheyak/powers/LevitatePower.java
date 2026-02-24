@@ -78,7 +78,7 @@ public class LevitatePower extends BasePower {
         }
 
         // 受到真实伤害 (或荆棘伤害类型，避免被力量或易伤再次修饰)
-        addToBot(new DamageAction(this.owner, new DamageInfo(this.source, damageAmt, DamageInfo.DamageType.HP_LOSS)));
+        addToBot(new DamageAction(this.owner, new DamageInfo(this.source, damageAmt, DamageInfo.DamageType.THORNS)));
     }
 
     @Override

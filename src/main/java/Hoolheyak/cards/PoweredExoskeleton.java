@@ -11,7 +11,7 @@ public class PoweredExoskeleton extends BaseCard {
     public static final String ID = makeID("PoweredExoskeleton");
 
     private static final int COST = 1;
-    private static final int MAGIC = 2; // 多重护甲层数
+    private static final int MAGIC = 3; // 多重护甲层数
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
     public PoweredExoskeleton() {
@@ -27,7 +27,6 @@ public class PoweredExoskeleton extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        // 获得 多重护甲 (Plated Armor)
         addToBot(new ApplyPowerAction(p, p, new PlatedArmorPower(p, magicNumber), magicNumber));
     }
 }
