@@ -50,6 +50,16 @@ public class VariableChoiceCard extends BaseCard {
         if (this.effect != null) {
             this.effect.run();
         }
+
+        if (com.megacrit.cardcrawl.dungeons.AbstractDungeon.player != null) {
+            for (com.megacrit.cardcrawl.powers.AbstractPower p : com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.powers) {
+                if (p instanceof Hoolheyak.powers.ByproductPower) {
+                    ((Hoolheyak.powers.ByproductPower) p).onVariableTriggered();
+                } else if (p instanceof Hoolheyak.powers.ComplementaryExperimentPower) {
+                    ((Hoolheyak.powers.ComplementaryExperimentPower) p).onVariableTriggered();
+                }
+            }
+        }
     }
 
     @Override

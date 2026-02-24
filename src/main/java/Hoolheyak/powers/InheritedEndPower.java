@@ -21,21 +21,17 @@ public class InheritedEndPower extends BasePower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        // 我们只关心攻击牌和技能牌的交替
         if (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL) {
 
-            // 如果之前已经记录了第一张牌，且当前打出的牌与它类型不同，则视为【交替成功】
             if (this.firstCardType != null && this.firstCardType != card.type) {
                 this.flash();
-                addToBot(new GainEnergyAction(1));
-                addToBot(new DrawCardAction(this.owner, 1));
 
-                // 【核心修改】：触发奖励后，立刻重置计数。
-                // 这样下一张打出的牌会被视为全新一对的起点。
+                // 【核心修复】：将硬编码的 1 替换为 this.amount
+                addToBot(new GainEnergyAction(this.amount));
+                addToBot(new DrawCardAction(this.owner, this.amount));
+
                 this.firstCardType = null;
             } else {
-                // 如果当前没有记录，或者玩家连续打出了相同的牌（比如 攻击->攻击），
-                // 则直接把最新打出的这张牌记为配对的起点。
                 this.firstCardType = card.type;
             }
         }
@@ -51,6 +47,10 @@ public class InheritedEndPower extends BasePower {
 
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0];
+        // 建议在 JSON 本地化文本里这样写：
+        // DESCRIPTIONS[0] -> "每当你交替打出攻击牌与技能牌时，获得 "
+        // DESCRIPTIONS[1] -> " 点能量并抽 "
+        // DESCRIPTIONS[2] -> " 张牌。"
+        this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[2];
     }
 }

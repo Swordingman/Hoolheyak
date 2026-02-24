@@ -50,8 +50,7 @@ public class HoolheyakMod implements
         AddAudioSubscriber,       // 订阅音频添加事件
         PostInitializeSubscriber, // 订阅初始化后处理事件（用于添加徽章等）
         EditCardsSubscriber,      // 订阅卡牌编辑事件
-        EditRelicsSubscriber,
-        OnStartBattleSubscriber{    // 订阅遗物编辑事件
+        EditRelicsSubscriber{    // 订阅遗物编辑事件
 
     public static ModInfo info;
     public static String modID; // 修改你的 pom.xml 文件来改变这个ID
@@ -336,20 +335,6 @@ public class HoolheyakMod implements
         public String PROPER_NAME; // 增加这个字段以匹配 BaseMod 标准
         public String[] NAMES;
         public String DESCRIPTION;
-    }
-
-    // 战斗开始时，给上重力
-    @Override
-    public void receiveOnBattleStart(AbstractRoom room) {
-        // 遍历当前房间里的所有怪物
-        for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
-            // 如果怪物不是死亡或逃跑状态，给它挂上“重力”
-            if (!m.isDeadOrEscaped()) {
-                AbstractDungeon.actionManager.addToBottom(
-                        new ApplyPowerAction(m, AbstractDungeon.player, new GravityPower(m))
-                );
-            }
-        }
     }
 }
 

@@ -209,5 +209,62 @@
   "Hoolheyak:Wingblade": {
     "NAME": "翼刃",
     "DESCRIPTION": "造成 !D! 点伤害。 NL 如果本牌触发了 博览 ，获得 !M! 逶迤 。"
+  },
+  "Hoolheyak:EntropyIncrease": {
+    "NAME": "熵增",
+    "DESCRIPTION": "在回合开始时，增加 1 张随机颜色的能力牌到你的手牌。"
+  },
+  "Hoolheyak:AncientCovenant": {
+    "NAME": "古老盟约",
+    "DESCRIPTION": "变量 ： NL 触发 博览 时，获得 !M! 力量 ; NL 触发 逶迤 时，获得 !M! 敏捷 。",
+    "EXTENDED_DESCRIPTION": [
+      "触发 博览 时，获得 !M! 力量 。",
+      "触发 逶迤 时，获得 !M! 敏捷 。"
+    ]
+  },
+  "Hoolheyak:Wardrobe": {
+    "NAME": "羽蛇的衣柜",
+    "DESCRIPTION": "使你的手牌上限增加相当于 解析 的数量。"
+  },
+  "Hoolheyak:OmniscientHorizon": {
+    "NAME": "全知视界",
+    "DESCRIPTION": "每当有敌人进入 浮空 状态，抽 2 张牌，获得 2 点能量。"
+  },
+  "Hoolheyak:SerpentBloodline": {
+    "NAME": "羽蛇血脉",
+    "DESCRIPTION": "获得等同于 解析 层数的 仪式 。然后每次获得 解析 时，获得等量 仪式 。 NL 每回合开始时，失去 [E] 。"
+  },
+  "Hoolheyak:DistantLight": {
+    "NAME": "光行遥遥",
+    "DESCRIPTION": "如果你在回合结束时造成的伤害小于 6 ，触发一次 逶迤 和 博览 。"
+  },
+  "Hoolheyak:CorrectedVariable": {
+    "NAME": "修正变量",
+    "DESCRIPTION": "每当你抽到一张状态牌，获得 1 点 博览 。 NL 每当你抽到一张诅咒牌，获得 1 点 逶迤 。"
+  },
+  "Hoolheyak:Byproduct": {
+    "NAME": "副产品",
+    "DESCRIPTION": "每当你进行一次 变量 ，获得 1 张随机牌。",
+    "UPGRADE_DESCRIPTION": "每当你进行一次 变量 ，获得 1 张升级后的随机牌。"
+  },
+  "Hoolheyak:ComplementaryExperiment": {
+    "NAME": "互补实验",
+    "DESCRIPTION": "每当你进行一次 变量 时，获得 !M! 点 格挡 。"
+  },
+  "Hoolheyak:KukulkanLegacy": {
+    "NAME": "库库尔坎的传承",
+    "DESCRIPTION": "使你的 博览 和 逶迤 上限各 +3 。但是造成的伤害和给予的 升力 翻倍。"
+  },
+  "Hoolheyak:TwinExperiment": {
+    "NAME": "双生子实验",
+    "DESCRIPTION": "对随机两个敌人造成 !D! 点伤害 2 次。 NL 如果击中了两个敌人，对剩余血量更多的那个敌人额外造成 !D! 点伤害 2 次。"
+  },
+  "Hoolheyak:KnockInExperiment": {
+    "NAME": "敲入实验",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 花费 1 能量，回复 3 生命 ; NL 获得 1 能量 。",
+    "EXTENDED_DESCRIPTION": [
+      "花费 1 能量，回复 3 生命 。",
+      "获得 1 能量 。"
+    ]
   }
 }

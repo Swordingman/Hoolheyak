@@ -23,6 +23,17 @@ public class LevitatePower extends BasePower {
         // 进入此状态时，移除所有格挡
         addToBot(new RemoveAllBlockAction(this.owner, this.source));
 
+        // 触发全知视界
+        if (this.source != null && this.source.hasPower(OmniscientHorizonPower.POWER_ID)) {
+            // 获取玩家身上全知视界的层数
+            int horizonStacks = this.source.getPower(OmniscientHorizonPower.POWER_ID).amount;
+
+            this.source.getPower(OmniscientHorizonPower.POWER_ID).flash();
+
+            addToBot(new com.megacrit.cardcrawl.actions.common.DrawCardAction(this.source, 2 * horizonStacks));
+            addToBot(new com.megacrit.cardcrawl.actions.common.GainEnergyAction(2 * horizonStacks));
+        }
+
         baseY = owner.drawY;
     }
 

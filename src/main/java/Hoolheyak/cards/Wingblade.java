@@ -37,7 +37,7 @@ public class Wingblade extends BaseCard {
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
 
         if (p.hasPower(EruditionPower.POWER_ID)) {
-            if (p.getPower(EruditionPower.POWER_ID).amount == 3) {
+            if (p.getPower(EruditionPower.POWER_ID).amount == 4) {
                 addToBot(new ApplyPowerAction(p, p, new MeanderPower(p, magicNumber), magicNumber));
             }
         }
@@ -47,7 +47,7 @@ public class Wingblade extends BaseCard {
     public void triggerOnGlowCheck() {
         this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
         if (com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.hasPower(EruditionPower.POWER_ID)) {
-            if (com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.getPower(EruditionPower.POWER_ID).amount == 3) {
+            if (com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.getPower(EruditionPower.POWER_ID).amount == 4) {
                 this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
             }
         }

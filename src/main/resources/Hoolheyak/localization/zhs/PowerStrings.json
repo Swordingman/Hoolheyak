@@ -54,7 +54,9 @@
   "Hoolheyak:InheritedEndPower": {
     "NAME": "传承终焉",
     "DESCRIPTIONS": [
-      "在本回合中，当你连续交替打出攻击牌与技能牌时，获得 #b1 点能量，并抽 #b1 张牌。"
+      "每当你交替打出攻击牌与技能牌时，获得 #b",
+      " 点能量并抽 #b",
+      " 张牌。"
     ]
   },
   "Hoolheyak:RedundantExperimentPower": {
@@ -90,6 +92,83 @@
     "DESCRIPTIONS": [
       "打出能力牌时，获得 #b",
       " 点 逶迤 。"
+    ]
+  },
+  "Hoolheyak:EntropyIncrease": {
+    "NAME": "熵增",
+    "DESCRIPTIONS": [
+      "回合开始时，将 #b",
+      " 张随机颜色的 #y能力牌 加入手牌。"
+    ]
+  },
+  "Hoolheyak:CovenantStrength": {
+    "NAME": "古老盟约·力量",
+    "DESCRIPTIONS": [
+      "触发 博览 时，获得 #b",
+      " 点 力量 。"
+    ]
+  },
+  "Hoolheyak:CovenantDexterity": {
+    "NAME": "古老盟约·敏捷",
+    "DESCRIPTIONS": [
+      "触发 逶迤 时，获得 #b",
+      " 点 敏捷 。"
+    ]
+  },
+  "Hoolheyak:Wardrobe": {
+    "NAME": "羽蛇的衣柜",
+    "DESCRIPTIONS": [
+      "你的手牌上限增加了 #b",
+      " 张。"
+    ]
+  },
+  "Hoolheyak:OmniscientHorizon": {
+    "NAME": "全知视界",
+    "DESCRIPTIONS": [
+      "每当有敌人进入 浮空 状态时，获得 #b",
+      " 点能量并抽 #b",
+      " 张牌。"
+    ]
+  },
+  "Hoolheyak:SerpentBloodline": {
+    "NAME": "羽蛇血脉",
+    "DESCRIPTIONS": [
+      "获得等同于 解析 层数的 仪式 。每次获得 解析 时，获得 #b",
+      " 倍层数的 仪式 。 NL 每回合开始时，失去 #b",
+      " 点能量。"
+    ]
+  },
+  "Hoolheyak:DistantLight": {
+    "NAME": "光行遥遥",
+    "DESCRIPTIONS": [
+      "回合结束时造成的伤害若小于 6 ，触发一次 逶迤 和 博览 。"
+    ]
+  },
+  "Hoolheyak:CorrectedVariable": {
+    "NAME": "修正变量",
+    "DESCRIPTIONS": [
+      "抽到状态牌时获得 博览 ，抽到诅咒牌时获得 逶迤 。"
+    ]
+  },
+  "Hoolheyak:Byproduct": {
+    "NAME": "副产品",
+    "DESCRIPTIONS": [
+      "每进行一次 变量 ，获得 #b",
+      "每进行一次 变量 ，获得 #b",
+      " 张随机牌。"
+    ]
+  },
+  "Hoolheyak:ComplementaryExperiment": {
+    "NAME": "互补实验",
+    "DESCRIPTIONS": [
+      "每进行一次变量，获得 #b",
+      " 点 格挡 。"
+    ]
+  },
+  "Hoolheyak:KukulkanLegacy": {
+    "NAME": "库库尔坎的传承",
+    "DESCRIPTIONS": [
+      "你的 博览 和 逶迤 上限增加，但造成的伤害和给予的 升力 翻倍。"
     ]
   }
 }

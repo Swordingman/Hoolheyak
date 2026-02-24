@@ -23,6 +23,9 @@ public class CrossExperiment extends BaseCard {
     private static final int MAGIC = 1;
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
+    // 引入一个监控器，用于对比当前的 misc
+    private int lastMisc = 0;
+
     public CrossExperiment() {
         super(ID, new CardStats(
                 Hoolheyak.Meta.CARD_COLOR,
@@ -34,21 +37,44 @@ public class CrossExperiment extends BaseCard {
         setDamage(DAMAGE);
         setBlock(BLOCK);
         setMagic(MAGIC, UPGRADE_PLUS_MAGIC);
-        this.misc = 0; // 初始化永久变量
+        this.misc = 0;
+        this.lastMisc = 0;
     }
 
-    // 每次计算状态或从存档中加载时，通过 misc 还原永久增长的值
-    @Override
-    public void applyPowers() {
+    // 封装一个同步计算属性的方法
+    private void syncMisc() {
         int bonusDamage = this.misc % 1000;
         int bonusBlock = this.misc / 1000;
         this.baseDamage = DAMAGE + bonusDamage;
         this.baseBlock = BLOCK + bonusBlock;
+        this.lastMisc = this.misc;
+    }
+
+    // 【核心修复2：突破引擎硬编码】使用 update() 持续监听 misc，完美解决卡组面板不刷新的问题
+    @Override
+    public void update() {
+        super.update();
+        if (this.misc != this.lastMisc) {
+            syncMisc();
+        }
+    }
+
+    // 重写这两个战斗计算方法，确保应用力量和敏捷前，基础数值是正确的
+    @Override
+    public void applyPowers() {
+        syncMisc();
         super.applyPowers();
     }
 
     @Override
+    public void calculateCardDamage(AbstractMonster mo) {
+        syncMisc();
+        super.calculateCardDamage(mo);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        // 先造成伤害和格挡
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
         addToBot(new GainBlockAction(p, p, block));
 
@@ -69,28 +95,28 @@ public class CrossExperiment extends BaseCard {
 
     // 处理永久增长的核心逻辑
     private void increasePermanentStats(boolean isDamage, int amount) {
-        // 同步修改卡组里的那张卡
+        // 1. 同步修改卡组里的那张卡
         for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
             if (c.uuid.equals(this.uuid)) {
                 if (isDamage) {
                     c.misc += amount; // 低位存伤害
-                    c.baseDamage += amount;
                 } else {
                     c.misc += (amount * 1000); // 高位存格挡
-                    c.baseBlock += amount;
                 }
-                c.isDamageModified = true;
-                c.isBlockModified = true;
-                c.superFlash();
+                // 我们不需要在这里写复杂的更新代码，只要改了 misc，
+                // 那张牌的 update() 方法就会在下一帧自动捕获并修正面板。
+                c.superFlash(); // 闪烁一下提示玩家牌成长了
             }
         }
 
-        // 同时修改当前战斗中手中的这张卡
+        // 2. 同时修改当前战斗中手中的这张卡
         if (isDamage) {
-            this.baseDamage += amount;
+            this.misc += amount; // 【核心修复1】：之前你漏了修改自身的 misc！
         } else {
-            this.baseBlock += amount;
+            this.misc += (amount * 1000);
         }
+
+        // 立刻刷新战斗中的面板
         this.applyPowers();
     }
 }

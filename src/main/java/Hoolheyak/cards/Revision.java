@@ -56,9 +56,35 @@ public class Revision extends BaseCard {
                         // 将牌移至消耗堆
                         p.hand.moveToExhaustPile(c);
 
-                        // 根据被消耗的牌的类型，随机生成一张同类型卡牌
-                        AbstractCard.CardType type = c.type;
-                        AbstractCard newCard = AbstractDungeon.returnTrulyRandomCardInCombat(type).makeCopy();
+                        // 根据被消耗的牌的类型，安全且随机地生成同类型卡牌
+                        AbstractCard newCard;
+                        switch (c.type) {
+                            case ATTACK:
+                            case SKILL:
+                            case POWER:
+                                // 常规类型调用原版方法
+                                newCard = AbstractDungeon.returnTrulyRandomCardInCombat(c.type).makeCopy();
+                                break;
+                            case CURSE:
+                                // 诅咒有专门的底层方法
+                                newCard = AbstractDungeon.returnRandomCurse().makeCopy();
+                                break;
+                            case STATUS:
+                                // 状态牌没有官方随机池，我们手动建一个小池子
+                                AbstractCard[] statuses = new AbstractCard[] {
+                                        new com.megacrit.cardcrawl.cards.status.Dazed(),   // 眩晕
+                                        new com.megacrit.cardcrawl.cards.status.Wound(),   // 伤口
+                                        new com.megacrit.cardcrawl.cards.status.Burn(),    // 灼伤
+                                        new com.megacrit.cardcrawl.cards.status.VoidCard(),// 虚空
+                                        new com.megacrit.cardcrawl.cards.status.Slimed()   // 黏液
+                                };
+                                newCard = statuses[AbstractDungeon.cardRandomRng.random(statuses.length - 1)].makeCopy();
+                                break;
+                            default:
+                                // 兜底机制：万一遇到其他 Mod 添加的奇葩类型，给一张完全随机的牌
+                                newCard = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
+                                break;
+                        }
 
                         // 升级后，使其在本回合降为0费
                         if (upgraded) {

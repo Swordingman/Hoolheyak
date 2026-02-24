@@ -17,7 +17,7 @@ public class MadWords extends BaseCard {
     public static final String ID = makeID("MadWords");
 
     private static final int COST = 3;
-    private static final int DAMAGE = 9;
+    private static final int DAMAGE = 6;
     private static final int MAGIC = 3; // 额外重复打出的次数
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
