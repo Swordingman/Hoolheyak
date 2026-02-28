@@ -5,6 +5,8 @@ import Hoolheyak.powers.RedundantExperimentPower;
 import Hoolheyak.util.CardStats;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -24,7 +26,7 @@ public class RedundantExperiment extends BaseCard {
         super(ID, new CardStats(
                 Hoolheyak.Meta.CARD_COLOR,
                 CardType.SKILL,
-                CardRarity.RARE,
+                CardRarity.UNCOMMON,
                 CardTarget.NONE,
                 COST
         ));
@@ -48,7 +50,7 @@ public class RedundantExperiment extends BaseCard {
                         this.isDone = true;
                         return;
                     }
-                    AbstractDungeon.handCardSelectScreen.open(cardStrings.EXTENDED_DESCRIPTION[0], magicNumber, false, false);
+                    AbstractDungeon.handCardSelectScreen.open(cardStrings.EXTENDED_DESCRIPTION[0], magicNumber, true, true);
                     this.opened = true;
                     return;
                 }

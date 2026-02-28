@@ -27,27 +27,23 @@ public class SerpentBloodlinePower extends BasePower {
 
     @Override
     public void onInitialApplication() {
-        // 第一次打出时，结算当前解析，并扣除1点能量上限
         triggerImmediateRitual();
-        AbstractDungeon.player.energy.energyMaster -= this.amount;
+        // 彻底删掉这里关于 energyMaster 和 loseEnergy 的代码！
     }
 
     @Override
     public void stackPower(int stackAmount) {
         super.stackPower(stackAmount);
-
-        // 【关键修复1】：如果玩家通过某种方式（比如双发）打出了第二张，
-        // 必须立刻再给他算一次当前解析对应的仪式，不能让他白白掉能量！
         triggerImmediateRitual();
-
-        // 继续扣除对应的能量上限
-        AbstractDungeon.player.energy.energyMaster -= stackAmount;
+        // 彻底删掉这里关于 energyMaster 和 loseEnergy 的代码！
     }
 
+    // 【新增这个钩子】：这是杀戮尖塔专用的能量重置钩子
+    // 每次回合开始，游戏给你回满能量后，立刻触发这里
     @Override
-    public void onRemove() {
-        // 战斗结束或被清除时，归还所有扣除的能量上限
-        AbstractDungeon.player.energy.energyMaster += this.amount;
+    public void onEnergyRecharge() {
+        this.flash(); // 让能力的图标闪烁一下，提醒玩家“我扣你费了”
+        AbstractDungeon.player.loseEnergy(this.amount); // 直接从当前能量池扣除层数对应的能量
     }
 
     @Override
@@ -65,10 +61,6 @@ public class SerpentBloodlinePower extends BasePower {
 
     @Override
     public void updateDescription() {
-        // 文本可以写成：
-        // DESCRIPTIONS[0] -> "获得等同于 解析 层数的 仪式 。每次获得 解析 时，获得 "
-        // DESCRIPTIONS[1] -> " 倍层数的 仪式 。 NL 每回合开始时，失去 #b"
-        // DESCRIPTIONS[2] -> " 点能量。"
         this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[2];
     }
 }

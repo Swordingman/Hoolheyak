@@ -19,7 +19,7 @@ public class Linger extends BaseCard{
         super(ID, new CardStats(
                 Hoolheyak.Meta.CARD_COLOR,
                 CardType.SKILL,
-                CardRarity.COMMON,
+                CardRarity.BASIC,
                 CardTarget.SELF,
                 COST
         ));

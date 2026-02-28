@@ -4,7 +4,9 @@ import Hoolheyak.actions.VariableAction;
 import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.powers.AnalysisPower;
 import Hoolheyak.powers.EruditionPower;
+import Hoolheyak.powers.KukulkanLegacyPower;
 import Hoolheyak.powers.MeanderPower;
+import Hoolheyak.powers.phases.SextilePower;
 import Hoolheyak.util.CardStats;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -17,6 +19,7 @@ public class FlyUp extends BaseCard {
     public static final String ID = makeID("FlyUp");
 
     private static final int COST = 2;
+    private static final int ANALYSIS = 1;
 
     public FlyUp() {
         super(ID, new CardStats(
@@ -26,6 +29,17 @@ public class FlyUp extends BaseCard {
                 CardTarget.SELF,
                 COST
         ));
+
+        setMagic(ANALYSIS);
+    }
+
+    @Override
+    public void upgrade() {
+        if (!this.upgraded) {
+            upgradeName();
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            initializeDescription();
+        }
     }
 
     // 实时更新卡面上的 X 数值
@@ -49,21 +63,32 @@ public class FlyUp extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        if (this.upgraded) {
+            addToBot(new ApplyPowerAction(p, p, new AnalysisPower(p, ANALYSIS)));
+        }
+
         int x = p.hasPower(AnalysisPower.POWER_ID) ? p.getPower(AnalysisPower.POWER_ID).amount : 0;
+
+        if (p.hasPower(KukulkanLegacyPower.POWER_ID)) {
+            int legacyStacks = p.getPower(KukulkanLegacyPower.POWER_ID).amount;
+            x += 3 * legacyStacks;
+        }
+        if (p.hasPower(SextilePower.POWER_ID)) x -= 2;
+        int total = 5 * x;
 
         ArrayList<VariableAction.VariableChoice> choices = new ArrayList<>();
 
         // 选项 α：触发 X 次博览
         choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[0], () -> {
-            if (x > 0) {
-                addToBot(new ApplyPowerAction(p, p, new EruditionPower(p, x), x));
+            if (total > 0) {
+                addToBot(new ApplyPowerAction(p, p, new EruditionPower(p, total), total));
             }
         }));
 
         // 选项 β：触发 X 次逶迤
         choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[1], () -> {
-            if (x > 0) {
-                addToBot(new ApplyPowerAction(p, p, new MeanderPower(p, x), x));
+            if (total > 0) {
+                addToBot(new ApplyPowerAction(p, p, new MeanderPower(p, total), total));
             }
         }));
 

@@ -13,10 +13,12 @@ public class Foreshadowing extends BaseCard {
     public static final String ID = makeID("Foreshadowing");
 
     private static final int COST = 2;
-    private static final int UPGRADED_COST = 1;
     private static final int BLOCK = 10;
-    private static final int ERUDITION = 2; // 博览
-    private static final int MEANDER = 1;   // 逶迤
+    private static final int BLOCK_UPG = 2;
+    private static final int ERUDITION = 2;
+    private static final int ERUDITION_UPG = 1;
+    private static final int MEANDER = 1;
+    private static final int MEANDER_UPG = 1;
 
     public Foreshadowing() {
         super(ID, new CardStats(
@@ -26,10 +28,9 @@ public class Foreshadowing extends BaseCard {
                 CardTarget.SELF,
                 COST
         ));
-        setCostUpgrade(UPGRADED_COST);
-        setBlock(BLOCK);
-        setMagic(ERUDITION);
-        setCustomVar("MEANDER", MEANDER); // 使用自定义变量存储逶迤数值
+        setBlock(BLOCK, BLOCK_UPG);
+        setMagic(ERUDITION, ERUDITION_UPG);
+        setCustomVar("MEANDER", MEANDER, MEANDER_UPG);
     }
 
     @Override

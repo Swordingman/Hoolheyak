@@ -5,5 +5,12 @@
     "DESCRIPTIONS": [
       "战斗开始时，获得 #b2 点 解析 。"
     ]
+  },
+  "Hoolheyak:FrenziedSundial": {
+    "NAME": "狂乱星晷",
+    "FLAVOR": "折射真相，投映未来。",
+    "DESCRIPTIONS": [
+      "在每个回合开始时，获得 #b1 点 [E] 。 NL 在你的回合开始时，进入一个随机 相位 。"
+    ]
   }
 }

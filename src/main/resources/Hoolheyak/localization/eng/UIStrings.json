@@ -1,7 +1,22 @@
 {
-  "thePenance:WolfCurseSelect": {
+  "Hoolheyak:ArchiveRewards": {
     "TEXT": [
-      "Choose One"
+      "Any Color Card",
+      "Colorless Card",
+      "Choose a card to add to your deck"
+    ]
+  },
+  "Hoolheyak:RecursiveRewards": {
+    "TEXT": [
+      "Recursive Rewards",
+      "Choose a card to add to your deck"
+    ]
+  },
+  "Hoolheyak:CardModifiers": {
+    "TEXT": [
+      " NL Exhaust.",
+      " NL Innate.",
+      " NL Retain."
     ]
   }
 }

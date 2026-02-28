@@ -17,7 +17,7 @@ public class Footnote extends BaseCard {
     public static final String ID = makeID("Footnote");
 
     private static final int COST = 1;
-    private static final int BLOCK = 6;
+    private static final int BLOCK = 8;
     private static final int UPGRADE_PLUS_BLOCK = 3;
 
     public Footnote() {

@@ -2,6 +2,8 @@ package Hoolheyak;
 
 import Hoolheyak.powers.GravityPower;
 import Hoolheyak.relics.Bibliotheca;
+import Hoolheyak.relics.FrenziedSundial;
+import Hoolheyak.util.*;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.interfaces.*;
@@ -11,10 +13,6 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.character.HoolheyakSkinHelper;
-import Hoolheyak.util.GeneralUtils;
-import Hoolheyak.util.KeywordInfo;
-import Hoolheyak.util.Sounds;
-import Hoolheyak.util.TextureLoader;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglFileHandle;
@@ -31,10 +29,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
+import com.megacrit.cardcrawl.rewards.RewardSave;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.scannotation.AnnotationDB;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
@@ -105,6 +104,42 @@ public class HoolheyakMod implements
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        // 注册任意颜色卡牌奖励
+        BaseMod.registerCustomReward(
+                ArchiveRewardEnums.ARCHIVE_ANY_COLOR,
+                (rewardSave) -> {
+                    return new ArchiveAnyColorReward();
+                },
+                (customReward) -> {
+                    return new RewardSave(customReward.type.toString(), null, 0, 0);
+                }
+        );
+
+        // 注册无色卡牌奖励
+        BaseMod.registerCustomReward(
+                ArchiveRewardEnums.ARCHIVE_COLORLESS,
+                (rewardSave) -> {
+                    return new ArchiveColorlessReward();
+                },
+                (customReward) -> {
+                    return new RewardSave(customReward.type.toString(), null, 0, 0);
+                }
+        );
+
+        BaseMod.registerCustomReward(
+                ArchiveRewardEnums.RECURSIVE_EXPERIMENT,
+                (rewardSave) -> {
+                    AbstractCard.CardType savedType = AbstractCard.CardType.valueOf(rewardSave.id);
+                    return new RecursiveExperimentReward(savedType);
+                },
+                (customReward) -> {
+                    // 存档时：获取当前奖励的 CardType，以字符串形式存在 ID 位置
+                    RecursiveExperimentReward myReward = (RecursiveExperimentReward) customReward;
+                    // 参数: 类型字符串, ID字符串(存CardType), 数量, 额外金币
+                    return new RewardSave(myReward.type.toString(), myReward.savedCardType.name(), 0, 0);
+                }
+        );
     }
 
     /*---------- 本地化 (Localization) ----------*/
@@ -131,6 +166,7 @@ public class HoolheyakMod implements
     @Override
     public void receiveEditRelics() {
         BaseMod.addRelicToCustomPool(new Bibliotheca(), Hoolheyak.Meta.CARD_COLOR);
+        BaseMod.addRelicToCustomPool(new FrenziedSundial(), Hoolheyak.Meta.CARD_COLOR);
     }
 
     @Override

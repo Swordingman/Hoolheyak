@@ -3,6 +3,7 @@ package Hoolheyak.cards;
 import Hoolheyak.actions.VariableAction;
 import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.util.CardStats;
+import Hoolheyak.util.RecursiveExperimentReward;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
@@ -80,7 +81,7 @@ public class RecursiveExperiment extends BaseCard {
                     // 1. 将原来起名为 target 的变量，改名为 randomMonster
                     AbstractMonster randomMonster = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
 
-// --- 视觉初始化部分保持不变 ---
+                    // --- 视觉初始化部分保持不变 ---
                     p.limbo.addToBottom(copy);
                     copy.current_x = Settings.WIDTH / 2.0F;
                     copy.current_y = Settings.HEIGHT / 2.0F;
@@ -91,7 +92,7 @@ public class RecursiveExperiment extends BaseCard {
                     copy.lighten(false);
                     copy.targetAngle = 0.0f;
 
-// 2. 这里也要改成 randomMonster
+                    // 2. 这里也要改成 randomMonster
                     if (randomMonster != null) { copy.calculateCardDamage(randomMonster); }
                     copy.applyPowers();
                     copy.freeToPlayOnce = true;
@@ -116,16 +117,7 @@ public class RecursiveExperiment extends BaseCard {
                             addToBot(new AbstractGameAction() {
                                 @Override
                                 public void update() {
-                                    RewardItem reward = new RewardItem();
-                                    reward.cards.clear();
-                                    while (reward.cards.size() < 3) {
-                                        AbstractCard c = AbstractDungeon.returnTrulyRandomCardInCombat(removedCard.type).makeCopy();
-                                        boolean isDuplicate = false;
-                                        for (AbstractCard rc : reward.cards) {
-                                            if (rc.cardID.equals(c.cardID)) { isDuplicate = true; break; }
-                                        }
-                                        if (!isDuplicate) reward.cards.add(c);
-                                    }
+                                    RecursiveExperimentReward reward = new RecursiveExperimentReward(removedCard.type);
                                     AbstractDungeon.getCurrRoom().rewards.add(reward);
 
                                     addToBot(new RecursiveExperimentAction(sourceCard));

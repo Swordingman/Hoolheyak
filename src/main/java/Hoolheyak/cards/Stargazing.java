@@ -110,27 +110,52 @@ public class Stargazing extends BaseCard {
                 // 清理选牌网格的缓存
                 AbstractDungeon.gridSelectScreen.selectedCards.clear();
 
-                // 2. 如果玩家确实选中了牌，才呼出变量选项
+                // 2. 如果玩家确实选中了牌，才呼出变量选项处理它们
                 if (!selected.isEmpty()) {
                     ArrayList<VariableAction.VariableChoice> choices = new ArrayList<>();
 
                     // 选项 α：弃掉它们
                     choices.add(new VariableAction.VariableChoice(Stargazing.cardStrings.EXTENDED_DESCRIPTION[0], () -> {
-                        for (AbstractCard c : selected) {
+                        for (int i = 0; i < selected.size(); i++) {
+                            AbstractCard c = selected.get(i);
+
+                            // 【动画关键1】赋予卡牌在屏幕中央的初始坐标，否则它没有起点可以飞
+                            c.current_x = Settings.WIDTH / 2.0F;
+                            c.current_y = Settings.HEIGHT / 2.0F;
+
+                            // 逻辑上：真正放入弃牌堆并触发弃牌效果
                             p.discardPile.addToTop(c);
                             c.triggerOnManualDiscard();
+
+                            // 【动画关键2】视觉上：呼叫底层灵魂动画，让它飞向弃牌堆
+                            c.shrink();
+                            c.darken(false);
+                            // true 表示 "仅视觉动画"，因为我们已经在上一行逻辑上把它放进弃牌堆了
+                            AbstractDungeon.getCurrRoom().souls.discard(c, true);
                         }
                     }));
 
                     // 选项 β：置于抽牌堆底
                     choices.add(new VariableAction.VariableChoice(Stargazing.cardStrings.EXTENDED_DESCRIPTION[1], () -> {
-                        for (AbstractCard c : selected) {
+                        for (int i = 0; i < selected.size(); i++) {
+                            AbstractCard c = selected.get(i);
+
+                            c.current_x = Settings.WIDTH / 2.0F;
+                            c.current_y = Settings.HEIGHT / 2.0F;
+
+                            // 逻辑上：真正放入抽牌堆底部
                             p.drawPile.addToBottom(c);
+
+                            // 视觉上：呼叫底层灵魂动画，让它飞向抽牌堆
+                            c.shrink();
+                            c.darken(false);
+                            // 参数：(卡牌, 是否随机位置=false, 是否仅视觉动画=true)
+                            AbstractDungeon.getCurrRoom().souls.onToDeck(c, false, true);
                         }
                     }));
 
                     // 把变量选择界面压入队列
-                    addToBot(new VariableAction(sourceCard, choices));
+                    AbstractDungeon.actionManager.addToBottom(new VariableAction(this.sourceCard, choices));
                 }
 
                 this.isDone = true;

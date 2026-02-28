@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 public class LaminarFlow extends BaseCard{
     public static final String ID = makeID("LaminarFlow");
 
-    private static final int COST = 1;
+    private static final int COST = 0;
     private static final int DAMAGE = 3;
     private static final int DRAW = 1;
     private static final int DRAW_UPG = 1;

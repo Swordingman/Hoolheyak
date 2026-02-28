@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -16,45 +17,48 @@ public class RedundantExperimentPower extends BasePower {
     private final ArrayList<AbstractCard> trackedCards;
 
     public RedundantExperimentPower(AbstractCreature owner, ArrayList<AbstractCard> cards) {
-        // 利用 cards 的数量作为能力层数，直观提示玩家还有几张牌生效
         super(POWER_ID, PowerType.BUFF, true, owner, cards.size());
         this.trackedCards = new ArrayList<>(cards);
         this.updateDescription();
     }
 
-    // 黑科技：update(int slot) 在每帧都会调用，我们可以进行实时的弃牌堆监控
-    @Override
-    public void update(int slot) {
-        super.update(slot);
-        if (this.trackedCards != null && !this.trackedCards.isEmpty()) {
-            Iterator<AbstractCard> it = this.trackedCards.iterator();
-            while (it.hasNext()) {
-                AbstractCard c = it.next();
+    // 【核心修复】：彻底删除 update() 方法！不要在 update 里处理游戏结算逻辑！
 
-                // 一旦检测到目标卡进入了弃牌堆
-                if (AbstractDungeon.player.discardPile.contains(c)) {
-                    // 从弃牌堆捞出
+    // 使用这个时机：在点击结束回合后，但在系统弃掉手牌之前
+    @Override
+    public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
+        if (isPlayer && !this.trackedCards.isEmpty()) {
+            this.flash();
+
+            for (AbstractCard c : this.trackedCards) {
+                // 1. 安全检查并从当前位置移除卡牌
+                if (AbstractDungeon.player.hand.contains(c)) {
+                    AbstractDungeon.player.hand.removeCard(c);
+                } else if (AbstractDungeon.player.discardPile.contains(c)) {
+                    // 以防玩家在回合内手动把它弃掉了
                     AbstractDungeon.player.discardPile.removeCard(c);
-                    c.freeToPlayOnce = true; // 视为打出，免耗费
-
-                    AbstractMonster target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-                    AbstractDungeon.actionManager.addToBottom(new NewQueueCardAction(c, target, false, true));
-
-                    it.remove(); // 移除监控名单，避免重复打出
-
-                    this.amount = this.trackedCards.size();
-                    if (this.amount <= 0) {
-                        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
-                    }
+                } else if (AbstractDungeon.player.drawPile.contains(c)) {
+                    AbstractDungeon.player.drawPile.removeCard(c);
                 }
-            }
-        }
-    }
 
-    @Override
-    public void atEndOfTurn(boolean isPlayer) {
-        if (isPlayer) {
-            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+                // 2. 将卡牌放入 limbo（暂存区），这是让卡牌能在空中悬停打出的标准做法
+                AbstractDungeon.player.limbo.addToBottom(c);
+                c.current_x = c.target_x = Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
+                c.current_y = c.target_y = Settings.HEIGHT / 2.0F;
+
+                // 3. 设置打出属性
+                c.freeToPlayOnce = true;
+                // 如果你希望这张牌打出后直接消耗掉，取消下面这行的注释
+                // c.exhaustOnUseOnce = true;
+
+                // 4. 寻找随机目标并加入打出队列
+                AbstractMonster target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+                addToBot(new NewQueueCardAction(c, target, false, true));
+            }
+
+            // 5. 结算完毕，清空追踪列表并移除此能力
+            this.trackedCards.clear();
+            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
         }
     }
 

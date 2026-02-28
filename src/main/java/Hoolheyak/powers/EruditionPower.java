@@ -1,6 +1,9 @@
 package Hoolheyak.powers;
 
 import Hoolheyak.HoolheyakMod;
+import Hoolheyak.cards.ContingencyPlan;
+import Hoolheyak.powers.phases.QuincunxPower;
+import Hoolheyak.powers.phases.SextilePower;
 import Hoolheyak.util.CustomTags;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -26,9 +29,14 @@ public class EruditionPower extends BasePower {
             return;
         }
 
-        if (card.type == AbstractCard.CardType.ATTACK) {
+        boolean isTriggerType = (card.type == AbstractCard.CardType.ATTACK);
+        if (this.owner.hasPower(QuincunxPower.POWER_ID)) {
+            isTriggerType = (card.type == AbstractCard.CardType.SKILL);
+        }
+
+        if (isTriggerType) {
             this.amount++;
-            checkAndTrigger(); // 每次打牌后检查是否满足条件
+            checkAndTrigger();
         }
     }
 
@@ -41,7 +49,7 @@ public class EruditionPower extends BasePower {
 
     // 将结算逻辑封装，方便调用
     private void checkAndTrigger() {
-        int threshold = 5;
+        int threshold = this.owner.hasPower(SextilePower.POWER_ID) ? 3 : 5;
         int multiplier = 1;
 
         // 判定库库尔坎的传承
@@ -51,8 +59,10 @@ public class EruditionPower extends BasePower {
             multiplier = (int)Math.pow(2, legacyStacks);
         }
 
-        if (this.amount >= threshold) {
-            this.amount -= threshold; // 扣除达标的层数（保留溢出的部分，绝不浪费）
+        // 使用循环确保能多次触发
+        while (this.amount >= threshold) {
+            this.amount -= threshold; // 扣除达标的层数
+
             this.flash();
 
             int x = this.owner.hasPower(AnalysisPower.POWER_ID) ? this.owner.getPower(AnalysisPower.POWER_ID).amount : 0;
@@ -75,10 +85,13 @@ public class EruditionPower extends BasePower {
                 });
             }
 
-            // 触发联动机制
+            // 触发额外的能力
+            ContingencyPlan.returnFromDiscard(true);
             InheritedMemoriesPower.onTriggerKeyword(this.owner);
             CovenantStrengthPower.trigger(this.owner);
         }
+
+        // 更新描述
         updateDescription();
     }
 

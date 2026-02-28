@@ -1,7 +1,22 @@
 {
-  "thePenance:WolfCurseSelect": {
+  "Hoolheyak:ArchiveRewards": {
     "TEXT": [
-      "选择加入手牌"
+      "任意颜色卡牌",
+      "无色卡牌",
+      "选择一张卡牌加入你的牌组"
+    ]
+  },
+  "Hoolheyak:RecursiveRewards": {
+    "TEXT": [
+      "实验产物",
+      "选择一张卡牌加入你的牌组"
+    ]
+  },
+  "Hoolheyak:CardModifiers": {
+    "TEXT": [
+      " NL 消耗 。",
+      " NL 固有 。",
+      " NL 保留 。"
     ]
   }
 }

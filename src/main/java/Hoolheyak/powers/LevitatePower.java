@@ -1,7 +1,9 @@
 package Hoolheyak.powers;
 
+import Hoolheyak.powers.phases.OppositionPower;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -22,6 +24,8 @@ public class LevitatePower extends BasePower {
     public void onInitialApplication() {
         // 进入此状态时，移除所有格挡
         addToBot(new RemoveAllBlockAction(this.owner, this.source));
+
+        addToBot(new ApplyPowerAction(this.owner, this.source, new DeconstructionPower(this.owner, 20), 20));
 
         // 触发全知视界
         if (this.source != null && this.source.hasPower(OmniscientHorizonPower.POWER_ID)) {
@@ -56,15 +60,15 @@ public class LevitatePower extends BasePower {
     }
 
     @Override
-    public float modifyBlock(float blockAmount) {
-        // 获得的格挡减少70%
-        return blockAmount * 0.3f;
-    }
-
-    @Override
     public void atEndOfRound() {
         // 目标的回合结束时，解除此状态并受到伤害
         int gravityAmt = this.owner.hasPower(GravityPower.POWER_ID) ? this.owner.getPower(GravityPower.POWER_ID).amount : 0;
+
+        // 【对冲联动】
+        if (this.source != null && this.source.hasPower(OppositionPower.POWER_ID)) {
+            gravityAmt /= 2;
+        }
+
         int remainingLift = this.owner.hasPower(LiftPower.POWER_ID) ? this.owner.getPower(LiftPower.POWER_ID).amount : 0;
 
         int damageAmt = (gravityAmt + remainingLift) * 2;

@@ -2,6 +2,8 @@ package Hoolheyak.cards;
 
 import Hoolheyak.actions.VariableAction;
 import Hoolheyak.character.Hoolheyak;
+import Hoolheyak.util.ArchiveAnyColorReward;
+import Hoolheyak.util.ArchiveColorlessReward;
 import Hoolheyak.util.CardStats;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -9,8 +11,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.SaveHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 
 import java.util.ArrayList;
@@ -57,23 +61,18 @@ public class Archive extends BaseCard {
                     }
 
                     // 2. 然后再判定斩杀并推入我们的 UI
-                    // 2. 然后再判定斩杀并推入我们的 UI
-                    if ((this.target.isDying || this.target.currentHealth <= 0) && !this.target.halfDead && !this.target.hasPower("Minion")) {
+                    if ((this.target.isDying || this.target.currentHealth <= 0) && !this.target.halfDead) {
 
                         ArrayList<VariableAction.VariableChoice> choices = new ArrayList<>();
 
                         choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[0], () -> {
-                            RewardItem reward = new RewardItem(p.getCardColor());
-                            reward.cards.clear();
-                            for (int i = 0; i < 3; i++) {
-                                reward.cards.add(AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy());
-                            }
-                            addCustomReward(reward);
+                            // 直接使用自定义的 Reward
+                            addCustomReward(new ArchiveAnyColorReward());
                         }));
 
                         choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[1], () -> {
-                            RewardItem reward = new RewardItem(AbstractCard.CardColor.COLORLESS);
-                            addCustomReward(reward);
+                            // 直接使用自定义的无色 Reward
+                            addCustomReward(new ArchiveColorlessReward());
                         }));
 
                         // 【最终修复】创建动作后，强制修改它的 actionType
@@ -89,12 +88,18 @@ public class Archive extends BaseCard {
         });
     }
 
-    // 辅助添加奖励方法保持不变
+    // 辅助添加奖励方法
     private void addCustomReward(RewardItem reward) {
         AbstractDungeon.getCurrRoom().rewards.add(reward);
+
+        // 如果战斗已经结束，并且奖励屏幕已经出现
         if (AbstractDungeon.getCurrRoom().isBattleOver && AbstractDungeon.combatRewardScreen != null) {
             AbstractDungeon.combatRewardScreen.rewards.add(reward);
             AbstractDungeon.combatRewardScreen.positionRewards();
+
+            // 【核心修复 2：SL 防丢】
+            // 调用杀戮尖塔原生的存档助手，强制覆盖一次战后存档 (POST_COMBAT)
+            SaveHelper.saveIfAppropriate(SaveFile.SaveType.POST_COMBAT);
         }
     }
 }

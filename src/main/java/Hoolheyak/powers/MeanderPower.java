@@ -1,6 +1,10 @@
 package Hoolheyak.powers;
 
 import Hoolheyak.HoolheyakMod;
+import Hoolheyak.cards.ContingencyPlan;
+import Hoolheyak.cards.phases.QuincunxCard;
+import Hoolheyak.powers.phases.QuincunxPower;
+import Hoolheyak.powers.phases.SextilePower;
 import Hoolheyak.util.CustomTags;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -26,7 +30,12 @@ public class MeanderPower extends BasePower {
             return;
         }
 
-        if (card.type == AbstractCard.CardType.SKILL) {
+        boolean isTriggerType = (card.type == AbstractCard.CardType.SKILL);
+        if (this.owner.hasPower(QuincunxPower.POWER_ID)) {
+            isTriggerType = (card.type == AbstractCard.CardType.ATTACK); // 变成攻击触发逶迤
+        }
+
+        if (isTriggerType) {
             this.amount++;
             checkAndTrigger();
         }
@@ -39,16 +48,16 @@ public class MeanderPower extends BasePower {
     }
 
     private void checkAndTrigger() {
-        int threshold = 5;
+        int threshold = this.owner.hasPower(SextilePower.POWER_ID) ? 3 : 5;
         int multiplier = 1;
 
         if (this.owner.hasPower(KukulkanLegacyPower.POWER_ID)) {
             int legacyStacks = this.owner.getPower(KukulkanLegacyPower.POWER_ID).amount;
             threshold += 3 * legacyStacks;
-            multiplier = (int)Math.pow(2, legacyStacks);
+            multiplier = (int) Math.pow(2, legacyStacks);
         }
 
-        if (this.amount >= threshold) {
+        while (this.amount >= threshold) {
             this.amount -= threshold;
             this.flash();
 
@@ -71,9 +80,11 @@ public class MeanderPower extends BasePower {
                 });
             }
 
+            ContingencyPlan.returnFromDiscard(false);
             InheritedMemoriesPower.onTriggerKeyword(this.owner);
             CovenantDexterityPower.trigger(this.owner);
         }
+
         updateDescription();
     }
 
