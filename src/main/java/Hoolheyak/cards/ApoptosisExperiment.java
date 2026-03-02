@@ -49,6 +49,6 @@ public class ApoptosisExperiment extends BaseCard {
             addToBot(new ApplyPowerAction(m, p, new DeconstructionPower(m, customVar("DECONSTRUCTION")), customVar("DECONSTRUCTION")));
         }));
 
-        addToBot(new VariableAction(this, choices));
+        addToBot(new VariableAction(this, choices, true));
     }
 }

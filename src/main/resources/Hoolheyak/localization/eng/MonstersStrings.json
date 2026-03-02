@@ -1,27 +1,24 @@
 {
-  "thePenance:VolsiniiCivilian": {
-    "NAME": "Volsinii Civilian",
-    "MOVES": [],
-    "DIALOG": [
-      "Help!",
-      "Ahh...",
-      "Thanks! I gotta go first..."
-    ]
-  },
-  "thePenance:VolsiniiMob": {
-    "NAME": "Volsinii Mob",
-    "MOVES": [],
-    "DIALOG": [
-      "Volsinii Scout",
-      "Volsinii Mob"
-    ]
-  },
-  "thePenance:MafiaGodfather": {
-    "NAME": "Mafia Godfather",
+  "Hoolheyak:FriendlyManifold": {
+    "NAME": "流形",
+    "DIALOG": [],
     "MOVES": []
   },
-  "thePenance:FamilyCleaner": {
-    "NAME": "Family Cleaner",
+  "Hoolheyak:EnemyManifold": {
+    "NAME": "流形",
+    "DIALOG": [],
     "MOVES": []
+  },
+  "Hoolheyak:Muelsyse": {
+    "NAME": "缪尔赛斯",
+    "DIALOG": [
+      "真让人意外，在这座破塔里也能闻到令人讨厌的羽毛味。"
+    ],
+    "MOVES": [
+      "水影召唤",
+      "源石技艺",
+      "生态干预",
+      "窒息"
+    ]
   }
 }

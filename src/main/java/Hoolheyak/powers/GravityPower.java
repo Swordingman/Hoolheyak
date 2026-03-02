@@ -20,7 +20,7 @@ public class GravityPower extends BasePower {
         int baseGravity = Math.max(1, this.owner.maxHealth / 10);
 
         if (AbstractDungeon.player.hasPower(OppositionPower.POWER_ID)) {
-            this.amount = baseGravity / 2;
+            this.amount = Math.max(1, baseGravity / 2); // 保证重力至少为 1
         } else {
             this.amount = baseGravity;
         }

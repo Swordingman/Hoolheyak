@@ -67,7 +67,7 @@ public class ChimeraExperiment extends BaseCard {
                 addToBot(new PlayTopTypeCardsAction(finalEffect, CardType.SKILL));
             }));
 
-            addToBot(new VariableAction(this, choices));
+            addToBot(new VariableAction(this, choices, true));
         }
     }
 }

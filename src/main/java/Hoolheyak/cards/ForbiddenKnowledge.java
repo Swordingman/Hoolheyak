@@ -13,8 +13,11 @@ import java.util.ArrayList;
 
 public class ForbiddenKnowledge extends BaseCard {
     public static final String ID = makeID("ForbiddenKnowledge");
-
     private static final int COST = 1;
+
+    // 设定新机制的数值
+    private static final int DRAW_AMOUNT = 1;
+    private static final int AOE_DAMAGE = 5;
 
     public ForbiddenKnowledge() {
         super(ID, new CardStats(
@@ -31,16 +34,16 @@ public class ForbiddenKnowledge extends BaseCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         ArrayList<VariableAction.VariableChoice> choices = new ArrayList<>();
 
-        // 选项 α：打出能力牌加博览
+        // 选项 α：当你触发博览时，额外抽 1 张牌
         choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[0], () -> {
-            addToBot(new ApplyPowerAction(p, p, new ForbiddenKnowledgeEruPower(p, 2), 2));
+            addToBot(new ApplyPowerAction(p, p, new ForbiddenKnowledgeEruPower(p, DRAW_AMOUNT), DRAW_AMOUNT));
         }));
 
-        // 选项 β：打出能力牌加逶迤
+        // 选项 β：当你触发逶迤时，对所有敌人造成 5 点伤害
         choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[1], () -> {
-            addToBot(new ApplyPowerAction(p, p, new ForbiddenKnowledgeMeaPower(p, 2), 2));
+            addToBot(new ApplyPowerAction(p, p, new ForbiddenKnowledgeMeaPower(p, AOE_DAMAGE), AOE_DAMAGE));
         }));
 
-        addToBot(new VariableAction(this, choices));
+        addToBot(new VariableAction(this, choices, true));
     }
 }

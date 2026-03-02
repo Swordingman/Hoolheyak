@@ -80,18 +80,18 @@
       " 点 解析 。"
     ]
   },
-  "Hoolheyak:ForbiddenKnowledgeEru": {
+  "HoolheyakMod:ForbiddenKnowledgeEru": {
     "NAME": "禁忌知识·博览",
     "DESCRIPTIONS": [
-      "打出能力牌时，获得 #b",
-      " 点 博览 。"
+      "每当你触发 #y博览 时，抽 #b",
+      " 张牌。"
     ]
   },
-  "Hoolheyak:ForbiddenKnowledgeMea": {
+  "HoolheyakMod:ForbiddenKnowledgeMea": {
     "NAME": "禁忌知识·逶迤",
     "DESCRIPTIONS": [
-      "打出能力牌时，获得 #b",
-      " 点 逶迤 。"
+      "每当你触发 #y逶迤 时，对所有敌人造成 #b",
+      " 点伤害。"
     ]
   },
   "Hoolheyak:EntropyIncrease": {

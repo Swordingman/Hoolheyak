@@ -128,9 +128,10 @@
     "NAME": "参数修正",
     "DESCRIPTION": "消耗 。 NL 回合结束时，可以至多使另外 !M! 张手牌在本回合中获得 保留 。 NL 每次触发该效果，获得 1 层 逶迤 。"
   },
-  "Hoolheyak:AirflowDisturbance": {
-    "NAME": "气流扰动",
-    "DESCRIPTION": "给予 !M! 层 升力 。 NL 如果敌人已经 浮空 ，则抽 2 张牌。"
+  "Hoolheyak:LiteratureRetrieval": {
+    "NAME": "文献检索",
+    "DESCRIPTION": "从 3 张随机职业的牌中选择 1 张加入你的手牌。",
+    "UPGRADE_DESCRIPTION": "从 3 张随机职业的牌中选择 1 张加入你的手牌。这张牌在本回合耗能变为 0。"
   },
   "Hoolheyak:MassOffset": {
     "NAME": "质量抵消",
@@ -139,13 +140,11 @@
   },
   "Hoolheyak:FlyUp": {
     "NAME": "飞起来！",
-    "DESCRIPTION": "触发 X 次 变量 ： NL 博览 ； NL 逶迤 。 NL X 等同于你的 解析 。",
-    "UPGRADE_DESCRIPTION": "获得 1 层 解析 。 NL 触发 X 次 变量 ： NL 博览 ； NL 逶迤 。 NL X 等同于你的 解析 。",
+    "DESCRIPTION": "触发 X 次 变量 ： NL 博览 ； NL 逶迤 。",
+    "UPGRADE_DESCRIPTION": "获得 !M! 层 解析 。 NL 触发 X+1 次 变量 ： NL 博览 ； NL 逶迤 。",
     "EXTENDED_DESCRIPTION": [
       "触发博览",
-      "触发逶迤",
-      " NL （目前 ",
-      " 次。）"
+      "触发逶迤"
     ]
   },
   "Hoolheyak:ColdEye": {
@@ -384,5 +383,13 @@
   "Hoolheyak:Convergence": {
     "NAME": "气流辐合",
     "DESCRIPTION": "消耗 。 NL 获得 !B! 点 格挡 。 NL 额外获得相当于所有敌人 重力 之和的 格挡 ，最多 !M! 点。"
+  },
+  "Hoolheyak:CrossSearch": {
+    "NAME": "交叉检索",
+    "DESCRIPTION": "抽 !M! 张牌，然后丢弃 1 张牌。 NL 如果你丢弃了攻击牌，获得 1 点 博览 ； NL 如果你丢弃了技能牌，获得 1 点 逶迤 。"
+  },
+  "Hoolheyak:Rapids": {
+    "NAME": "急流",
+    "DESCRIPTION": "消耗 。 NL 给予 99 层 失重 。"
   }
 }

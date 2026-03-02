@@ -20,10 +20,9 @@ public class UniversalMapping extends BaseCard {
     public static final String ID = makeID("UniversalMapping");
 
     private static final int COST = 3;
-    private static final int DAMAGE = 6;
+    private static final int DAMAGE = 12;
 
-    // 用 magic number 来控制打出稀有牌的数量：初始3张，升级+1变成4张
-    private static final int MAGIC = 3;
+    private static final int MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
     public UniversalMapping() {
@@ -63,6 +62,8 @@ public class UniversalMapping extends BaseCard {
                     if (!rareAttacks.isEmpty()) {
                         // 随机抽取一张并复制
                         AbstractCard randomCard = rareAttacks.get(AbstractDungeon.cardRandomRng.random(rareAttacks.size() - 1)).makeCopy();
+
+                        AbstractDungeon.actionManager.cardsPlayedThisTurn.add(randomCard);
 
                         // 设定为打出后消耗（不进弃牌堆），且本次打出不耗费能量
                         randomCard.purgeOnUse = true;

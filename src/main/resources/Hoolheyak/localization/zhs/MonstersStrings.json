@@ -1,27 +1,24 @@
 {
-  "thePenance:VolsiniiCivilian": {
-    "NAME": "沃尔西尼市民",
-    "MOVES": [],
-    "DIALOG": [
-      "救救我！",
-      "呃啊...",
-      "谢谢你！我得赶紧走了！"
-    ]
-  },
-  "thePenance:VolsiniiMob": {
-    "NAME": "沃尔西尼暴徒",
-    "MOVES": [],
-    "DIALOG": [
-      "沃尔西尼斥候",
-      "沃尔西尼暴徒"
-    ]
-  },
-  "thePenance:MafiaGodfather": {
-    "NAME": "黑帮教父",
+  "Hoolheyak:FriendlyManifold": {
+    "NAME": "流形",
+    "DIALOG": [],
     "MOVES": []
   },
-  "thePenance:FamilyCleaner": {
-    "NAME": "家族灭迹人",
+  "Hoolheyak:EnemyManifold": {
+    "NAME": "流形",
+    "DIALOG": [],
     "MOVES": []
+  },
+  "Hoolheyak:Muelsyse": {
+    "NAME": "缪尔赛斯",
+    "DIALOG": [
+      "真让人意外，在这座破塔里也能闻到令人讨厌的羽毛味。"
+    ],
+    "MOVES": [
+      "水影召唤",
+      "源石技艺",
+      "生态干预",
+      "窒息"
+    ]
   }
 }

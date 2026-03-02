@@ -1,10 +1,8 @@
 package Hoolheyak.powers;
 
 import Hoolheyak.HoolheyakMod;
-import Hoolheyak.character.Hoolheyak;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 
 public class ForbiddenKnowledgeMeaPower extends BasePower {
@@ -14,16 +12,16 @@ public class ForbiddenKnowledgeMeaPower extends BasePower {
         super(POWER_ID, PowerType.BUFF, false, owner, amount);
     }
 
-    @Override
-    public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (card.type == AbstractCard.CardType.POWER) {
-            this.flash();
-            addToBot(new ApplyPowerAction(this.owner, this.owner, new MeanderPower(this.owner, this.amount), this.amount));
-        }
+    // 自定义方法：当逶迤被触发时调用
+    public void onTriggerMeander() {
+        this.flash();
+        // 造成无视护甲的群体伤害（这里用了荆棘伤害类型避免受力量加成，如果你希望受力量加成，可以改成 NORMAL）
+        addToBot(new DamageAllEnemiesAction(null, DamageInfo.createDamageMatrix(this.amount, true),
+                DamageInfo.DamageType.THORNS, com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect.FIRE));
     }
 
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]; // 记得在本地化文件里改成：当你触发逶迤时，对所有敌人造成 #b 点伤害。
     }
 }

@@ -43,6 +43,6 @@ public class AncientCovenant extends BaseCard {
             addToBot(new ApplyPowerAction(p, p, new CovenantDexterityPower(p, magicNumber), magicNumber));
         }));
 
-        addToBot(new VariableAction(this, choices));
+        addToBot(new VariableAction(this, choices, true));
     }
 }

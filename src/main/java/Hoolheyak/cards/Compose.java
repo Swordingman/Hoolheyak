@@ -100,6 +100,6 @@ public class Compose extends BaseCard {
         }));
 
         // 将组装好的选项传入你写好的 VariableAction 中
-        addToBot(new VariableAction(this, choices));
+        addToBot(new VariableAction(this, choices, true));
     }
 }

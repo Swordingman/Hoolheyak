@@ -32,6 +32,11 @@ public class PhaseAuroraEffect extends AbstractGameEffect {
     // 【新增】星光碎屑的容器
     private ArrayList<StarParticle> particles = new ArrayList<>();
 
+    private boolean isFadingOut = false;
+    public void forceFadeOut() {
+        this.isFadingOut = true;
+    }
+
     public PhaseAuroraEffect(Color color, String powerId, float maxAlpha) {
         this.mainColor = color.cpy();
         this.phasePowerId = powerId;
@@ -66,7 +71,7 @@ public class PhaseAuroraEffect extends AbstractGameEffect {
         }
 
         // 绑定状态逻辑
-        if (AbstractDungeon.player != null && AbstractDungeon.player.hasPower(this.phasePowerId)) {
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasPower(this.phasePowerId) && !this.isFadingOut) {
             if (this.alpha < this.maxAlpha) {
                 this.alpha += Gdx.graphics.getDeltaTime() * 0.5f;
             }
@@ -82,7 +87,11 @@ public class PhaseAuroraEffect extends AbstractGameEffect {
             }
         } else {
             this.alpha -= Gdx.graphics.getDeltaTime() * 1.5f;
-            if (this.alpha <= 0f && particles.isEmpty()) { // 等到所有碎屑也消失后，再彻底结束特效
+            if (this.alpha < 0f) {
+                this.alpha = 0f;
+            }
+
+            if (this.alpha <= 0f && particles.isEmpty()) {
                 this.isDone = true;
             }
         }
@@ -214,7 +223,7 @@ public class PhaseAuroraEffect extends AbstractGameEffect {
             // X轴：宽度，设定为一个极小值，让小方块变成一条线
             float scaleX = 0.5f * Settings.scale;
             // Y轴：高度，设定为原来的 6 到 10 倍，拉出一个长条
-            float scaleY = this.scale * MathUtils.random(2.0f, 3.0f) * Settings.scale;
+            float scaleY = this.scale * MathUtils.random(1.0f, 3.0f) * Settings.scale;
 
             // 3. 使用外层共享的 starRegion 进行高级绘制
             sb.draw(starRegion,

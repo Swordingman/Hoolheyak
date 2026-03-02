@@ -19,7 +19,7 @@ public class KnockInExperiment extends BaseCard {
     public static final String ID = makeID("KnockInExperiment");
 
     private static final int COST = 1;
-    private static final int DAMAGE = 5;
+    private static final int DAMAGE = 7;
     private static final int UPGRADE_PLUS_DMG = 3; // 默认升级给与 +3 伤害
 
     public KnockInExperiment() {

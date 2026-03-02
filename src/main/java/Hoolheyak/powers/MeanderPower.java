@@ -80,6 +80,11 @@ public class MeanderPower extends BasePower {
                 });
             }
 
+            if (AbstractDungeon.player.hasPower(ForbiddenKnowledgeMeaPower.POWER_ID)) {
+                ForbiddenKnowledgeMeaPower power = (ForbiddenKnowledgeMeaPower) AbstractDungeon.player.getPower(ForbiddenKnowledgeMeaPower.POWER_ID);
+                power.onTriggerMeander();
+            }
+
             ContingencyPlan.returnFromDiscard(false);
             InheritedMemoriesPower.onTriggerKeyword(this.owner);
             CovenantDexterityPower.trigger(this.owner);

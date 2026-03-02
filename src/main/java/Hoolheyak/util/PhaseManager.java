@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 public class PhaseManager {
     public static final String[] ALL_PHASE_IDS = {
@@ -44,6 +45,18 @@ public class PhaseManager {
         AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
             @Override
             public void update() {
+                for (AbstractGameEffect effect : AbstractDungeon.effectsQueue) {
+                    if (effect instanceof PhaseAuroraEffect) {
+                        ((PhaseAuroraEffect) effect).forceFadeOut();
+                    }
+                }
+                // 保险起见，顶层特效队列也遍历一遍
+                for (AbstractGameEffect effect : AbstractDungeon.topLevelEffects) {
+                    if (effect instanceof PhaseAuroraEffect) {
+                        ((PhaseAuroraEffect) effect).forceFadeOut();
+                    }
+                }
+
                 CardCrawlGame.sound.play("HEART_BEAT", 0.05F);
                 Color phaseColor = Color.WHITE.cpy();
                 float maxAlpha = 0.5f;

@@ -53,7 +53,7 @@ public class ControlGroup extends BaseCard {
                 }
         ));
 
-        addToBot(new VariableAction(this, choices));
+        addToBot(new VariableAction(this, choices, true));
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
         addToBot(new ApplyPowerAction(m, p, new WeightlessPower(m, p, this.magicNumber), this.magicNumber));
     }

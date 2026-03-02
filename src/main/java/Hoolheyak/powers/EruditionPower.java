@@ -85,6 +85,11 @@ public class EruditionPower extends BasePower {
                 });
             }
 
+            if (AbstractDungeon.player.hasPower(ForbiddenKnowledgeEruPower.POWER_ID)) {
+                ForbiddenKnowledgeEruPower power = (ForbiddenKnowledgeEruPower) AbstractDungeon.player.getPower(ForbiddenKnowledgeEruPower.POWER_ID);
+                power.onTriggerErudition();
+            }
+
             // 触发额外的能力
             ContingencyPlan.returnFromDiscard(true);
             InheritedMemoriesPower.onTriggerKeyword(this.owner);

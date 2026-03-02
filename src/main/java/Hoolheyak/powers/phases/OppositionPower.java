@@ -3,6 +3,7 @@ package Hoolheyak.powers.phases;
 import Hoolheyak.powers.BasePower;
 import Hoolheyak.powers.GravityPower;
 import Hoolheyak.HoolheyakMod;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -26,12 +27,19 @@ public class OppositionPower extends BasePower {
 
     @Override
     public void onRemove() {
-        // 对冲被顶掉或战斗结束时，让全场怪物恢复重力
-        for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
-            if (!m.isDeadOrEscaped() && m.hasPower(GravityPower.POWER_ID)) {
-                ((GravityPower) m.getPower(GravityPower.POWER_ID)).recalculateGravity();
+        // 【修复点】：使用 addToTop 将重新计算逻辑包装成 Action
+        // 确保它在当前这个 RemovePowerAction 彻底结束（对冲被完全移除出列表）后才执行
+        AbstractDungeon.actionManager.addToTop(new AbstractGameAction() {
+            @Override
+            public void update() {
+                for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+                    if (m != null && !m.isDeadOrEscaped() && m.hasPower(GravityPower.POWER_ID)) {
+                        ((GravityPower) m.getPower(GravityPower.POWER_ID)).recalculateGravity();
+                    }
+                }
+                this.isDone = true;
             }
-        }
+        });
     }
 
     @Override

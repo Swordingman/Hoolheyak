@@ -41,6 +41,6 @@ public class MutagenesisExperiment extends BaseCard {
             addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, this.magicNumber, false), this.magicNumber));
         }));
 
-        addToBot(new VariableAction(this, choices));
+        addToBot(new VariableAction(this, choices, true));
     }
 }

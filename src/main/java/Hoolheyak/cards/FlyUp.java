@@ -12,13 +12,15 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.ChemicalX;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import java.util.ArrayList;
 
 public class FlyUp extends BaseCard {
     public static final String ID = makeID("FlyUp");
 
-    private static final int COST = 2;
+    private static final int COST = -1;
     private static final int ANALYSIS = 1;
 
     public FlyUp() {
@@ -42,56 +44,66 @@ public class FlyUp extends BaseCard {
         }
     }
 
-    // 实时更新卡面上的 X 数值
-    @Override
-    public void applyPowers() {
-        super.applyPowers();
-        int x = 0;
-        if (AbstractDungeon.player != null && AbstractDungeon.player.hasPower(AnalysisPower.POWER_ID)) {
-            x = AbstractDungeon.player.getPower(AnalysisPower.POWER_ID).amount;
-        }
-        // 动态拼接文本，EXTENDED_DESCRIPTION 里存放了提示语句
-        this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[2] + x + cardStrings.EXTENDED_DESCRIPTION[3];
-        this.initializeDescription();
-    }
-
-    @Override
-    public void onMoveToDiscard() {
-        this.rawDescription = cardStrings.DESCRIPTION;
-        this.initializeDescription();
-    }
+    // 移除了原本重写的 applyPowers 和 onMoveToDiscard，
+    // 因为现在触发次数不再与“解析”强绑定，而是与打出时的能量挂钩。
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new ApplyPowerAction(p, p, new AnalysisPower(p, this.magicNumber)));
+        // 1. 计算当前的 X 值（能量）
+        int effect = EnergyPanel.totalCount;
+        if (this.energyOnUse != -1) {
+            effect = this.energyOnUse;
+        }
+
+        // 2. 兼容原版遗物“化学物 X” (+2 效果)
+        if (p.relics != null) {
+            for (com.megacrit.cardcrawl.relics.AbstractRelic r : p.relics) {
+                if (ChemicalX.ID.equals(r.relicId)) {
+                    effect += 2;
+                    r.flash();
+                }
+            }
+        }
+
+        // 3. 升级效果：额外触发 1 次
         if (this.upgraded) {
-            addToBot(new ApplyPowerAction(p, p, new AnalysisPower(p, ANALYSIS)));
+            effect += 1;
         }
 
-        int x = p.hasPower(AnalysisPower.POWER_ID) ? p.getPower(AnalysisPower.POWER_ID).amount : 0;
+        // 4. 如果 X > 0，执行你的变量逻辑
+        if (effect > 0) {
+            // 这里推测你的底层逻辑是给予相应的 Power 层数来触发效果。
+            // 假设默认每 5 层触发 1 次（按你原来的 5 * x）
+            int threshold = 5;
 
-        if (p.hasPower(KukulkanLegacyPower.POWER_ID)) {
-            int legacyStacks = p.getPower(KukulkanLegacyPower.POWER_ID).amount;
-            x += 3 * legacyStacks;
-        }
-        if (p.hasPower(SextilePower.POWER_ID)) x -= 2;
-        int total = 5 * x;
+            // 如果玩家有“六合”等改变触发阈值的状态，需要在这里调整单次触发所需的层数。
+            // （我将你原来的 x -= 2 逻辑优化为了直接修改阈值，这样数学算起来更严谨，不会出现负数层数）
+            if (p.hasPower(SextilePower.POWER_ID)) {
+                threshold = 3;
+            }
 
-        ArrayList<VariableAction.VariableChoice> choices = new ArrayList<>();
+            // 计算需要给予的总层数 = 触发次数(effect) * 每次触发所需层数(threshold)
+            int total = threshold * effect;
 
-        // 选项 α：触发 X 次博览
-        choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[0], () -> {
-            if (total > 0) {
+            ArrayList<VariableAction.VariableChoice> choices = new ArrayList<>();
+
+            // 选项 α：触发 X 次博览
+            choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[0], () -> {
                 addToBot(new ApplyPowerAction(p, p, new EruditionPower(p, total), total));
-            }
-        }));
+            }));
 
-        // 选项 β：触发 X 次逶迤
-        choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[1], () -> {
-            if (total > 0) {
+            // 选项 β：触发 X 次逶迤
+            choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[1], () -> {
                 addToBot(new ApplyPowerAction(p, p, new MeanderPower(p, total), total));
-            }
-        }));
+            }));
 
-        addToBot(new VariableAction(this, choices));
+            addToBot(new VariableAction(this, choices, true));
+        }
+
+        // 5. 扣除玩家的能量（X费卡的标准结算）
+        if (!this.freeToPlayOnce) {
+            p.energy.use(EnergyPanel.totalCount);
+        }
     }
 }

@@ -18,5 +18,12 @@
       " NL Innate.",
       " NL Retain."
     ]
+  },
+  "Hoolheyak:VariableActionUI": {
+    "TEXT": [
+      "Variable ",
+      "Star Map Projection",
+      "Spend 1 Energy to get *ALL !!!"
+    ]
   }
 }

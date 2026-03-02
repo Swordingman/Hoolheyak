@@ -76,7 +76,7 @@ public class Archive extends BaseCard {
                         }));
 
                         // 【最终修复】创建动作后，强制修改它的 actionType
-                        VariableAction varAction = new VariableAction(Archive.this, choices);
+                        VariableAction varAction = new VariableAction(Archive.this, choices, true);
                         varAction.actionType = AbstractGameAction.ActionType.DAMAGE; // 赋予免死金牌！
 
                         addToTop(varAction);

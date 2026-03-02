@@ -41,6 +41,6 @@ public class ControlExperiment extends BaseCard {
             addToBot(new ApplyPowerAction(m, p, new WeightlessPower(m, p, this.magicNumber), this.magicNumber));
         }));
 
-        addToBot(new VariableAction(this, choices));
+        addToBot(new VariableAction(this, choices, true));
     }
 }

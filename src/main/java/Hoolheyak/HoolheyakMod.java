@@ -1,11 +1,16 @@
 package Hoolheyak;
 
+import Hoolheyak.events.FalseDomeEvent;
+import Hoolheyak.events.IntersectionEvent;
+import Hoolheyak.events.WaterLikeShapeEvent;
+import Hoolheyak.monsters.Muelsyse;
 import Hoolheyak.powers.GravityPower;
-import Hoolheyak.relics.Bibliotheca;
-import Hoolheyak.relics.FrenziedSundial;
+import Hoolheyak.relics.*;
 import Hoolheyak.util.*;
 import basemod.AutoAdd;
 import basemod.BaseMod;
+import basemod.eventUtil.AddEventParams;
+import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
@@ -26,8 +31,12 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.dungeons.Exordium;
+import com.megacrit.cardcrawl.dungeons.TheBeyond;
+import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.rewards.RewardSave;
@@ -140,6 +149,23 @@ public class HoolheyakMod implements
                     return new RewardSave(myReward.type.toString(), myReward.savedCardType.name(), 0, 0);
                 }
         );
+
+        BaseMod.addEvent(new AddEventParams.Builder(IntersectionEvent.ID, IntersectionEvent.class)
+                .dungeonID(Exordium.ID)
+                .playerClass(Hoolheyak.Meta.HOOLHEYAK)
+                .create());
+
+        BaseMod.addEvent(new AddEventParams.Builder(FalseDomeEvent.ID, FalseDomeEvent.class)
+                .dungeonID(TheBeyond.ID)
+                .playerClass(Hoolheyak.Meta.HOOLHEYAK)
+                .create());
+
+        BaseMod.addEvent(new AddEventParams.Builder(WaterLikeShapeEvent.ID, WaterLikeShapeEvent.class)
+                .dungeonID(TheCity.ID)
+                .playerClass(Hoolheyak.Meta.HOOLHEYAK)
+                .create());
+
+        BaseMod.addMonster(Muelsyse.ID + "_Encounter", Muelsyse.NAME, () -> new MonsterGroup(new Muelsyse(0.0F, 0.0F)));
     }
 
     /*---------- 本地化 (Localization) ----------*/
@@ -167,6 +193,16 @@ public class HoolheyakMod implements
     public void receiveEditRelics() {
         BaseMod.addRelicToCustomPool(new Bibliotheca(), Hoolheyak.Meta.CARD_COLOR);
         BaseMod.addRelicToCustomPool(new FrenziedSundial(), Hoolheyak.Meta.CARD_COLOR);
+        BaseMod.addRelicToCustomPool(new StarMapProjection(), Hoolheyak.Meta.CARD_COLOR);
+        BaseMod.addRelicToCustomPool(new OldNotes(), Hoolheyak.Meta.CARD_COLOR);
+        BaseMod.addRelicToCustomPool(new TimeMuseum(), Hoolheyak.Meta.CARD_COLOR);
+        BaseMod.addRelicToCustomPool(new WeatherBalloon(), Hoolheyak.Meta.CARD_COLOR);
+        BaseMod.addRelicToCustomPool(new ZodiacModel(), Hoolheyak.Meta.CARD_COLOR);
+        BaseMod.addRelic(new CocktailShaker(), RelicType.SHARED);
+        BaseMod.addRelic(new TailCareKit(), RelicType.SHARED);
+        BaseMod.addRelic(new BeautifulHistoryBook(), RelicType.SHARED);
+        BaseMod.addRelic(new AstronomicalTelescope(), RelicType.SHARED);
+        BaseMod.addRelic(new BottledCloud(), RelicType.SHARED);
     }
 
     @Override

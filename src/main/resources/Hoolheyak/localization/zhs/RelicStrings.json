@@ -1,16 +1,100 @@
 {
   "Hoolheyak:Bibliotheca": {
     "NAME": "“图书馆”",
-    "FLAVOR": "这个小小的盒子中，储藏着羽蛇一族几百年的历史。",
+    "FLAVOR": "记忆就像是一座图书馆，不过很明显，每座图书馆的藏书量都各不相同。",
     "DESCRIPTIONS": [
       "战斗开始时，获得 #b2 点 解析 。"
     ]
   },
   "Hoolheyak:FrenziedSundial": {
     "NAME": "狂乱星晷",
-    "FLAVOR": "Bos折射真相，投映未来。",
+    "FLAVOR": "“折射真相，投映未来”",
     "DESCRIPTIONS": [
-      "在每个回合开始时，获得 #b1 点 [E] 。 NL 在你的回合开始时，进入一个随机 相位 。"
+      "在每个回合开始时，获得 #b1 点 [E] 。 NL 在你的回合开始时，进入一个随机 #y相位 。"
+    ]
+  },
+  "Hoolheyak:StarMapProjection": {
+    "NAME": "星图投影",
+    "FLAVOR": "许多人接触占星学的初衷，只是好奇自己的死期。",
+    "DESCRIPTIONS": [
+      "你的大部分 #y变量 可以主动同时选择所有效果，但需额外消耗 #b1 点能量。"
+    ]
+  },
+  "Hoolheyak:OldNotes": {
+    "NAME": "陈旧的笔记",
+    "FLAVOR": "这上面记录了很多珍贵的文献资料。至于收集到的途径嘛……",
+    "DESCRIPTIONS": [
+      "每当你抽到 #b5 张 #y攻击牌 时，获得 #b1 层 #y博览 ；每当你抽到 #b5 张 #y技能牌 时，获得 #b1 层 #y逶迤 。"
+    ]
+  },
+  "Hoolheyak:TimeMuseum": {
+    "NAME": "羽蛇的时间博物馆",
+    "FLAVOR": "愚人砌好了高墙，哲人推倒它，反之亦有......历史是个有趣的资料库，里面必然藏着对未来的启示，毕竟历史也曾是无数代人的未来。",
+    "DESCRIPTIONS": [
+      "在战斗中首次打出某个类型的牌时，额外打出一次。"
+    ]
+  },
+  "Hoolheyak:CocktailShaker": {
+    "NAME": "调酒瓶",
+    "FLAVOR": "保持清醒。",
+    "DESCRIPTIONS": [
+      "拾起时，最大生命值 + #b3 。此后每当你在战斗中打出一张不属于本职业的牌时，回复 #b1 点生命值。"
+    ]
+  },
+  "Hoolheyak:TailCareKit": {
+    "NAME": "尾巴养护套装",
+    "FLAVOR": "“你是粗尾巴党，还是细尾巴党？”",
+    "DESCRIPTIONS": [
+      "对局开始时，给予所有敌人 #b7 层 #y解构 。"
+    ]
+  },
+  "Hoolheyak:BeautifulHistoryBook": {
+    "NAME": "装帧精美的历史书",
+    "FLAVOR": "同样的招式对聪明人是无效的。",
+    "DESCRIPTIONS": [
+      "在本局游戏中与你战斗过的敌人，在开局时失去 #b50% 的最大生命值。 NL （右键点击可查看名单。）"
+    ]
+  },
+  "Hoolheyak:AstronomicalTelescope": {
+    "NAME": "天文望远镜",
+    "FLAVOR": "那些星座、行星与轨迹，并非命令，而是隐喻。",
+    "DESCRIPTIONS": [
+      "拾起时，随机变化一张卡组中的打击或防御为随机无色牌。如果没有基础牌，则获得一张随机 #y稀有 无色牌。"
+    ]
+  },
+  "Hoolheyak:BottledCloud": {
+    "NAME": "瓶装云朵",
+    "FLAVOR": "“太好了，我现在可以更好地二连跳了。”",
+    "DESCRIPTIONS": [
+      "每当你获得 #y敏捷 时，额外获得 #b1 点 #y敏捷 。"
+    ]
+  },
+  "Hoolheyak:WeatherBalloon": {
+    "NAME": "探空气球",
+    "FLAVOR": "“欲与天公试比高”",
+    "DESCRIPTIONS": [
+      "敌人进入 #y浮空 时，额外获得 #b5 点 #y升力 。"
+    ]
+  },
+  "Hoolheyak:ZodiacModel": {
+    "NAME": "黄道盘模型",
+    "FLAVOR": "羽毛被森林的露珠打湿，尾巴扫过倾颓的石柱，知识就此代代延续。",
+    "DESCRIPTIONS": [
+      "当敌人上回合的意图类型与下回合不同时，获得 #b2 层 #y升力 。"
+    ]
+  },
+  "Hoolheyak:StarryRevelation": {
+    "NAME": "星空启示",
+    "FLAVOR": "特里蒙的天幕已经恢复如初，但想必没人能忘记它被撕开后的景象。",
+    "DESCRIPTIONS": [
+      "在精英和Boss战斗开始时，给予所有敌人一半 #y重力 的 #y升力 。"
+    ]
+  },
+  "Hoolheyak:PureWaterSpriteAssist": {
+    "NAME": "纯水精灵的协助",
+    "FLAVOR": "“事先说好，仅限这一次。”",
+    "DESCRIPTIONS": [
+      "战斗开始时，召唤一个拥有 #b16 点生命的流形协助战斗。流形存在时，敌人总会对她发起攻击。她死亡 #b3 回合后，满血复活。"
     ]
   }
 }

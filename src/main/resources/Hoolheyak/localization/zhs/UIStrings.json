@@ -18,5 +18,12 @@
       " NL 固有 。",
       " NL 保留 。"
     ]
+  },
+  "Hoolheyak:VariableActionUI": {
+    "TEXT": [
+      "变量 ",
+      "特殊变量",
+      "消耗 1 点能量，获得 *ALL ！！！"
+    ]
   }
 }

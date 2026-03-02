@@ -319,9 +319,9 @@ public class Hoolheyak extends CustomPlayer {
     @Override
     public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
         return new AbstractGameAction.AttackEffect[] {
-                AbstractGameAction.AttackEffect.BLUNT_LIGHT,
+                AbstractGameAction.AttackEffect.SLASH_DIAGONAL,
                 AbstractGameAction.AttackEffect.SLASH_HORIZONTAL,
-                AbstractGameAction.AttackEffect.SLASH_HEAVY
+                AbstractGameAction.AttackEffect.SLASH_VERTICAL
         };
     }
 

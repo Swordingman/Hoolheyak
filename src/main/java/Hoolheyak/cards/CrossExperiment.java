@@ -90,7 +90,7 @@ public class CrossExperiment extends BaseCard {
             increasePermanentStats(false, magicNumber);
         }));
 
-        addToBot(new VariableAction(this, choices));
+        addToBot(new VariableAction(this, choices, true));
     }
 
     // 处理永久增长的核心逻辑

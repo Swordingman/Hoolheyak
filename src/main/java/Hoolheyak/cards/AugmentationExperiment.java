@@ -49,7 +49,7 @@ public class AugmentationExperiment extends BaseCard {
                 addToBot(new ApplyPowerAction(p, p, new AnalysisPower(p, this.magicNumber), this.magicNumber));
             }));
 
-            addToBot(new VariableAction(this, choices));
+            addToBot(new VariableAction(this, choices, true));
         }
     }
 }

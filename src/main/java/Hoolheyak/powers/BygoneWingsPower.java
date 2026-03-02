@@ -27,40 +27,42 @@ public class BygoneWingsPower extends BasePower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        // 判定条件：卡牌颜色不等于当前角色的颜色，且不是无色、诅咒或状态卡
+        // 判定：只要不是本职业卡，且不是诅咒或状态牌
         if (card.color != AbstractDungeon.player.getCardColor() &&
-                card.color != AbstractCard.CardColor.COLORLESS &&
-                card.color != AbstractCard.CardColor.CURSE &&
                 card.type != AbstractCard.CardType.CURSE &&
                 card.type != AbstractCard.CardType.STATUS) {
 
-            this.flash(); // 触发时闪烁能力图标
+            this.flash(); // 触发时闪烁图标
 
             addToBot(new AbstractGameAction() {
                 @Override
                 public void update() {
-                    // 根据能力的层数决定减费的次数（比如2层就随机减2次）
-                    for (int i = 0; i < amount; i++) {
+                    // 【核心修复】必须写 BygoneWingsPower.this.amount，防止读取到 Action 自己的 0！
+                    for (int i = 0; i < BygoneWingsPower.this.amount; i++) {
                         ArrayList<AbstractCard> validCards = new ArrayList<>();
 
-                        // 筛选出手牌中当前费用 > 0 的卡牌
                         for (AbstractCard c : AbstractDungeon.player.hand.group) {
+                            // 筛选：只找当前费用大于 0 的牌
                             if (c.costForTurn > 0) {
                                 validCards.add(c);
                             }
                         }
 
                         if (!validCards.isEmpty()) {
-                            // 随机挑选一张有效卡牌
                             AbstractCard target = validCards.get(AbstractDungeon.cardRandomRng.random(validCards.size() - 1));
 
-                            // 战斗内永久减费 (如果只需要本回合减费，请使用 target.setCostForTurn(target.costForTurn - 1); )
-                            target.modifyCostForCombat(-1);
+                            // 减费逻辑
+                            target.setCostForTurn(target.costForTurn - 1);
+                            target.cost = target.costForTurn;
+                            target.isCostModified = true;
 
-                            // 卡牌闪烁金光提示玩家
                             target.superFlash(Color.GOLD.cpy());
                         }
                     }
+
+                    // 强制刷新手牌光效和数值状态
+                    AbstractDungeon.player.hand.glowCheck();
+
                     this.isDone = true;
                 }
             });

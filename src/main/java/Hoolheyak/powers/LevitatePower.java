@@ -1,6 +1,7 @@
 package Hoolheyak.powers;
 
 import Hoolheyak.powers.phases.OppositionPower;
+import Hoolheyak.relics.WeatherBalloon;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -10,6 +11,8 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class LevitatePower extends BasePower {
     public static final String POWER_ID = Hoolheyak.HoolheyakMod.makeID("Levitate");
@@ -38,6 +41,11 @@ public class LevitatePower extends BasePower {
             addToBot(new com.megacrit.cardcrawl.actions.common.GainEnergyAction(2 * horizonStacks));
         }
 
+        if (AbstractDungeon.player.hasRelic(Hoolheyak.relics.WeatherBalloon.ID) && this.owner instanceof AbstractMonster) {
+            Hoolheyak.relics.WeatherBalloon relic = (Hoolheyak.relics.WeatherBalloon) AbstractDungeon.player.getRelic(Hoolheyak.relics.WeatherBalloon.ID);
+            relic.onEnemyLevitate((AbstractMonster) this.owner);
+        }
+
         baseY = owner.drawY;
     }
 
@@ -61,28 +69,24 @@ public class LevitatePower extends BasePower {
 
     @Override
     public void atEndOfRound() {
-        // 目标的回合结束时，解除此状态并受到伤害
+        // 1. 获取重力层数和升力层数
+        // 注意：此时拿到的 GravityPower.amount，已经是经过 GravityPower 内部被对冲减半计算过的正确数值了！
         int gravityAmt = this.owner.hasPower(GravityPower.POWER_ID) ? this.owner.getPower(GravityPower.POWER_ID).amount : 0;
-
-        // 【对冲联动】
-        if (this.source != null && this.source.hasPower(OppositionPower.POWER_ID)) {
-            gravityAmt /= 2;
-        }
-
         int remainingLift = this.owner.hasPower(LiftPower.POWER_ID) ? this.owner.getPower(LiftPower.POWER_ID).amount : 0;
 
+        // 计算总伤害
         int damageAmt = (gravityAmt + remainingLift) * 2;
 
         flash();
 
-        // 随后移除所有升力和浮空状态
+        // 2. 【核心修复】：必须先结算摔落的伤害！然后再把状态移除！
+        addToBot(new DamageAction(this.owner, new DamageInfo(this.source, damageAmt, DamageInfo.DamageType.THORNS)));
+
+        // 3. 随后移除所有升力和浮空状态
         addToBot(new RemoveSpecificPowerAction(this.owner, this.source, this));
         if (this.owner.hasPower(LiftPower.POWER_ID)) {
             addToBot(new RemoveSpecificPowerAction(this.owner, this.source, LiftPower.POWER_ID));
         }
-
-        // 受到真实伤害 (或荆棘伤害类型，避免被力量或易伤再次修饰)
-        addToBot(new DamageAction(this.owner, new DamageInfo(this.source, damageAmt, DamageInfo.DamageType.THORNS)));
     }
 
     @Override
