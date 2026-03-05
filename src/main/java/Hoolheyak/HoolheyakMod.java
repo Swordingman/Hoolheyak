@@ -198,6 +198,8 @@ public class HoolheyakMod implements
         BaseMod.addRelicToCustomPool(new TimeMuseum(), Hoolheyak.Meta.CARD_COLOR);
         BaseMod.addRelicToCustomPool(new WeatherBalloon(), Hoolheyak.Meta.CARD_COLOR);
         BaseMod.addRelicToCustomPool(new ZodiacModel(), Hoolheyak.Meta.CARD_COLOR);
+        BaseMod.addRelicToCustomPool(new StarryRevelation(), Hoolheyak.Meta.CARD_COLOR);
+        BaseMod.addRelicToCustomPool(new PureWaterSpriteAssist(), Hoolheyak.Meta.CARD_COLOR);
         BaseMod.addRelic(new CocktailShaker(), RelicType.SHARED);
         BaseMod.addRelic(new TailCareKit(), RelicType.SHARED);
         BaseMod.addRelic(new BeautifulHistoryBook(), RelicType.SHARED);
@@ -241,11 +243,6 @@ public class HoolheyakMod implements
                 localizationPath(lang, "UIStrings.json"));
     }
 
-    public static class Keyword {
-        public String[] NAMES;       // 对应 JSON 中的 "NAMES"
-        public String DESCRIPTION;   // 对应 JSON 中的 "DESCRIPTION"
-    }
-
     @Override
     public void receiveEditKeywords() {
         Gson gson = new Gson();
@@ -253,15 +250,17 @@ public class HoolheyakMod implements
         String lang = Settings.language == Settings.GameLanguage.ZHS ? "zhs" : "eng";
         String path = HoolheyakMod.localizationPath(lang, "Keywords.json");
 
-        Keyword[] loaded = gson.fromJson(
+        // 1. 改为使用你文件底部自带 PROPER_NAME 字段的 LocalKeyword 类
+        LocalKeyword[] loaded = gson.fromJson(
                 Gdx.files.internal(path).readString(StandardCharsets.UTF_8.name()),
-                Keyword[].class
+                LocalKeyword[].class
         );
 
         if (loaded != null) {
-            for (Keyword k : loaded) {
+            for (LocalKeyword k : loaded) {
+                // 2. 传入完整的 4 个参数，把 k.PROPER_NAME 作为标题传进去
                 BaseMod.addKeyword(
-                        HoolheyakMod.modID,
+                        k.PROPER_NAME,
                         k.NAMES,
                         k.DESCRIPTION
                 );

@@ -214,5 +214,17 @@
     "DESCRIPTIONS": [
       "凶相 。 NL 你无法再获得 #y格挡 。所有敌人的 #y重力 视为原本的一半。"
     ]
+  },
+  "Hoolheyak:PureWater": {
+    "NAME": "净水即生命",
+    "DESCRIPTIONS": [
+      "在场时，会将玩家受到的伤害转移至自身。死亡 #b3 回合后复活。"
+    ]
+  },
+  "Hoolheyak:EnemyPureWater": {
+    "NAME": "净水即生命",
+    "DESCRIPTIONS": [
+      "受到致命伤害时化为水滩， #b3 回合后复活。如果所有流形都被击败，或者 #y缪尔赛斯 被击败，则会彻底死亡。"
+    ]
   }
 }

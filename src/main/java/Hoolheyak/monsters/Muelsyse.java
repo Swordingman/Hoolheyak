@@ -1,6 +1,7 @@
 package Hoolheyak.monsters;
 
 import Hoolheyak.HoolheyakMod;
+import Hoolheyak.powers.EnemyPureWaterPower;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
@@ -17,6 +18,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
@@ -43,6 +45,8 @@ public class Muelsyse extends AbstractMonster {
         super(NAME, ID, 99, 0.0F, 0.0F, 180.0F, 240.0F, null, x + 150.0F, y);
         this.type = EnemyType.ELITE; // 作为事件强敌
 
+        this.damage.add(new com.megacrit.cardcrawl.cards.DamageInfo(this, 1));
+
         loadSpine();
     }
 
@@ -68,10 +72,27 @@ public class Muelsyse extends AbstractMonster {
     public void takeTurn() {
         switch (this.nextMove) {
             case 1: // 召唤3个流形
-                // 流形生成在缪缪前面不同位置
-                AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(new EnemyManifold(-100.0F, 0.0F), true));
-                AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(new EnemyManifold(-250.0F, 10.0F), true));
-                AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(new EnemyManifold(-400.0F, -10.0F), true));
+                // 1. 先把流形实例化并存入变量，方便后续精准点名
+                EnemyManifold m1 = new EnemyManifold(-100.0F, 0.0F);
+                EnemyManifold m2 = new EnemyManifold(-250.0F, 10.0F);
+                EnemyManifold m3 = new EnemyManifold(-400.0F, -10.0F);
+
+                // 2. 将生成怪物的动作加入队列
+                AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(m1, true));
+                AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(m2, true));
+                AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(m3, true));
+
+                // 3. 紧接着在动作队列里，给它们挨个贴上“纯水”能力
+                // 注意：施法者 (source) 可以填 this (缪尔赛斯)，目标 (target) 填对应的流形
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m1, this, new EnemyPureWaterPower(m1)));
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m2, this, new EnemyPureWaterPower(m2)));
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m3, this, new EnemyPureWaterPower(m3)));
+
+                // 4. 顺便把爪牙 (Minion) 能力也在这里给，最稳妥
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m1, this, new MinionPower(m1)));
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m2, this, new MinionPower(m2)));
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m3, this, new MinionPower(m3)));
+
                 this.firstTurn = false;
                 break;
             case 2: // 3x6 伤害
@@ -148,9 +169,25 @@ public class Muelsyse extends AbstractMonster {
             sr.draw(psb, skeleton38);
             psb.end();
             sb.begin();
-            // 如果是敌方流形，记得加上 !this.halfDead 判断；缪尔赛斯本体不需要判断 halfDead
-            this.hb.render(sb);
-            this.renderHealth(sb);
+        }
+
+        this.hb.render(sb);
+        this.intentHb.render(sb);
+        this.healthHb.render(sb);
+
+        if (!com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.isDead) {
+            this.renderHealth(sb); // 渲染血条
+            // 【关键修复 2】：反射调用渲染怪物名字
+            basemod.ReflectionHacks.privateMethod(com.megacrit.cardcrawl.monsters.AbstractMonster.class, "renderName", com.badlogic.gdx.graphics.g2d.SpriteBatch.class).invoke(this, sb);
+        }
+
+        if (!this.isDying && !this.isEscaping && com.megacrit.cardcrawl.dungeons.AbstractDungeon.getCurrRoom().phase == com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase.COMBAT && !com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.isDead && !com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.hasRelic("Runic Dome") && this.intent != Intent.NONE && !com.megacrit.cardcrawl.core.Settings.hideCombatElements) {
+            basemod.ReflectionHacks.privateMethod(com.megacrit.cardcrawl.monsters.AbstractMonster.class, "renderIntentVfxBehind", com.badlogic.gdx.graphics.g2d.SpriteBatch.class).invoke(this, sb);
+            basemod.ReflectionHacks.privateMethod(com.megacrit.cardcrawl.monsters.AbstractMonster.class, "renderIntent", com.badlogic.gdx.graphics.g2d.SpriteBatch.class).invoke(this, sb);
+            basemod.ReflectionHacks.privateMethod(com.megacrit.cardcrawl.monsters.AbstractMonster.class, "renderIntentVfxAfter", com.badlogic.gdx.graphics.g2d.SpriteBatch.class).invoke(this, sb);
+
+            // 【关键修复 3】：渲染意图上面的攻击数值文本！(例如 3x6)
+            basemod.ReflectionHacks.privateMethod(com.megacrit.cardcrawl.monsters.AbstractMonster.class, "renderDamageRange", com.badlogic.gdx.graphics.g2d.SpriteBatch.class).invoke(this, sb);
         }
 
         // 【关键修复】：利用 BaseMod 反射强行调用 AbstractMonster 的私有方法绘制意图

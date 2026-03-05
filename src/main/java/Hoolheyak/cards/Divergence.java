@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 public class Divergence extends BaseCard {
 
     public static final String ID = makeID("Divergence"); // 卡牌ID：气流辐散
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int BLOCK = 12;
     private static final int UPGRADE_PLUS_BLOCK = 2; // 升级后14点基础格挡
 

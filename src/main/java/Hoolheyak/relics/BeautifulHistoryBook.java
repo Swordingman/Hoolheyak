@@ -25,18 +25,34 @@ public class BeautifulHistoryBook extends BaseRelic implements CustomSavable<Arr
     public void atBattleStart() {
         boolean activated = false;
         for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+            // 只负责检查和扣血
             if (foughtEnemies.contains(m.id)) {
                 activated = true;
-                // 失去 50% 最大生命值，且不能低于 1
+                // 失去 50% 最大生命值
                 int hpLoss = m.maxHealth / 2;
                 m.decreaseMaxHealth(hpLoss);
                 addToBot(new RelicAboveCreatureAction(m, this));
-            } else {
-                // 如果是新敌人，加入记录
-                foughtEnemies.add(m.id);
             }
         }
         if (activated) {
+            this.flash();
+        }
+    }
+
+    // 在战斗胜利（结束）时记录敌人 ID
+    @Override
+    public void onVictory() {
+        boolean recordedNew = false;
+        for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+            // 如果列表里还没有这个敌人的 ID，则加入
+            if (!foughtEnemies.contains(m.id)) {
+                foughtEnemies.add(m.id);
+                recordedNew = true;
+            }
+        }
+
+        // 可选：如果记录了新敌人，遗物闪烁一下提示玩家
+        if (recordedNew) {
             this.flash();
         }
     }
