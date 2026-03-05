@@ -39,9 +39,9 @@ public class ByproductPower extends BasePower {
     @Override
     public void updateDescription() {
         if (this.isUpgraded) {
-            this.description = DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[2];
-        } else {
             this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2];
+        } else {
+            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
         }
     }
 }

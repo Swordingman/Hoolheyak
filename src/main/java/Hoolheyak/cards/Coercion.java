@@ -50,4 +50,13 @@ public class Coercion extends BaseCard {
             }
         });
     }
+
+    @Override
+    public void upgrade() {
+        if (!this.upgraded) {
+            upgradeName();
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            initializeDescription();
+        }
+    }
 }

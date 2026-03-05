@@ -4,6 +4,9 @@ import Hoolheyak.events.FalseDomeEvent;
 import Hoolheyak.events.IntersectionEvent;
 import Hoolheyak.events.WaterLikeShapeEvent;
 import Hoolheyak.monsters.Muelsyse;
+import Hoolheyak.potions.AntiGravityGel;
+import Hoolheyak.potions.AstrolabeResidue;
+import Hoolheyak.potions.ElixirOfEpiphany;
 import Hoolheyak.powers.GravityPower;
 import Hoolheyak.relics.*;
 import Hoolheyak.util.*;
@@ -12,6 +15,7 @@ import basemod.BaseMod;
 import basemod.eventUtil.AddEventParams;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
+import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -91,28 +95,6 @@ public class HoolheyakMod implements
         // 加载游戏内模组菜单中使用的图标。
         Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));
 
-        BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, null);
-
-        // --- 读取皮肤配置 ---
-        try {
-            Properties defaults = new Properties();
-            defaults.setProperty("skinIndex", "0");
-            defaults.setProperty("difficulty", "0");
-
-            hoolheyakConfig = new SpireConfig("Hoolheyak", "HoolheyakConfig", defaults);
-            hoolheyakConfig.load();
-
-            // 将读取到的值赋给 SkinHelper
-            HoolheyakSkinHelper.currentSkinIndex = hoolheyakConfig.getInt("skinIndex");
-
-            // 安全检查：如果读取的索引超过了当前皮肤数量，重置为0
-            if (HoolheyakSkinHelper.currentSkinIndex >= HoolheyakSkinHelper.SKINS.length || HoolheyakSkinHelper.currentSkinIndex < 0) {
-                HoolheyakSkinHelper.currentSkinIndex = 0;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         // 注册任意颜色卡牌奖励
         BaseMod.registerCustomReward(
@@ -166,6 +148,33 @@ public class HoolheyakMod implements
                 .create());
 
         BaseMod.addMonster(Muelsyse.ID + "_Encounter", Muelsyse.NAME, () -> new MonsterGroup(new Muelsyse(0.0F, 0.0F)));
+
+        BaseMod.addPotion(AntiGravityGel.class, Color.SKY.cpy(), Color.LIME, null, AntiGravityGel.POTION_ID);
+        BaseMod.addPotion(AstrolabeResidue.class, Color.GOLD, null, null, AstrolabeResidue.POTION_ID);
+        BaseMod.addPotion(ElixirOfEpiphany.class, Color.CHARTREUSE, Color.BLUE, null, ElixirOfEpiphany.POTION_ID);
+
+        BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, null);
+
+        // --- 读取皮肤配置 ---
+        try {
+            Properties defaults = new Properties();
+            defaults.setProperty("skinIndex", "0");
+            defaults.setProperty("difficulty", "0");
+
+            hoolheyakConfig = new SpireConfig("Hoolheyak", "HoolheyakConfig", defaults);
+            hoolheyakConfig.load();
+
+            // 将读取到的值赋给 SkinHelper
+            HoolheyakSkinHelper.currentSkinIndex = hoolheyakConfig.getInt("skinIndex");
+
+            // 安全检查：如果读取的索引超过了当前皮肤数量，重置为0
+            if (HoolheyakSkinHelper.currentSkinIndex >= HoolheyakSkinHelper.SKINS.length || HoolheyakSkinHelper.currentSkinIndex < 0) {
+                HoolheyakSkinHelper.currentSkinIndex = 0;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /*---------- 本地化 (Localization) ----------*/

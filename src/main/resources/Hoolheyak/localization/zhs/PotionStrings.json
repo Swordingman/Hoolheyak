@@ -1,23 +1,25 @@
 {
-  "thePenance:BarrierPotion": {
-    "NAME": "屏障合剂",
+  "Hoolheyak:AntiGravityGel": {
+    "NAME": "反重力凝胶",
     "DESCRIPTIONS": [
-      "获得 #b",
-      " 层 #y屏障 。"
+      "给予目标 #b",
+      " 层 #y失重 与 #b",
+      " 层 #y升力 。"
     ]
   },
-  "thePenance:BottleOfWolfBlood": {
-    "NAME": "瓶装狼血",
-    "DESCRIPTIONS": [
-      "选择 #b",
-      " 张 #y狼群诅咒 加入手牌。"
-    ]
-  },
-  "thePenance:JudgementPotion": {
-    "NAME": "裁决药剂",
+  "Hoolheyak:ElixirOfEpiphany": {
+    "NAME": "顿悟灵药",
     "DESCRIPTIONS": [
       "获得 #b",
-      " 层 #y裁决 。"
+      " 层 #y解析 。立即触发 #b",
+      " 次 #y博览 与 #y逶迤 。"
+    ]
+  },
+  "Hoolheyak:AstrolabeResidue": {
+    "NAME": "星象仪残液",
+    "DESCRIPTIONS": [
+      "选择并触发 #b",
+      " 个 #y相位 。"
     ]
   }
 }

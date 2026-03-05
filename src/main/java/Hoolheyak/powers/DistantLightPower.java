@@ -1,6 +1,7 @@
 package Hoolheyak.powers;
 
 import Hoolheyak.HoolheyakMod;
+import Hoolheyak.actions.TriggerKeywordAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -31,15 +32,8 @@ public class DistantLightPower extends BasePower {
             if (this.damageDealtThisTurn < 6) {
                 this.flash();
 
-                // 动态获取当前触发所需的阈值层数
-                int requiredStacks = 5;
-                if (this.owner.hasPower(KukulkanLegacyPower.POWER_ID)) {
-                    requiredStacks += 3 * this.owner.getPower(KukulkanLegacyPower.POWER_ID).amount;
-                }
-
-                // 赋予等同于阈值的层数，触发它们自带的 checkAndTrigger() 逻辑
-                addToBot(new ApplyPowerAction(this.owner, this.owner, new EruditionPower(this.owner, requiredStacks), requiredStacks));
-                addToBot(new ApplyPowerAction(this.owner, this.owner, new MeanderPower(this.owner, requiredStacks), requiredStacks));
+                addToBot(new TriggerKeywordAction(this.owner, TriggerKeywordAction.KeywordType.ERUDITION, 1));
+                addToBot(new TriggerKeywordAction(this.owner, TriggerKeywordAction.KeywordType.MEANDER, 1));
             }
             this.damageDealtThisTurn = 0;
         }

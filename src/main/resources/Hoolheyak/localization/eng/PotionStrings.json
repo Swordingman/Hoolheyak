@@ -1,23 +1,25 @@
 {
-  "thePenance:BarrierPotion": {
-    "NAME": "Barrier Potion",
+  "Hoolheyak:AntiGravityGel": {
+    "NAME": "反重力凝胶",
     "DESCRIPTIONS": [
-      "Gain #b",
-      " #yBarrier ."
+      "给予目标 #b",
+      " 层 #y失重 与 #b",
+      " 层 #y升力 。"
     ]
   },
-  "thePenance:BottleOfWolfBlood": {
-    "NAME": "Bottle of Wolf Blood",
+  "Hoolheyak:ElixirOfEpiphany": {
+    "NAME": "顿悟灵药",
     "DESCRIPTIONS": [
-      "Choose #b",
-      " #yWolfpack #yCurses to add to your hand."
+      "获得 #b",
+      " 层 #y解析 。立即触发 #b",
+      " 次 #y博览 与 #y逶迤 。"
     ]
   },
-  "thePenance:JudgementPotion": {
-    "NAME": "Judgment Potion",
+  "Hoolheyak:AstrolabeResidue": {
+    "NAME": "星象仪残液",
     "DESCRIPTIONS": [
-      "Gain #b",
-      " #yJudgment ."
+      "选择并触发 #b",
+      " 个 #y相位 。"
     ]
   }
 }

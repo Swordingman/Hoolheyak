@@ -1,5 +1,6 @@
 package Hoolheyak.cards;
 
+import Hoolheyak.actions.TriggerKeywordAction;
 import Hoolheyak.actions.VariableAction;
 import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.powers.AnalysisPower;
@@ -50,13 +51,14 @@ public class FlyUp extends BaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new AnalysisPower(p, this.magicNumber)));
-        // 1. 计算当前的 X 值（能量）
+
+        // 1. 计算 X 费用的老套路
         int effect = EnergyPanel.totalCount;
         if (this.energyOnUse != -1) {
             effect = this.energyOnUse;
         }
 
-        // 2. 兼容原版遗物“化学物 X” (+2 效果)
+        // 2. 兼容化学物 X
         if (p.relics != null) {
             for (com.megacrit.cardcrawl.relics.AbstractRelic r : p.relics) {
                 if (ChemicalX.ID.equals(r.relicId)) {
@@ -66,42 +68,31 @@ public class FlyUp extends BaseCard {
             }
         }
 
-        // 3. 升级效果：额外触发 1 次
+        // 3. 升级效果
         if (this.upgraded) {
             effect += 1;
         }
 
-        // 4. 如果 X > 0，执行你的变量逻辑
+        // 4. 执行变量逻辑
         if (effect > 0) {
-            // 这里推测你的底层逻辑是给予相应的 Power 层数来触发效果。
-            // 假设默认每 5 层触发 1 次（按你原来的 5 * x）
-            int threshold = 5;
-
-            // 如果玩家有“六合”等改变触发阈值的状态，需要在这里调整单次触发所需的层数。
-            // （我将你原来的 x -= 2 逻辑优化为了直接修改阈值，这样数学算起来更严谨，不会出现负数层数）
-            if (p.hasPower(SextilePower.POWER_ID)) {
-                threshold = 3;
-            }
-
-            // 计算需要给予的总层数 = 触发次数(effect) * 每次触发所需层数(threshold)
-            int total = threshold * effect;
-
             ArrayList<VariableAction.VariableChoice> choices = new ArrayList<>();
 
-            // 选项 α：触发 X 次博览
+            // 选项 α：用我们封装好的 Action，直接告诉它触发 ERUDITION，次数是 effect
+            int finalEffect1 = effect;
             choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[0], () -> {
-                addToBot(new ApplyPowerAction(p, p, new EruditionPower(p, total), total));
+                addToBot(new TriggerKeywordAction(p, TriggerKeywordAction.KeywordType.ERUDITION, finalEffect1));
             }));
 
-            // 选项 β：触发 X 次逶迤
+            // 选项 β：触发 MEANDER
+            int finalEffect = effect;
             choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[1], () -> {
-                addToBot(new ApplyPowerAction(p, p, new MeanderPower(p, total), total));
+                addToBot(new TriggerKeywordAction(p, TriggerKeywordAction.KeywordType.MEANDER, finalEffect));
             }));
 
             addToBot(new VariableAction(this, choices, true));
         }
 
-        // 5. 扣除玩家的能量（X费卡的标准结算）
+        // 5. 扣除能量
         if (!this.freeToPlayOnce) {
             p.energy.use(EnergyPanel.totalCount);
         }

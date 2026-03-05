@@ -49,14 +49,12 @@ public class EruditionPower extends BasePower {
 
     // 将结算逻辑封装，方便调用
     private void checkAndTrigger() {
-        int threshold = this.owner.hasPower(SextilePower.POWER_ID) ? 3 : 5;
+        int threshold = Hoolheyak.actions.TriggerKeywordAction.getThreshold(this.owner);
         int multiplier = 1;
 
-        // 判定库库尔坎的传承
         if (this.owner.hasPower(KukulkanLegacyPower.POWER_ID)) {
             int legacyStacks = this.owner.getPower(KukulkanLegacyPower.POWER_ID).amount;
-            threshold += 3 * legacyStacks;
-            multiplier = (int)Math.pow(2, legacyStacks);
+            multiplier = (int) Math.pow(2, legacyStacks);
         }
 
         // 使用循环确保能多次触发

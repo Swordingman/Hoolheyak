@@ -48,12 +48,11 @@ public class MeanderPower extends BasePower {
     }
 
     private void checkAndTrigger() {
-        int threshold = this.owner.hasPower(SextilePower.POWER_ID) ? 3 : 5;
+        int threshold = Hoolheyak.actions.TriggerKeywordAction.getThreshold(this.owner);
         int multiplier = 1;
 
         if (this.owner.hasPower(KukulkanLegacyPower.POWER_ID)) {
             int legacyStacks = this.owner.getPower(KukulkanLegacyPower.POWER_ID).amount;
-            threshold += 3 * legacyStacks;
             multiplier = (int) Math.pow(2, legacyStacks);
         }
 

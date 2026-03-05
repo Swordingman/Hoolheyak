@@ -37,11 +37,11 @@
   },
   "Hoolheyak:Compose": {
     "NAME": "撰写",
-    "DESCRIPTION": "消耗 。 NL 直到回合结束， 变量 ： NL 将一张手牌的费用减 3 ； NL  将所有手牌的费用减 1 。",
+    "DESCRIPTION": "消耗 。 NL 直到回合结束， 变量 ： NL 使一张手牌耗能 -3 ； NL 使所有手牌耗能 -1 。",
     "EXTENDED_DESCRIPTION": [
-      "将一张手牌的费用减 3 。",
-      "将所有手牌的费用减 1 。",
-      "选择一张牌将其本回合费用减 3 。"
+      "使一张手牌耗能 -3 。",
+      "使所有手牌耗能 -1 。",
+      "选择一张手牌耗能 -3 。"
     ]
   },
   "Hoolheyak:Refutation": {
@@ -58,7 +58,7 @@
   },
   "Hoolheyak:Turbulence": {
     "NAME": "湍流",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 一回合一次，本场对战，你每打出过两张 湍流 ，就将一张 湍流 置入你的手牌。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 每回合限 1 次，本场战斗中每打出 2 张 湍流 ，将 1 张 湍流 加入手牌。"
   },
   "Hoolheyak:TailSting": {
     "NAME": "尾刺",
@@ -66,7 +66,7 @@
   },
   "Hoolheyak:Convection": {
     "NAME": "对流",
-    "DESCRIPTION": "消耗 。 NL 造成 !D! 点伤害。 NL 你在本回合每打出过一张攻击牌，费用 -1 。"
+    "DESCRIPTION": "消耗 。 NL 造成 !D! 点伤害。 NL 本回合每打出 1 张攻击牌，耗能 -1 。"
   },
   "Hoolheyak:Archive": {
     "NAME": "归档",
@@ -78,7 +78,8 @@
   },
   "Hoolheyak:Coercion": {
     "NAME": "强压",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果目标处于 浮空 ，立即结束目标 浮空 状态，并返还 !M! 点 [E] 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 若目标 浮空 ，解除该状态并获得 [E] 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 若目标 浮空 ，解除该状态并获得 [E] [E] 。"
   },
   "Hoolheyak:Surveying": {
     "NAME": "测绘",
@@ -153,7 +154,7 @@
   },
   "Hoolheyak:InheritedEnd": {
     "NAME": "传承终焉",
-    "DESCRIPTION": "消耗 。 NL 在本回合中，当你连续交替打出一次攻击牌与技能牌时，获得 [E] ，并抽 1 张牌。"
+    "DESCRIPTION": "消耗 。 NL 本回合中，每当交替打出攻击牌与技能牌时，获得 [E] 并抽 1 张牌。"
   },
   "Hoolheyak:PoweredExoskeleton": {
     "NAME": "动力外骨骼",
@@ -223,8 +224,8 @@
   },
   "Hoolheyak:Wardrobe": {
     "NAME": "羽蛇的衣柜",
-    "DESCRIPTION": "每当你打出一张不属于你职业的牌时，随机将 *1 张本职业的牌加入手牌，使其带有 消耗 。",
-    "UPGRADE_DESCRIPTION": "每当你打出一张不属于你职业的牌时，随机将 *1 张本职业的牌加入手牌，使其带有 消耗 ，并且在本场战斗中耗能变为 *0 。"
+    "DESCRIPTION": "每打出 1 张其他职业的牌，随机将 *1 张本职业牌加入手牌并赋予 消耗 。",
+    "UPGRADE_DESCRIPTION": "每打出 1 张其他职业的牌，随机将 *1 张本职业牌加入手牌并赋予 消耗 ，并使其在本场战斗中耗能变为 *0 。"
   },
   "Hoolheyak:OmniscientHorizon": {
     "NAME": "全知视界",
@@ -236,7 +237,7 @@
   },
   "Hoolheyak:DistantLight": {
     "NAME": "光行遥遥",
-    "DESCRIPTION": "如果你在回合结束时造成的伤害小于 6 ，触发一次 逶迤 和 博览 。"
+    "DESCRIPTION": "回合结束时，若你本回合造成的伤害低于 6 ，触发 逶迤 与 博览 。"
   },
   "Hoolheyak:CorrectedVariable": {
     "NAME": "修正变量",
@@ -257,7 +258,7 @@
   },
   "Hoolheyak:TwinExperiment": {
     "NAME": "双生子实验",
-    "DESCRIPTION": "对随机两个敌人造成 !D! 点伤害 2 次。 NL 如果击中了两个敌人，对剩余血量更多的那个敌人额外造成 !D! 点伤害 2 次。"
+    "DESCRIPTION": "对随机两个敌人造成 !D! 点伤害 2 次。 NL 若击中两个不同的敌人，对生命值较高的敌人额外造成 !D! 点伤害 2 次。"
   },
   "Hoolheyak:KnockInExperiment": {
     "NAME": "敲入实验",
@@ -310,8 +311,8 @@
   },
   "Hoolheyak:ContingencyPlan": {
     "NAME": "预案",
-    "DESCRIPTION": "获得 [E] 。 NL 每当你触发 逶迤 时，从弃牌堆返回你的手牌。",
-    "UPGRADE_DESCRIPTION": "获得 [E] 。 NL 每当你触发 逶迤 或 博览 时，从弃牌堆返回你的手牌。"
+    "DESCRIPTION": "获得 [E] 。 NL 每当触发 逶迤 时，将此牌从弃牌堆移回手牌。",
+    "UPGRADE_DESCRIPTION": "获得 [E] 。 NL 每当触发 逶迤 或 博览 时，将此牌从弃牌堆移回手牌。"
   },
   "Hoolheyak:DynamicPressure": {
     "NAME": "动压",
@@ -374,7 +375,7 @@
   },
   "Hoolheyak:UniversalMapping": {
     "NAME": "万界测绘",
-    "DESCRIPTION": "随机打出其他 !M! 张所有职业的稀有攻击牌。"
+    "DESCRIPTION": "随机打出 !M! 张其他职业的稀有攻击牌。"
   },
   "Hoolheyak:Divergence": {
     "NAME": "气流辐散",
@@ -382,11 +383,11 @@
   },
   "Hoolheyak:Convergence": {
     "NAME": "气流辐合",
-    "DESCRIPTION": "消耗 。 NL 获得 !B! 点 格挡 。 NL 额外获得相当于所有敌人 重力 之和的 格挡 ，最多 !M! 点。"
+    "DESCRIPTION": "消耗 。 NL 获得 !B! 点 格挡 。 NL 额外获得所有敌人 重力 总和的 格挡 （最多 !M! 点）。"
   },
   "Hoolheyak:CrossSearch": {
     "NAME": "交叉检索",
-    "DESCRIPTION": "抽 !M! 张牌，然后丢弃 1 张牌。 NL 如果你丢弃了攻击牌，获得 1 点 博览 ； NL 如果你丢弃了技能牌，获得 1 点 逶迤 。"
+    "DESCRIPTION": "抽 !M! 张牌，弃 1 张牌。 NL 若弃置攻击牌，获得 1 点 博览 ； NL 若弃置技能牌，获得 1 点 逶迤 。"
   },
   "Hoolheyak:Rapids": {
     "NAME": "急流",
