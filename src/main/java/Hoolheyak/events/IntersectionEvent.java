@@ -42,7 +42,7 @@ public class IntersectionEvent extends AbstractImageEvent {
             this.imageEventText.setDialogOption(OPTIONS[0]);
         }
 
-        // 选项 2：失去生命，移除一张牌
+        // 选项 2：失去生命，移除2张牌
         this.imageEventText.setDialogOption(OPTIONS[1] + this.hpLoss + OPTIONS[2]);
 
         // 选项 3：获得两瓶药水
@@ -68,7 +68,6 @@ public class IntersectionEvent extends AbstractImageEvent {
 
                     case 1: // 呛他两句
                         AbstractDungeon.player.damage(new com.megacrit.cardcrawl.cards.DamageInfo(null, this.hpLoss));
-                        // 稍微优化：提取出可移除牌组，避免重复调用
                         CardGroup purgeable = CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards());
                         if (purgeable.size() > 0) {
                             AbstractDungeon.gridSelectScreen.open(purgeable, 2, OPTIONS[6], false, false, false, true);
@@ -113,9 +112,19 @@ public class IntersectionEvent extends AbstractImageEvent {
         super.update();
         // 处理删牌的后续逻辑
         if (!AbstractDungeon.isScreenUp && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-            AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
-            AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(c, (Settings.WIDTH / 2.0F), (Settings.HEIGHT / 2.0F)));
-            AbstractDungeon.player.masterDeck.removeCard(c);
+
+            // 遍历所有被玩家选中的卡牌
+            for (int i = 0; i < AbstractDungeon.gridSelectScreen.selectedCards.size(); i++) {
+                AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(i);
+
+                // 为了视觉效果更好，将两张牌的销毁动画稍微向左和向右错开
+                float offsetX = (i == 0) ? -150.0F * Settings.scale : 150.0F * Settings.scale;
+
+                AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(c, (Settings.WIDTH / 2.0F) + offsetX, (Settings.HEIGHT / 2.0F)));
+                AbstractDungeon.player.masterDeck.removeCard(c);
+            }
+
+            // 处理完毕后，清空选择列表
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }
     }
