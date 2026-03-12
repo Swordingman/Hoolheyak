@@ -25,14 +25,14 @@ public class FalseDomeEvent extends AbstractImageEvent {
     private boolean pickCards = false;
 
     public FalseDomeEvent() {
-        super(NAME, DESCRIPTIONS[0], "HoolheyakResources/images/events/Kristen.png");
+        super(NAME, DESCRIPTIONS[0], "Hoolheyak/images/events/false_dome.png");
 
         // 选项 1：缅怀先驱，获得事件专属遗物
         this.imageEventText.setDialogOption(OPTIONS[0], new StarryRevelation());
 
         // 选项 2：解析轨迹，选择三张牌升级
         if (AbstractDungeon.player.masterDeck.getUpgradableCards().size() < 3) {
-            this.imageEventText.setDialogOption(OPTIONS[1] + " (可升级的牌不足3张)", true);
+            this.imageEventText.setDialogOption(OPTIONS[1] + OPTIONS[4], true);
         } else {
             this.imageEventText.setDialogOption(OPTIONS[1]);
         }

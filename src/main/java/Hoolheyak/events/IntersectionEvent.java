@@ -26,7 +26,7 @@ public class IntersectionEvent extends AbstractImageEvent {
     private int screenNum = 0;
 
     public IntersectionEvent() {
-        super(NAME, DESCRIPTIONS[0], "HoolheyakResources/images/events/TinMan.png");
+        super(NAME, DESCRIPTIONS[0], "Hoolheyak/images/events/tin_man.png");
 
         // 进阶15及以上失去8点生命，否则5点
         if (AbstractDungeon.ascensionLevel >= 15) {
@@ -71,7 +71,7 @@ public class IntersectionEvent extends AbstractImageEvent {
                         // 稍微优化：提取出可移除牌组，避免重复调用
                         CardGroup purgeable = CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards());
                         if (purgeable.size() > 0) {
-                            AbstractDungeon.gridSelectScreen.open(purgeable, 1, "选择一张牌移除", false, false, false, true);
+                            AbstractDungeon.gridSelectScreen.open(purgeable, 2, OPTIONS[6], false, false, false, true);
                         }
                         this.imageEventText.updateBodyText(DESCRIPTIONS[2]);
                         break;

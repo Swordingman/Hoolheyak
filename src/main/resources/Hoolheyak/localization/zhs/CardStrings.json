@@ -179,9 +179,11 @@
   },
   "Hoolheyak:RedundantExperiment": {
     "NAME": "冗余实验",
-    "DESCRIPTION": "选择手牌中的 !M! 张牌，在本回合中，被选中的牌在被丢弃时视为被打出。 NL （回合结束的弃牌也会触发！）",
+    "DESCRIPTION": "选择手牌中的 !M! 张牌， 变量 ： NL 在本回合中，被选中的牌在被丢弃时视为被打出。（回合结束的弃牌也会触发！）； NL 弃掉它们，并抽等量的牌。",
     "EXTENDED_DESCRIPTION": [
-      "选择牌作为实验目标"
+      "选择牌作为实验目标",
+      "使它们在丢弃时视为被打出",
+      "弃掉它们，并抽等量的牌。"
     ]
   },
   "Hoolheyak:BygoneWings": {
@@ -307,7 +309,11 @@
   "Hoolheyak:ChimeraExperiment": {
     "NAME": "嵌合体实验",
     "DESCRIPTION": "打出你的抽牌堆顶端的 X 张 变量 ： NL 攻击牌； NL 技能牌。",
-    "UPGRADE_DESCRIPTION": "打出你的抽牌堆顶端的 X+1 张 变量 ： NL 攻击牌； NL 技能牌。"
+    "UPGRADE_DESCRIPTION": "打出你的抽牌堆顶端的 X+1 张 变量 ： NL 攻击牌； NL 技能牌。",
+    "EXTENDED_DESCRIPTION": [
+      "打出 *攻击牌 ",
+      "打出 *技能牌 "
+    ]
   },
   "Hoolheyak:ContingencyPlan": {
     "NAME": "预案",
@@ -375,7 +381,7 @@
   },
   "Hoolheyak:UniversalMapping": {
     "NAME": "万界测绘",
-    "DESCRIPTION": "随机打出 !M! 张其他职业的稀有攻击牌。"
+    "DESCRIPTION": "造成 !D! 点 伤害 。随机打出 !M! 张其他职业的稀有攻击牌。"
   },
   "Hoolheyak:Divergence": {
     "NAME": "气流辐散",
@@ -392,5 +398,13 @@
   "Hoolheyak:Rapids": {
     "NAME": "急流",
     "DESCRIPTION": "消耗 。 NL 给予 99 层 失重 。"
+  },
+  "Hoolheyak:FactorialExperiment": {
+    "NAME": "析因实验",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 触发手牌中（大部分）变量卡的随机 变量 ； NL 用随机变量卡填满你的手牌，并在本回合中使它们的耗能变为 *0 。",
+    "EXTENDED_DESCRIPTION": [
+      "触发手牌中（大部分）变量卡的随机 变量 ",
+      "用随机变量卡填满你的手牌，并在本回合中使它们的耗能变为 *0 "
+    ]
   }
 }

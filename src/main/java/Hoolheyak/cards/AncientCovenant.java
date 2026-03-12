@@ -4,14 +4,17 @@ import Hoolheyak.actions.VariableAction;
 import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.powers.CovenantDexterityPower;
 import Hoolheyak.powers.CovenantStrengthPower;
+import Hoolheyak.powers.ForbiddenKnowledgeEruPower;
+import Hoolheyak.powers.ForbiddenKnowledgeMeaPower;
 import Hoolheyak.util.CardStats;
+import Hoolheyak.util.IVariableCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
 
-public class AncientCovenant extends BaseCard {
+public class AncientCovenant extends BaseCard implements IVariableCard {
     public static final String ID = makeID("AncientCovenant");
 
     private static final int COST = 1;
@@ -30,7 +33,7 @@ public class AncientCovenant extends BaseCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public ArrayList<VariableAction.VariableChoice> getVariableChoices(AbstractPlayer p, AbstractMonster m, boolean isAutoTriggered) {
         ArrayList<VariableAction.VariableChoice> choices = new ArrayList<>();
 
         // 选项 α：博览 加力量
@@ -43,6 +46,11 @@ public class AncientCovenant extends BaseCard {
             addToBot(new ApplyPowerAction(p, p, new CovenantDexterityPower(p, magicNumber), magicNumber));
         }));
 
-        addToBot(new VariableAction(this, choices, true));
+        return choices;
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new VariableAction(this, getVariableChoices(p, m), true));
     }
 }

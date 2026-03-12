@@ -3,6 +3,7 @@ package Hoolheyak.cards;
 import Hoolheyak.actions.VariableAction;
 import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.util.CardStats;
+import Hoolheyak.util.IVariableCard;
 import Hoolheyak.util.RecursiveExperimentReward;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -19,7 +20,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import java.util.ArrayList;
 
-public class RecursiveExperiment extends BaseCard {
+public class RecursiveExperiment extends BaseCard implements IVariableCard {
     public static final String ID = makeID("RecursiveExperiment");
 
     private static final int COST = 1;
@@ -40,6 +41,16 @@ public class RecursiveExperiment extends BaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new RecursiveExperimentAction(this));
+    }
+
+    @Override
+    public ArrayList<VariableAction.VariableChoice> getVariableChoices(AbstractPlayer p, AbstractMonster m, boolean isAutoTriggered) {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public boolean canBeAutoTriggered() {
+        return false;
     }
 
     public static class RecursiveExperimentAction extends AbstractGameAction {

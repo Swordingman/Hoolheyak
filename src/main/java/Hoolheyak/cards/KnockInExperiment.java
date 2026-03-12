@@ -2,8 +2,12 @@ package Hoolheyak.cards;
 
 import Hoolheyak.actions.VariableAction;
 import Hoolheyak.character.Hoolheyak;
+import Hoolheyak.powers.ForbiddenKnowledgeEruPower;
+import Hoolheyak.powers.ForbiddenKnowledgeMeaPower;
 import Hoolheyak.util.CardStats;
+import Hoolheyak.util.IVariableCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
@@ -15,7 +19,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import java.util.ArrayList;
 
-public class KnockInExperiment extends BaseCard {
+public class KnockInExperiment extends BaseCard implements IVariableCard {
     public static final String ID = makeID("KnockInExperiment");
 
     private static final int COST = 1;
@@ -34,13 +38,8 @@ public class KnockInExperiment extends BaseCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        // 第一阶段：造成伤害
-        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-
-        // 第二阶段：变量选择
+    public ArrayList<VariableAction.VariableChoice> getVariableChoices(AbstractPlayer p, AbstractMonster m, boolean isAutoTriggered) {
         ArrayList<VariableAction.VariableChoice> choices = new ArrayList<>();
-
         // 选项 α：消耗 1 能量，回复 3 生命
         choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[0], () -> {
             // 安全判定：确保玩家真的有能量可以扣除
@@ -55,6 +54,14 @@ public class KnockInExperiment extends BaseCard {
             addToBot(new GainEnergyAction(1));
         }));
 
-        addToBot(new VariableAction(this, choices));
+        return choices;
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        // 第一阶段：造成伤害
+        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+
+        addToBot(new VariableAction(this, getVariableChoices(p, m)));
     }
 }

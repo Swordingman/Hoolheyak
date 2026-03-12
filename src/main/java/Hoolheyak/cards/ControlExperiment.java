@@ -1,10 +1,12 @@
 package Hoolheyak.cards;
 
+import Hoolheyak.actions.RepeatAction;
 import Hoolheyak.actions.VariableAction;
 import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.powers.AnalysisPower;
 import Hoolheyak.powers.WeightlessPower; // 或者是 GravityPower，取决于你代码里的名字
 import Hoolheyak.util.CardStats;
+import Hoolheyak.util.IVariableCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -13,7 +15,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import java.util.ArrayList;
 
-public class ControlExperiment extends BaseCard {
+public class ControlExperiment extends BaseCard implements IVariableCard {
     public static final String ID = makeID("ControlExperiment");
     private static final int COST = 1;
     private static final int DAMAGE = 8;
@@ -28,9 +30,7 @@ public class ControlExperiment extends BaseCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-
+    public ArrayList<VariableAction.VariableChoice> getVariableChoices(AbstractPlayer p, AbstractMonster m, boolean isAutoTriggered) {
         ArrayList<VariableAction.VariableChoice> choices = new ArrayList<>();
 
         choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[0], () -> {
@@ -41,6 +41,12 @@ public class ControlExperiment extends BaseCard {
             addToBot(new ApplyPowerAction(m, p, new WeightlessPower(m, p, this.magicNumber), this.magicNumber));
         }));
 
-        addToBot(new VariableAction(this, choices, true));
+        return choices;
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot(new VariableAction(this, getVariableChoices(p, m), true));
     }
 }

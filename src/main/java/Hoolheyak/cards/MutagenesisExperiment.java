@@ -2,7 +2,10 @@ package Hoolheyak.cards;
 
 import Hoolheyak.actions.VariableAction;
 import Hoolheyak.character.Hoolheyak;
+import Hoolheyak.powers.AnalysisPower;
+import Hoolheyak.powers.WeightlessPower;
 import Hoolheyak.util.CardStats;
+import Hoolheyak.util.IVariableCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -13,7 +16,7 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import java.util.ArrayList;
 
-public class MutagenesisExperiment extends BaseCard {
+public class MutagenesisExperiment extends BaseCard implements IVariableCard {
     public static final String ID = makeID("MutagenesisExperiment");
     private static final int COST = 2;
     private static final int DAMAGE = 12;
@@ -28,9 +31,7 @@ public class MutagenesisExperiment extends BaseCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
-
+    public ArrayList<VariableAction.VariableChoice> getVariableChoices(AbstractPlayer p, AbstractMonster m, boolean isAutoTriggered) {
         ArrayList<VariableAction.VariableChoice> choices = new ArrayList<>();
 
         choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[0], () -> {
@@ -41,6 +42,12 @@ public class MutagenesisExperiment extends BaseCard {
             addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, this.magicNumber, false), this.magicNumber));
         }));
 
-        addToBot(new VariableAction(this, choices, true));
+        return choices;
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+        addToBot(new VariableAction(this, getVariableChoices(p, m), true));
     }
 }

@@ -49,6 +49,7 @@ import java.util.List;
 
 import static Hoolheyak.HoolheyakMod.characterPath;
 import static Hoolheyak.HoolheyakMod.makeID;
+import Hoolheyak.HoolheyakMod;
 
 public class Hoolheyak extends CustomPlayer {
     // 角色基础数值
@@ -343,13 +344,35 @@ public class Hoolheyak extends CustomPlayer {
     @Override public Color getSlashAttackColor() { return hoolheyakEffectColor; }
     @Override public BitmapFont getEnergyNumFont() { return FontHelper.energyNumFontRed; }
 
+    // 新增一个方法，用于读取当前配置并返回对应的音频Key
+    public static String getSelectedVoiceKey() {
+        int lang = 0;
+        if (HoolheyakMod.hoolheyakConfig != null) {
+            lang = HoolheyakMod.hoolheyakConfig.getInt("voiceLang");
+        }
+
+        switch (lang) {
+            case 0: return Sounds.CN;
+            case 1: return Sounds.EN;
+            case 2: return Sounds.JP;
+            case 3: return Sounds.KR;
+            default: return Sounds.CN;
+        }
+    }
+
+    // 替换原来的选择界面特效方法
     @Override
     public void doCharSelectScreenSelectEffect() {
-        CardCrawlGame.sound.playA(Sounds.HOOLHEYAK_SELECT, 0.0F);
+        CardCrawlGame.sound.playA(getSelectedVoiceKey(), 0.0F);
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
     }
 
-    @Override public String getCustomModeCharacterButtonSoundKey() { return Sounds.HOOLHEYAK_SELECT; }
+    // 替换原来的自定义模式按钮音效方法
+    @Override
+    public String getCustomModeCharacterButtonSoundKey() {
+        return getSelectedVoiceKey();
+    }
+
     @Override public String getLocalizedCharacterName() { return getNames()[0]; }
     @Override public String getTitle(PlayerClass playerClass) { return getNames()[1]; }
     @Override public String getSpireHeartText() { return getText()[1]; }

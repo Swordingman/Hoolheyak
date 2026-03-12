@@ -3,6 +3,7 @@ package Hoolheyak.cards;
 import Hoolheyak.actions.VariableAction;
 import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.util.CardStats;
+import Hoolheyak.util.IVariableCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -17,7 +18,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
-public class Stargazing extends BaseCard {
+public class Stargazing extends BaseCard implements IVariableCard {
     public static final String ID = makeID("Stargazing");
 
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -39,13 +40,22 @@ public class Stargazing extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        // 防呆设计：如果抽牌堆空了但弃牌堆有牌，先触发洗牌动作
         if (p.drawPile.isEmpty() && !p.discardPile.isEmpty()) {
             addToBot(new EmptyDeckShuffleAction());
         }
-
-        // 压入我们自定义的“先选牌，后变量”的 Action
         addToBot(new StargazingAction(this, this.magicNumber));
+    }
+
+    // 2. 必须重写的接口方法：返回空列表，因为真正的选项在 StargazingAction 内部生成
+    @Override
+    public ArrayList<VariableAction.VariableChoice> getVariableChoices(AbstractPlayer p, AbstractMonster m, boolean isAutoTriggered) {
+        return new ArrayList<>();
+    }
+
+    // 3. 🚨 核心安全阀：严禁被自动触发！
+    @Override
+    public boolean canBeAutoTriggered() {
+        return false;
     }
 
     // 核心 Action

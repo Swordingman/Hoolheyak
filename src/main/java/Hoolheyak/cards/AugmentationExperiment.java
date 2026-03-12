@@ -5,6 +5,7 @@ import Hoolheyak.actions.VariableAction;
 import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.powers.AnalysisPower;
 import Hoolheyak.util.CardStats;
+import Hoolheyak.util.IVariableCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -14,7 +15,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
 
-public class AugmentationExperiment extends BaseCard {
+public class AugmentationExperiment extends BaseCard implements IVariableCard {
     public static final String ID = makeID("AugmentationExperiment");
     private static final int COST = 1;
     private static final int DAMAGE = 5;
@@ -28,28 +29,30 @@ public class AugmentationExperiment extends BaseCard {
         setMagic(MAGIC, UPGRADE_PLUS_MAGIC);
     }
 
+    // 2. 将选项逻辑剥离出来
+    @Override
+    public ArrayList<VariableAction.VariableChoice> getVariableChoices(AbstractPlayer p, AbstractMonster m, boolean isAutoTriggered) {
+        ArrayList<VariableAction.VariableChoice> choices = new ArrayList<>();
+
+        // 选项 A：使用自定义的 RepeatAction 额外打出
+        choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[0], () -> {
+            addToBot(new RepeatAction(this, m, this.magicNumber));
+        }));
+
+        // 选项 B：获得解析
+        choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[1], () -> {
+            addToBot(new ApplyPowerAction(p, p, new AnalysisPower(p, this.magicNumber), this.magicNumber));
+        }));
+
+        return choices;
+    }
+
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        // 1. 基础伤害（本体和复制体都会执行这一步）
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
 
-        // 2. 【核心修改】：利用你在 RepeatAction 里设下的 dontTriggerOnUseCard 标记
-        // 确保只有玩家手动打出的“本体”才会呼出选择界面
         if (!this.dontTriggerOnUseCard) {
-            ArrayList<VariableAction.VariableChoice> choices = new ArrayList<>();
-
-            // 选项 A：使用自定义的 RepeatAction 额外打出
-            choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[0], () -> {
-                // 把这张卡(this)和目标(m)传给你的 RepeatAction
-                addToBot(new RepeatAction(this, m, this.magicNumber));
-            }));
-
-            // 选项 B：获得解析
-            choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[1], () -> {
-                addToBot(new ApplyPowerAction(p, p, new AnalysisPower(p, this.magicNumber), this.magicNumber));
-            }));
-
-            addToBot(new VariableAction(this, choices, true));
+            addToBot(new VariableAction(this, getVariableChoices(p, m, false), true));
         }
     }
 }

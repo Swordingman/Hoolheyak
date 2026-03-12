@@ -10,8 +10,7 @@ import Hoolheyak.potions.ElixirOfEpiphany;
 import Hoolheyak.powers.GravityPower;
 import Hoolheyak.relics.*;
 import Hoolheyak.util.*;
-import basemod.AutoAdd;
-import basemod.BaseMod;
+import basemod.*;
 import basemod.eventUtil.AddEventParams;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
@@ -38,6 +37,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.TheBeyond;
 import com.megacrit.cardcrawl.dungeons.TheCity;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
@@ -160,6 +160,7 @@ public class HoolheyakMod implements
             Properties defaults = new Properties();
             defaults.setProperty("skinIndex", "0");
             defaults.setProperty("difficulty", "0");
+            defaults.setProperty("voiceLang", "0");
 
             hoolheyakConfig = new SpireConfig("Hoolheyak", "HoolheyakConfig", defaults);
             hoolheyakConfig.load();
@@ -175,6 +176,45 @@ public class HoolheyakMod implements
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+        ModPanel settingsPanel = new ModPanel();
+        String[] voiceLangNames = {"CN (中文)", "EN (English)", "JP (日本語)", "KR (한국어)"};
+
+        ModLabel voiceLabel = new ModLabel(
+                "Character Voice / 角色语音: " + voiceLangNames[hoolheyakConfig.getInt("voiceLang")],
+                480.0f, 700.0f,
+                Settings.CREAM_COLOR, FontHelper.charDescFont,
+                settingsPanel,
+                (label) -> {
+                    // 每帧更新文本，确保点击按钮后文本跟着改变
+                    int currentLang = hoolheyakConfig.getInt("voiceLang");
+                    label.text = "Character Voice / 角色语音: " + voiceLangNames[currentLang];
+                }
+        );
+
+        // 添加切换按钮：每次点击让语音序号 +1，达到 5 后回到 0
+        ModButton voiceCycleButton = new ModButton(
+                400.0f, 680.0f,
+                settingsPanel,
+                (button) -> {
+                    int currentLang = hoolheyakConfig.getInt("voiceLang");
+                    currentLang = (currentLang + 1) % 4; // 0~4 循环
+                    hoolheyakConfig.setInt("voiceLang", currentLang);
+                    try {
+                        hoolheyakConfig.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+        );
+
+        settingsPanel.addUIElement(voiceLabel);
+        settingsPanel.addUIElement(voiceCycleButton);
+
+        // --- 3. 注册模组徽章及面板 ---
+        // 注意：把原本最后的 null 替换成 settingsPanel
+        BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, settingsPanel);
     }
 
     /*---------- 本地化 (Localization) ----------*/

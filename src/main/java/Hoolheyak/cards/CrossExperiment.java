@@ -3,6 +3,7 @@ package Hoolheyak.cards;
 import Hoolheyak.actions.VariableAction;
 import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.util.CardStats;
+import Hoolheyak.util.IVariableCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
@@ -14,7 +15,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
 
-public class CrossExperiment extends BaseCard {
+public class CrossExperiment extends BaseCard implements IVariableCard {
     public static final String ID = makeID("CrossExperiment");
 
     private static final int COST = 1;
@@ -73,14 +74,8 @@ public class CrossExperiment extends BaseCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        // 先造成伤害和格挡
-        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-        addToBot(new GainBlockAction(p, p, block));
-
+    public ArrayList<VariableAction.VariableChoice> getVariableChoices(AbstractPlayer p, AbstractMonster m, boolean isAutoTriggered) {
         ArrayList<VariableAction.VariableChoice> choices = new ArrayList<>();
-
-        // 选项 α：永久增加伤害
         choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[0], () -> {
             increasePermanentStats(true, magicNumber);
         }));
@@ -90,7 +85,15 @@ public class CrossExperiment extends BaseCard {
             increasePermanentStats(false, magicNumber);
         }));
 
-        addToBot(new VariableAction(this, choices, true));
+        return choices;
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        // 先造成伤害和格挡
+        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+        addToBot(new GainBlockAction(p, p, block));
+        addToBot(new VariableAction(this, getVariableChoices(p, m), true));
     }
 
     // 处理永久增长的核心逻辑

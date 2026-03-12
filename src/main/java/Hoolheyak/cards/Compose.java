@@ -1,8 +1,9 @@
 package Hoolheyak.cards;
 
-import Hoolheyak.util.CardStats;
 import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.actions.VariableAction;
+import Hoolheyak.util.CardStats;
+import Hoolheyak.util.IVariableCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
 
-public class Compose extends BaseCard {
+public class Compose extends BaseCard implements IVariableCard {
     public static final String ID = makeID("Compose");
 
     private static final int COST = 1;
@@ -30,66 +31,78 @@ public class Compose extends BaseCard {
         setExhaust(true);
     }
 
+    // 实现带有 isAutoTriggered 的新接口方法
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public ArrayList<VariableAction.VariableChoice> getVariableChoices(AbstractPlayer p, AbstractMonster m, boolean isAutoTriggered) {
         ArrayList<VariableAction.VariableChoice> choices = new ArrayList<>();
 
-        // 选项 α：将一张手牌的费用减 3
+        // 选项 α：将一张手牌的费用减 3 (动态分歧)
         choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[0], () -> {
-            addToBot(new AbstractGameAction() {
-                private boolean openedScreen = false;
 
-                // 初始化 Action
-                {
-                    this.actionType = ActionType.CARD_MANIPULATION;
-                    this.duration = Settings.ACTION_DUR_FAST;
-                }
-
-                @Override
-                public void update() {
-                    // 第一阶段：打开选牌界面
-                    if (!this.openedScreen) {
-                        if (p.hand.isEmpty()) {
-                            this.isDone = true;
-                            return;
+            // 🌟 分歧点 1：如果是被大招自动触发的，走随机逻辑（无 UI）
+            if (isAutoTriggered) {
+                addToBot(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        if (!p.hand.isEmpty()) {
+                            // 随机抽取一张手牌
+                            AbstractCard randomCard = p.hand.getRandomCard(AbstractDungeon.cardRandomRng);
+                            int newCost = Math.max(0, randomCard.costForTurn - 3);
+                            randomCard.setCostForTurn(newCost);
+                            randomCard.isCostModifiedForTurn = true;
+                            randomCard.superFlash();
                         }
-                        // 使用 EXTENDED_DESCRIPTION[2] 作为打开选牌界面的上方提示语
-                        AbstractDungeon.handCardSelectScreen.open(cardStrings.EXTENDED_DESCRIPTION[2], 1, false, false, false, false);
-                        this.openedScreen = true;
-                        return;
-                    }
-
-                    // 第二阶段：处理玩家选好的牌
-                    if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
-                        for (AbstractCard c : AbstractDungeon.handCardSelectScreen.selectedCards.group) {
-                            int newCost = c.costForTurn - 3;
-                            if (newCost < 0) {
-                                newCost = 0;
-                            }
-                            c.setCostForTurn(newCost);
-                            c.isCostModifiedForTurn = true;
-                            c.superFlash(); // 闪烁一下提示玩家降费成功
-                            p.hand.addToTop(c); // 将牌放回手牌
-                        }
-                        AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
-                        AbstractDungeon.handCardSelectScreen.selectedCards.group.clear();
-                        p.hand.refreshHandLayout();
                         this.isDone = true;
                     }
-                }
-            });
+                });
+            }
+            // 🌟 分歧点 2：如果是玩家手动打出的，走选牌逻辑（有 UI）
+            else {
+                addToBot(new AbstractGameAction() {
+                    private boolean openedScreen = false;
+
+                    {
+                        this.actionType = ActionType.CARD_MANIPULATION;
+                        this.duration = Settings.ACTION_DUR_FAST;
+                    }
+
+                    @Override
+                    public void update() {
+                        if (!this.openedScreen) {
+                            if (p.hand.isEmpty()) {
+                                this.isDone = true;
+                                return;
+                            }
+                            AbstractDungeon.handCardSelectScreen.open(cardStrings.EXTENDED_DESCRIPTION[2], 1, false, false, false, false);
+                            this.openedScreen = true;
+                            return;
+                        }
+
+                        if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
+                            for (AbstractCard c : AbstractDungeon.handCardSelectScreen.selectedCards.group) {
+                                int newCost = Math.max(0, c.costForTurn - 3);
+                                c.setCostForTurn(newCost);
+                                c.isCostModifiedForTurn = true;
+                                c.superFlash();
+                                p.hand.addToTop(c);
+                            }
+                            AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
+                            AbstractDungeon.handCardSelectScreen.selectedCards.group.clear();
+                            p.hand.refreshHandLayout();
+                            this.isDone = true;
+                        }
+                    }
+                });
+            }
         }));
 
-        // 选项 β：将所有手牌的费用减 1
+        // 选项 β：将所有手牌的费用减 1 (纯后台计算，无需分歧)
         choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[1], () -> {
             addToBot(new AbstractGameAction() {
                 @Override
                 public void update() {
                     for (AbstractCard c : p.hand.group) {
-                        int newCost = c.costForTurn - 1;
-                        if (newCost < 0) {
-                            newCost = 0;
-                        }
+                        int newCost = Math.max(0, c.costForTurn - 1);
                         c.setCostForTurn(newCost);
                         c.isCostModifiedForTurn = true;
                         c.superFlash();
@@ -99,7 +112,12 @@ public class Compose extends BaseCard {
             });
         }));
 
-        // 将组装好的选项传入你写好的 VariableAction 中
-        addToBot(new VariableAction(this, choices, true));
+        return choices;
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        // 正常打出时，调用默认接口方法（isAutoTriggered 会默认为 false）
+        addToBot(new VariableAction(this, getVariableChoices(p, m), true));
     }
 }

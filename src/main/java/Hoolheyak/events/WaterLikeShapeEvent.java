@@ -32,7 +32,7 @@ public class WaterLikeShapeEvent extends AbstractImageEvent {
     private AbstractCard cardToRemove = null;
 
     public WaterLikeShapeEvent() {
-        super(NAME, DESCRIPTIONS[0], "HoolheyakResources/images/events/Muelsyse.png");
+        super(NAME, DESCRIPTIONS[0], "Hoolheyak/images/events/waterl_like_shape.png");
 
         // [准备战斗]
         this.imageEventText.setDialogOption(OPTIONS[0]);
