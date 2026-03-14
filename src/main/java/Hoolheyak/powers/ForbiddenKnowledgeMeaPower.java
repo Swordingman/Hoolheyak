@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 
 public class ForbiddenKnowledgeMeaPower extends BasePower {
-    public static final String POWER_ID = HoolheyakMod.makeID("ForbiddenKnowledgeMea");
+    public static final String POWER_ID = "HoolheyakMod:ForbiddenKnowledgeMea";
 
     public ForbiddenKnowledgeMeaPower(AbstractCreature owner, int amount) {
         super(POWER_ID, PowerType.BUFF, false, owner, amount);

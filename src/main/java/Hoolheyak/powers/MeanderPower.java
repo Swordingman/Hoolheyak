@@ -1,6 +1,7 @@
 package Hoolheyak.powers;
 
 import Hoolheyak.HoolheyakMod;
+import Hoolheyak.actions.TriggerKeywordAction;
 import Hoolheyak.cards.ContingencyPlan;
 import Hoolheyak.cards.phases.QuincunxCard;
 import Hoolheyak.powers.phases.QuincunxPower;
@@ -48,7 +49,7 @@ public class MeanderPower extends BasePower {
     }
 
     private void checkAndTrigger() {
-        int threshold = Hoolheyak.actions.TriggerKeywordAction.getThreshold(this.owner);
+        int threshold = Hoolheyak.actions.TriggerKeywordAction.getThreshold(this.owner, TriggerKeywordAction.KeywordType.MEANDER);
         int multiplier = 1;
 
         if (this.owner.hasPower(KukulkanLegacyPower.POWER_ID)) {
@@ -62,8 +63,8 @@ public class MeanderPower extends BasePower {
 
             int x = this.owner.hasPower(AnalysisPower.POWER_ID) ? this.owner.getPower(AnalysisPower.POWER_ID).amount : 0;
 
-            int finalDamage = 4 * multiplier;
-            int finalLift = 2 * multiplier;
+            int finalDamage = 3 * multiplier;
+            int finalLift = 1 * multiplier;
 
             for (int i = 0; i < x; i++) {
                 addToBot(new AbstractGameAction() {
@@ -94,10 +95,8 @@ public class MeanderPower extends BasePower {
 
     @Override
     public void updateDescription() {
-        int threshold = 5;
-        if (this.owner.hasPower(KukulkanLegacyPower.POWER_ID)) {
-            threshold += 3 * this.owner.getPower(KukulkanLegacyPower.POWER_ID).amount;
-        }
+        // 动态获取当前的博览阈值（这样即使以后再改数字，描述也会自动同步）
+        int threshold = TriggerKeywordAction.getThreshold(this.owner, TriggerKeywordAction.KeywordType.MEANDER);
         this.description = DESCRIPTIONS[0] + this.amount + "/" + threshold + DESCRIPTIONS[1];
     }
 }

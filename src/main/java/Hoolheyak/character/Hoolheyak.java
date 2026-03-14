@@ -113,7 +113,7 @@ public class Hoolheyak extends CustomPlayer {
         private static final String ENERGY_ORB_P = characterPath("cardback/energy_orb_p.png");
         private static final String SMALL_ORB = characterPath("cardback/small_orb.png");
 
-        private static final Color cardColor = new Color(71f/255f, 63f/255f, 34f/255f, 1f);
+        private static final Color cardColor = CardHelper.getColor(68, 146, 144);
 
         public static void registerColor() {
             BaseMod.addColor(CARD_COLOR, cardColor,
@@ -329,8 +329,7 @@ public class Hoolheyak extends CustomPlayer {
     @Override
     public List<CutscenePanel> getCutscenePanels() {
         List<CutscenePanel> panels = new ArrayList<>();
-        panels.add(new CutscenePanel("Hoolheyak/images/scenes/penance.jpg", "ATTACK_HEAVY"));
-        panels.add(new CutscenePanel("Hoolheyak/images/scenes/vic1.png", "ATTACK_HEAVY"));
+        panels.add(new CutscenePanel("Hoolheyak/images/scenes/vic1.png", "SLASH_DIAGONAL"));
         panels.add(new CutscenePanel("Hoolheyak/images/scenes/vic2.png"));
         panels.add(new CutscenePanel("Hoolheyak/images/scenes/vic3.png"));
         return panels;

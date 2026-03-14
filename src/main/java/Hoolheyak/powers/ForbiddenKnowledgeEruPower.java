@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 
 // 处理“触发博览 -> 抽牌”的能力
 public class ForbiddenKnowledgeEruPower extends BasePower {
-    public static final String POWER_ID = HoolheyakMod.makeID("ForbiddenKnowledgeEru");
+    public static final String POWER_ID = "HoolheyakMod:ForbiddenKnowledgeEru";
 
     public ForbiddenKnowledgeEruPower(AbstractCreature owner, int amount) {
         super(POWER_ID, PowerType.BUFF, false, owner, amount);

@@ -1,6 +1,5 @@
 package Hoolheyak.cards;
 
-import Hoolheyak.actions.RepeatAction; // 确保引入你的 RepeatAction
 import Hoolheyak.actions.VariableAction;
 import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.powers.AnalysisPower;
@@ -9,6 +8,7 @@ import Hoolheyak.util.IVariableCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -21,27 +21,30 @@ public class AugmentationExperiment extends BaseCard implements IVariableCard {
     private static final int DAMAGE = 5;
     private static final int UPGRADE_PLUS_DMG = 3;
     private static final int MAGIC = 1;
-    private static final int UPGRADE_PLUS_MAGIC = 1;
+    private static final int ANALYSIS = 2;
 
     public AugmentationExperiment() {
         super(ID, new CardStats(Hoolheyak.Meta.CARD_COLOR, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY, COST));
         setDamage(DAMAGE, UPGRADE_PLUS_DMG);
-        setMagic(MAGIC, UPGRADE_PLUS_MAGIC);
+        setMagic(MAGIC);
+        setCustomVar("ANALYSIS", ANALYSIS);
     }
 
-    // 2. 将选项逻辑剥离出来
     @Override
     public ArrayList<VariableAction.VariableChoice> getVariableChoices(AbstractPlayer p, AbstractMonster m, boolean isAutoTriggered) {
         ArrayList<VariableAction.VariableChoice> choices = new ArrayList<>();
 
-        // 选项 A：使用自定义的 RepeatAction 额外打出
+        // 选项 A：获得 1 层解析 (使用 magicNumber)
         choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[0], () -> {
-            addToBot(new RepeatAction(this, m, this.magicNumber));
+            addToBot(new ApplyPowerAction(p, p, new AnalysisPower(p, this.magicNumber), this.magicNumber));
         }));
 
-        // 选项 B：获得解析
+        // 选项 B：将一张本卡置入手牌，并获得 2 层解析
         choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[1], () -> {
-            addToBot(new ApplyPowerAction(p, p, new AnalysisPower(p, this.magicNumber), this.magicNumber));
+            // 1. 印卡
+            addToBot(new MakeTempCardInHandAction(this.makeStatEquivalentCopy(), 1));
+            // 2. 获得 2 层解析
+            addToBot(new ApplyPowerAction(p, p, new AnalysisPower(p, customVar("ANALYSIS")), customVar("ANALYSIS")));
         }));
 
         return choices;

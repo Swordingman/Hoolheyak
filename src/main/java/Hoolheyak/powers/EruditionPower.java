@@ -1,6 +1,7 @@
 package Hoolheyak.powers;
 
 import Hoolheyak.HoolheyakMod;
+import Hoolheyak.actions.TriggerKeywordAction;
 import Hoolheyak.cards.ContingencyPlan;
 import Hoolheyak.powers.phases.QuincunxPower;
 import Hoolheyak.powers.phases.SextilePower;
@@ -49,7 +50,7 @@ public class EruditionPower extends BasePower {
 
     // 将结算逻辑封装，方便调用
     private void checkAndTrigger() {
-        int threshold = Hoolheyak.actions.TriggerKeywordAction.getThreshold(this.owner);
+        int threshold = TriggerKeywordAction.getThreshold(this.owner, TriggerKeywordAction.KeywordType.ERUDITION);
         int multiplier = 1;
 
         if (this.owner.hasPower(KukulkanLegacyPower.POWER_ID)) {
@@ -100,11 +101,8 @@ public class EruditionPower extends BasePower {
 
     @Override
     public void updateDescription() {
-        // 根据当前的上限动态显示描述
-        int threshold = 5;
-        if (this.owner.hasPower(KukulkanLegacyPower.POWER_ID)) {
-            threshold += 3 * this.owner.getPower(KukulkanLegacyPower.POWER_ID).amount;
-        }
+        // 动态获取当前的博览阈值（这样即使以后再改数字，描述也会自动同步）
+        int threshold = TriggerKeywordAction.getThreshold(this.owner, TriggerKeywordAction.KeywordType.ERUDITION);
         this.description = DESCRIPTIONS[0] + this.amount + "/" + threshold + DESCRIPTIONS[1];
     }
 }

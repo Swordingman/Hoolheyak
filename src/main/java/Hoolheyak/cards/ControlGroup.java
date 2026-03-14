@@ -1,6 +1,7 @@
 package Hoolheyak.cards;
 
 import Hoolheyak.actions.VariableAction;
+import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.powers.EruditionPower;
 import Hoolheyak.powers.MeanderPower;
 import Hoolheyak.powers.WeightlessPower;
@@ -19,7 +20,7 @@ public class ControlGroup extends BaseCard {
     public static final String ID = makeID("ControlGroup");
 
     public ControlGroup() {
-        super(ID, 1, CardType.ATTACK, CardTarget.ENEMY, CardRarity.COMMON, CardColor.COLORLESS);
+        super(ID, 1, CardType.ATTACK, CardTarget.ENEMY, CardRarity.COMMON, Hoolheyak.Meta.CARD_COLOR);
         setDamage(5, 3);
         setMagic(1);
 

@@ -77,8 +77,7 @@ public class FactorialExperiment extends BaseCard implements IVariableCard {
 
         // 选项 β：将随机变量卡填满你的手牌，他们在本回合中耗能为 0
         choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[1], () -> {
-            int space = 10 - p.hand.size();
-            for (int i = 0; i < space; i++) {
+            for (int i = 0; i < 3; i++) {
                 AbstractCard randomVarCard = getRandomVariableCard().makeCopy();
                 randomVarCard.setCostForTurn(0);
                 addToBot(new MakeTempCardInHandAction(randomVarCard, 1));

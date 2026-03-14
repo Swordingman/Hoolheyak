@@ -239,7 +239,7 @@
   },
   "Hoolheyak:DistantLight": {
     "NAME": "光行遥遥",
-    "DESCRIPTION": "回合结束时，若你本回合造成的伤害低于 6 ，触发 逶迤 与 博览 。"
+    "DESCRIPTION": "回合结束时，若你本回合造成的攻击伤害低于 6 ，触发 逶迤 与 博览 。"
   },
   "Hoolheyak:CorrectedVariable": {
     "NAME": "修正变量",
@@ -280,7 +280,7 @@
   },
   "Hoolheyak:SextileCard": {
     "NAME": "六合",
-    "DESCRIPTION": "吉相 NL 不可打出 。 NL 抽到时自动触发并 消耗 。 NL 替换当前的场地相位为 六合 ：你的 博览 与 逶迤 仅需 3 张牌即可触发，但你无法再给予 升力 。"
+    "DESCRIPTION": "吉相 NL 不可打出 。 NL 抽到时自动触发并 消耗 。 NL 替换当前的场地相位为 六合 ：你的 博览 与 逶迤 触发需要的层数减少 2 点，但你无法再给予 升力 。"
   },
   "Hoolheyak:TrineCard": {
     "NAME": "拱相",
@@ -304,12 +304,16 @@
   },
   "Hoolheyak:Separation": {
     "NAME": "分离",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 扣除等量的最大生命值。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 扣除目标等量的最大生命值。"
   },
   "Hoolheyak:ChimeraExperiment": {
     "NAME": "嵌合体实验",
     "DESCRIPTION": "打出你的抽牌堆顶端的 X 张 变量 ： NL 攻击牌； NL 技能牌。",
-    "UPGRADE_DESCRIPTION": "打出你的抽牌堆顶端的 X+1 张 变量 ： NL 攻击牌； NL 技能牌。"
+    "UPGRADE_DESCRIPTION": "打出你的抽牌堆顶端的 X+1 张 变量 ： NL 攻击牌； NL 技能牌。",
+    "EXTENDED_DESCRIPTION": [
+      "打出 *攻击牌 ",
+      "打出 *技能牌 "
+    ]
   },
   "Hoolheyak:ContingencyPlan": {
     "NAME": "预案",
@@ -332,16 +336,14 @@
     "NAME": "借用武装",
     "DESCRIPTION": "消耗 。 NL 造成 !D! 点伤害。 NL 随机将 1 张其他职业的攻击牌加入你的手牌。"
   },
-
   "Hoolheyak:AugmentationExperiment": {
     "NAME": "扩增实验",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 额外打出 !M! 次； NL 获得 !M! 层 解析 。",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 获得 !M! 层解析； NL 将一张本卡置入手牌，并获得 !Hoolheyak:ANALYSIS! 层 解析 。",
     "EXTENDED_DESCRIPTION": [
-      "额外打出 !M! 次",
-      "获得 !M! 层 解析 "
+      "获得 !M! 层 解析 ",
+      "将一张本卡置入手牌，并获得 2 层 解析 "
     ]
   },
-
   "Hoolheyak:ApoptosisExperiment": {
     "NAME": "凋亡实验",
     "DESCRIPTION": "造成 !D! 点伤害。 NL 给予目标 变量 ： NL !M! 层 升力 ； NL !Hoolheyak:DECONSTRUCTION! 层 解构 。",
@@ -397,10 +399,10 @@
   },
   "Hoolheyak:FactorialExperiment": {
     "NAME": "析因实验",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 触发手牌中（大部分）变量卡的随机 变量 ； NL 用随机变量卡填满你的手牌，并在本回合中使它们的耗能变为 *0 。",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 触发手牌中（大部分）变量卡的随机 变量 ； NL 将3张随机 变量 卡置入你的手牌，并在本回合中使它们的耗能变为 *0 。",
     "EXTENDED_DESCRIPTION": [
       "触发手牌中（大部分）变量卡的随机 变量 ",
-      "用随机变量卡填满你的手牌，并在本回合中使它们的耗能变为 *0 "
+      "将3张随机 变量 卡置入你的手牌，并在本回合中使它们的耗能变为 *0 "
     ]
   }
 }

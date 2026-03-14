@@ -163,6 +163,7 @@ public class Muelsyse extends AbstractMonster {
 
     @Override
     public void render(SpriteBatch sb) {
+        // 1. 渲染 Spine 动画
         if (!this.isDead || (state38 != null && !state38.getCurrent(0).isComplete())) {
             sb.end();
             psb.begin();
@@ -171,28 +172,29 @@ public class Muelsyse extends AbstractMonster {
             sb.begin();
         }
 
+        // 2. 渲染碰撞箱
         this.hb.render(sb);
         this.intentHb.render(sb);
         this.healthHb.render(sb);
 
-        if (!com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.isDead) {
-            this.renderHealth(sb); // 渲染血条
-            // 【关键修复 2】：反射调用渲染怪物名字
-            basemod.ReflectionHacks.privateMethod(com.megacrit.cardcrawl.monsters.AbstractMonster.class, "renderName", com.badlogic.gdx.graphics.g2d.SpriteBatch.class).invoke(this, sb);
+        // 3. 渲染血条和名字
+        if (!AbstractDungeon.player.isDead) {
+            this.renderHealth(sb);
+            ReflectionHacks.privateMethod(AbstractMonster.class, "renderName", SpriteBatch.class).invoke(this, sb);
         }
 
-        if (!this.isDying && !this.isEscaping && com.megacrit.cardcrawl.dungeons.AbstractDungeon.getCurrRoom().phase == com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase.COMBAT && !com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.isDead && !com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.hasRelic("Runic Dome") && this.intent != Intent.NONE && !com.megacrit.cardcrawl.core.Settings.hideCombatElements) {
-            basemod.ReflectionHacks.privateMethod(com.megacrit.cardcrawl.monsters.AbstractMonster.class, "renderIntentVfxBehind", com.badlogic.gdx.graphics.g2d.SpriteBatch.class).invoke(this, sb);
-            basemod.ReflectionHacks.privateMethod(com.megacrit.cardcrawl.monsters.AbstractMonster.class, "renderIntent", com.badlogic.gdx.graphics.g2d.SpriteBatch.class).invoke(this, sb);
-            basemod.ReflectionHacks.privateMethod(com.megacrit.cardcrawl.monsters.AbstractMonster.class, "renderIntentVfxAfter", com.badlogic.gdx.graphics.g2d.SpriteBatch.class).invoke(this, sb);
+        // 4. 渲染意图 (带完整条件判定)
+        if (!this.isDying && !this.isEscaping &&
+                AbstractDungeon.getCurrRoom().phase == com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase.COMBAT &&
+                !AbstractDungeon.player.isDead &&
+                !AbstractDungeon.player.hasRelic("Runic Dome") &&
+                this.intent != Intent.NONE &&
+                !Settings.hideCombatElements) {
 
-            // 【关键修复 3】：渲染意图上面的攻击数值文本！(例如 3x6)
-            basemod.ReflectionHacks.privateMethod(com.megacrit.cardcrawl.monsters.AbstractMonster.class, "renderDamageRange", com.badlogic.gdx.graphics.g2d.SpriteBatch.class).invoke(this, sb);
+            ReflectionHacks.privateMethod(AbstractMonster.class, "renderIntentVfxBehind", SpriteBatch.class).invoke(this, sb);
+            ReflectionHacks.privateMethod(AbstractMonster.class, "renderIntent", SpriteBatch.class).invoke(this, sb);
+            ReflectionHacks.privateMethod(AbstractMonster.class, "renderIntentVfxAfter", SpriteBatch.class).invoke(this, sb);
+            ReflectionHacks.privateMethod(AbstractMonster.class, "renderDamageRange", SpriteBatch.class).invoke(this, sb);
         }
-
-        // 【关键修复】：利用 BaseMod 反射强行调用 AbstractMonster 的私有方法绘制意图
-        ReflectionHacks.privateMethod(AbstractMonster.class, "renderIntentVfxBehind", SpriteBatch.class).invoke(this, sb);
-        ReflectionHacks.privateMethod(AbstractMonster.class, "renderIntent", SpriteBatch.class).invoke(this, sb);
-        ReflectionHacks.privateMethod(AbstractMonster.class, "renderIntentVfxAfter", SpriteBatch.class).invoke(this, sb);
     }
 }

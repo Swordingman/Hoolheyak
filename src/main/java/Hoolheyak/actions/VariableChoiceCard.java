@@ -8,10 +8,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 @AutoAdd.Ignore
 public class VariableChoiceCard extends BaseCard {
+    // 👇 1. 新增变量：用来把构造函数的参数存下来，供 makeCopy 使用
+    private AbstractCard sourceCard;
+    private String optionName;
+    private int index;
+    private String originalDescription;
     private Runnable effect;
 
     public VariableChoiceCard(AbstractCard source, String optionName, int index, String description, Runnable effect) {
-        // 重点：ID 改用数字后缀（例如 Hoolheyak_CardID_Choice_0），防止特殊字符（α、β）弄崩底层系统
         super(
                 source.cardID + "_Choice_" + index,
                 -2,
@@ -22,13 +26,37 @@ public class VariableChoiceCard extends BaseCard {
                 getImgPath(source)
         );
 
-        // 直接使用传入的名字（不再拼接 source.name）
+        // 👇 2. 赋值保存这些变量
+        this.sourceCard = source;
+        this.optionName = optionName;
+        this.index = index;
+        this.originalDescription = description;
+        this.effect = effect;
+
         this.name = optionName;
         this.rawDescription = description;
+
+        if (source instanceof BaseCard) {
+            BaseCard baseSource = (BaseCard) source;
+
+            // 1. 强行获取原卡的 customVars (注意这里的泛型类型已经改对)
+            java.util.Map<String, basemod.abstracts.DynamicVariable> sourceVars =
+                    basemod.ReflectionHacks.getPrivate(baseSource, BaseCard.class, "customVars");
+
+            // 2. 如果原卡有自定义变量，就直接给当前这选项卡也克隆一份塞进去
+            if (sourceVars != null) {
+                basemod.ReflectionHacks.setPrivate(
+                        this,
+                        BaseCard.class,
+                        "customVars",
+                        new java.util.HashMap<>(sourceVars) // new 一份新的防止互相干扰
+                );
+            }
+        }
+
         this.initializeTitle();
         this.initializeDescription();
 
-        this.effect = effect;
         this.dontTriggerOnUseCard = true;
 
         this.portrait = source.portrait;
@@ -41,6 +69,12 @@ public class VariableChoiceCard extends BaseCard {
             return ((BaseCard) source).textureImg;
         }
         return "HoolheyakResources/images/cards/Skill.png";
+    }
+
+    // 👇 3. 核心修复：重写 makeCopy 方法，告诉底层系统如何复制这张卡！
+    @Override
+    public AbstractCard makeCopy() {
+        return new VariableChoiceCard(this.sourceCard, this.optionName, this.index, this.originalDescription, this.effect);
     }
 
     @Override
