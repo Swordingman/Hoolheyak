@@ -78,8 +78,8 @@
   },
   "Hoolheyak:Coercion": {
     "NAME": "强压",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 若目标 浮空 ，解除该状态并获得 [E] 。",
-    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 若目标 浮空 ，解除该状态并获得 [E] [E] 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 若目标 浮空 ，使其摔落并获得 [E] 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 若目标 浮空 ，使其摔落并获得 [E] [E] 。"
   },
   "Hoolheyak:Surveying": {
     "NAME": "测绘",
@@ -131,8 +131,8 @@
   },
   "Hoolheyak:LiteratureRetrieval": {
     "NAME": "文献检索",
-    "DESCRIPTION": "从 3 张随机职业的牌中选择 1 张加入你的手牌。",
-    "UPGRADE_DESCRIPTION": "从 3 张随机职业的牌中选择 1 张加入你的手牌。 NL 这张牌在本回合耗能变为 0。"
+    "DESCRIPTION": "从 3 张随机颜色的牌中选择 1 张加入你的手牌。",
+    "UPGRADE_DESCRIPTION": "从 3 张随机颜色的牌中选择 1 张加入你的手牌。 NL 这张牌在本回合耗能变为 0。"
   },
   "Hoolheyak:MassOffset": {
     "NAME": "质量抵消",
@@ -188,7 +188,7 @@
   },
   "Hoolheyak:BygoneWings": {
     "NAME": "曾有羽翼",
-    "DESCRIPTION": "每当你使用一张其他职业的卡牌时，使一张随机手牌费用 -1 。"
+    "DESCRIPTION": "每当你使用一张其他颜色的卡牌时，使一张随机手牌费用 -1 。"
   },
   "Hoolheyak:InheritedMemories": {
     "NAME": "传承记忆",
@@ -226,8 +226,8 @@
   },
   "Hoolheyak:Wardrobe": {
     "NAME": "羽蛇的衣柜",
-    "DESCRIPTION": "每打出 1 张其他职业的牌，随机将 *1 张本职业牌加入手牌并赋予 消耗 。",
-    "UPGRADE_DESCRIPTION": "每打出 1 张其他职业的牌，随机将 *1 张本职业牌加入手牌并赋予 消耗 ，并使其在本场战斗中耗能变为 *0 。"
+    "DESCRIPTION": "每打出 1 张其他颜色的牌，随机将 *1 张本颜色牌加入手牌并赋予 消耗 。",
+    "UPGRADE_DESCRIPTION": "每打出 1 张其他颜色的牌，随机将 *1 张本颜色牌加入手牌并赋予 消耗 ，并使其在本场战斗中耗能变为 *0 。"
   },
   "Hoolheyak:OmniscientHorizon": {
     "NAME": "全知视界",
@@ -256,7 +256,7 @@
   },
   "Hoolheyak:KukulkanLegacy": {
     "NAME": "库库尔坎的传承",
-    "DESCRIPTION": "使你的 博览 和 逶迤 上限各 +3 。但是造成的伤害和给予的 升力 翻倍。"
+    "DESCRIPTION": "使你的 博览 和 逶迤 上限各 + !M! 。但是造成的伤害和给予的 升力 翻倍。"
   },
   "Hoolheyak:TwinExperiment": {
     "NAME": "双生子实验",
@@ -334,14 +334,14 @@
   },
   "Hoolheyak:BorrowedWeapons": {
     "NAME": "借用武装",
-    "DESCRIPTION": "消耗 。 NL 造成 !D! 点伤害。 NL 随机将 1 张其他职业的攻击牌加入你的手牌。"
+    "DESCRIPTION": "消耗 。 NL 造成 !D! 点伤害。 NL 随机将 1 张其他颜色的攻击牌加入你的手牌。"
   },
   "Hoolheyak:AugmentationExperiment": {
     "NAME": "扩增实验",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 获得 !M! 层解析； NL 将一张本卡置入手牌，并获得 !Hoolheyak:ANALYSIS! 层 解析 。",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 获得 !M! 层 解析 ； NL 将一张本卡置入手牌，并获得 !Hoolheyak:ANALYSIS! 层 解析 。",
     "EXTENDED_DESCRIPTION": [
       "获得 !M! 层 解析 ",
-      "将一张本卡置入手牌，并获得 2 层 解析 "
+      "将一张本卡置入手牌，并获得 3 层 解析 "
     ]
   },
   "Hoolheyak:ApoptosisExperiment": {
@@ -379,7 +379,7 @@
   },
   "Hoolheyak:UniversalMapping": {
     "NAME": "万界测绘",
-    "DESCRIPTION": "造成 !D! 点 伤害 。随机打出 !M! 张其他职业的稀有攻击牌。"
+    "DESCRIPTION": "造成 !D! 点 伤害 。随机打出 !M! 张其他颜色的稀有攻击牌。"
   },
   "Hoolheyak:Divergence": {
     "NAME": "气流辐散",
@@ -399,10 +399,46 @@
   },
   "Hoolheyak:FactorialExperiment": {
     "NAME": "析因实验",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 触发手牌中（大部分）变量卡的随机 变量 ； NL 将3张随机 变量 卡置入你的手牌，并在本回合中使它们的耗能变为 *0 。",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 触发手牌中（大部分） 变量 卡的随机 变量 ； NL 将3张随机 变量 卡置入你的手牌，并在本回合中使它们的耗能变为 *0 。",
     "EXTENDED_DESCRIPTION": [
-      "触发手牌中（大部分）变量卡的随机 变量 ",
+      "触发手牌中（大部分） 变量 卡的随机 变量 ",
       "将3张随机 变量 卡置入你的手牌，并在本回合中使它们的耗能变为 *0 "
     ]
+  },
+  "Hoolheyak:DifficultyOption": {
+    "NAME": "难度选择",
+    "DESCRIPTION": "占位符"
+  },
+  "Hoolheyak:DiffNormal": {
+    "NAME": "标准评估",
+    "DESCRIPTION": "标准的游戏体验。 NL 没有任何特殊的修改。"
+  },
+  "Hoolheyak:DiffHard": {
+    "NAME": "深入分析",
+    "DESCRIPTION": "具备挑战性的体验。 NL 博览 的层数上限增加 *1 。 NL 部分卡牌数值或效果获得调整。"
+  },
+  "Hoolheyak:DiffEasy": {
+    "NAME": "初步调查",
+    "DESCRIPTION": "适合熟悉玩法的难度。 NL 逶迤 的层数上限减少 *1 。 NL 部分卡牌数值或效果获得调整。"
+  },
+  "Hoolheyak:PresetOptionCard": {
+    "NAME": "预设选择",
+    "DESCRIPTION": "占位符"
+  },
+  "Hoolheyak:PreDefault": {
+    "NAME": "常规调查",
+    "DESCRIPTION": "默认的卡组，无特殊修改。"
+  },
+  "Hoolheyak:PreUniverse": {
+    "NAME": "只是借鉴而已",
+    "DESCRIPTION": "为卡组带来混乱！ NL 初始获得 *星界棱镜 和 *调酒瓶 。"
+  },
+  "Hoolheyak:PreVariable": {
+    "NAME": "选择，选择",
+    "DESCRIPTION": "用 *实验 卡填满你的初始卡组！ NL 初始获得 *星图投影 。"
+  },
+  "Hoolheyak:PrePhase": {
+    "NAME": "今夜星光闪闪",
+    "DESCRIPTION": "天象开始变得混乱！ NL 初始获得 *狂乱星晷 。"
   }
 }

@@ -1,6 +1,7 @@
 package Hoolheyak.cards;
 
 import Hoolheyak.character.Hoolheyak;
+import Hoolheyak.character.HoolheyakDifficultyHelper;
 import Hoolheyak.powers.KukulkanLegacyPower;
 import Hoolheyak.util.CardStats;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -22,6 +23,13 @@ public class KukulkanLegacy extends BaseCard {
                 COST
         ));
         setCostUpgrade(UPGRADED_COST);
+
+        int magic = 3;
+        if (HoolheyakDifficultyHelper.currentDifficulty == HoolheyakDifficultyHelper.DifficultyLevel.EASY) {
+            magic = 2;
+        }
+
+        setMagic(magic);
     }
 
     @Override

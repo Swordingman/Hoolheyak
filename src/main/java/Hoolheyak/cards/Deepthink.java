@@ -1,6 +1,7 @@
 package Hoolheyak.cards;
 
 import Hoolheyak.character.Hoolheyak;
+import Hoolheyak.character.HoolheyakDifficultyHelper;
 import Hoolheyak.powers.AnalysisPower;
 import Hoolheyak.powers.EruditionPower;
 import Hoolheyak.powers.MeanderPower;
@@ -16,7 +17,7 @@ public class Deepthink extends BaseCard {
     private static final int COST = 2;
     private static final int ANALYSIS = 2;
     private static final int ANALYSIS_UPG = 2;
-    private static final int MAGIC = 3;
+    private static final int MAGIC = 2;
 
     public Deepthink() {
         super(ID, new CardStats(
@@ -26,7 +27,14 @@ public class Deepthink extends BaseCard {
                 CardTarget.SELF,
                 COST
         ));
-        setMagic(MAGIC);
+
+        int finalMagic = MAGIC;
+        if (HoolheyakDifficultyHelper.currentDifficulty  == HoolheyakDifficultyHelper.DifficultyLevel.HARD)
+            finalMagic = 1;
+        if (HoolheyakDifficultyHelper.currentDifficulty  == HoolheyakDifficultyHelper.DifficultyLevel.EASY)
+            finalMagic = 3;
+
+        setMagic(finalMagic);
         setCustomVar("ANALYSIS", ANALYSIS, ANALYSIS_UPG);
     }
 

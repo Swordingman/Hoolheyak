@@ -95,8 +95,7 @@ public class MeanderPower extends BasePower {
 
     @Override
     public void updateDescription() {
-        // 动态获取当前的博览阈值（这样即使以后再改数字，描述也会自动同步）
         int threshold = TriggerKeywordAction.getThreshold(this.owner, TriggerKeywordAction.KeywordType.MEANDER);
-        this.description = DESCRIPTIONS[0] + this.amount + "/" + threshold + DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0] + threshold + DESCRIPTIONS[1] + this.amount + "/" + threshold + DESCRIPTIONS[2];
     }
 }

@@ -1,15 +1,15 @@
 package Hoolheyak.patches;
 
 import Hoolheyak.HoolheyakMod;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
+import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.TheLibrary;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import com.megacrit.cardcrawl.core.Settings;
 
@@ -34,37 +34,70 @@ public class LibraryEventPatch {
     // 2. 处理点击新选项的逻辑 (原版有两个选项，索引为0和1，我们的新选项索引为2)
     @SpirePatch(clz = TheLibrary.class, method = "buttonEffect")
     public static class ButtonEffectPatch {
-        @SpireInsertPatch(rloc = 25) // 插入在原版 switch 语句前
-        public static void Insert(TheLibrary __instance, int buttonPressed) {
-            // 如果处于初始选择画面（screenNum == 0）且按下了第 3 个按钮
-            if (buttonPressed == 2 && getScreenNum(__instance) == 0) {
+
+        // 获取你在 JSON 里定义的 UIStrings
+        private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("Hoolheyak:ArchiveRewards");
+
+        @SpirePrefixPatch
+        public static SpireReturn<Void> Prefix(TheLibrary __instance, int buttonPressed) {
+
+            // 如果处于初始选择画面且按下了我们的新按钮 (索引为 2)
+            if (getScreenNum(__instance) == 0 && buttonPressed == 2) {
+
+                // 更新事件文本和退出按钮
                 __instance.imageEventText.updateBodyText(eventStrings.DESCRIPTIONS[0]);
                 __instance.imageEventText.clearAllDialogs();
                 __instance.imageEventText.setDialogOption(TheLibrary.OPTIONS[3]); // 原版的“离开”选项
 
-                // 生成 5 张随机职业的稀有牌
+                // ================= 生成 5 张任意颜色的随机稀有牌 =================
                 CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-                ArrayList<AbstractCard> cards = new ArrayList<>();
-                while (cards.size() < 5) {
-                    AbstractCard c = AbstractDungeon.getCard(AbstractCard.CardRarity.RARE).makeCopy();
+                ArrayList<AbstractCard> allRares = new ArrayList<>();
+
+                // 1. 遍历游戏中的所有卡牌，把稀有牌筛选出来（剔除诅咒和状态牌防脏数据）
+                for (AbstractCard c : CardLibrary.cards.values()) {
+                    if (c.rarity == AbstractCard.CardRarity.RARE
+                            && c.type != AbstractCard.CardType.CURSE
+                            && c.type != AbstractCard.CardType.STATUS) {
+                        allRares.add(c);
+                    }
+                }
+
+                // 2. 随机抽取 5 张不重复的卡牌
+                ArrayList<AbstractCard> selectedCards = new ArrayList<>();
+                // 加入防死循环的保险：万一由于别的mod干涉导致总稀有牌不到5张
+                int cardsToGenerate = Math.min(5, allRares.size());
+
+                while (selectedCards.size() < cardsToGenerate && !allRares.isEmpty()) {
+                    // 使用 AbstractDungeon 的随机数生成器，保证同种子情况下的结果一致性
+                    AbstractCard randomCard = allRares.get(AbstractDungeon.cardRandomRng.random(allRares.size() - 1));
+
                     boolean dupe = false;
-                    for (AbstractCard existing : cards) {
-                        if (existing.cardID.equals(c.cardID)) {
+                    for (AbstractCard existing : selectedCards) {
+                        if (existing.cardID.equals(randomCard.cardID)) {
                             dupe = true;
                             break;
                         }
                     }
+
                     if (!dupe) {
-                        cards.add(c);
-                        group.addToBottom(c);
+                        AbstractCard copy = randomCard.makeCopy();
+                        selectedCards.add(copy);
+                        group.addToBottom(copy);
                     }
                 }
+                // =================================================================
 
-                // 打开选牌界面
-                AbstractDungeon.gridSelectScreen.open(group, 1, "选择一张牌加入你的牌组", false);
+                // 打开选牌界面，并读取 UIStrings 里的第三项文本 ("选择一张卡牌加入你的牌组")
+                AbstractDungeon.gridSelectScreen.open(group, 1, uiStrings.TEXT[2], false);
                 recordChosen = true;
                 setScreenNum(__instance, 1); // 切换状态
+
+                // 拦截原版逻辑
+                return SpireReturn.Return();
             }
+
+            // 如果按的是原版的 0 或 1 选项，正常放行
+            return SpireReturn.Continue();
         }
     }
 

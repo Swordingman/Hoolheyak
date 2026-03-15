@@ -1,6 +1,7 @@
 package Hoolheyak.cards;
 
 import Hoolheyak.character.Hoolheyak;
+import Hoolheyak.character.HoolheyakDifficultyHelper;
 import Hoolheyak.util.CardStats;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -34,8 +35,14 @@ public class UniversalMapping extends BaseCard {
                 COST
         ));
 
+        int finalMagic = MAGIC;
+        if (HoolheyakDifficultyHelper.currentDifficulty == HoolheyakDifficultyHelper.DifficultyLevel.HARD)
+            finalMagic = 1;
+        if (HoolheyakDifficultyHelper.currentDifficulty == HoolheyakDifficultyHelper.DifficultyLevel.EASY)
+            finalMagic = 3;
+
         setDamage(DAMAGE);
-        setMagic(MAGIC, UPGRADE_PLUS_MAGIC);
+        setMagic(finalMagic, UPGRADE_PLUS_MAGIC);
     }
 
     @Override

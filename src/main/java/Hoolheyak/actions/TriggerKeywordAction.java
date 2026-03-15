@@ -1,5 +1,6 @@
 package Hoolheyak.actions;
 
+import Hoolheyak.character.HoolheyakDifficultyHelper;
 import Hoolheyak.powers.EruditionPower;
 import Hoolheyak.powers.KukulkanLegacyPower;
 import Hoolheyak.powers.MeanderPower;
@@ -7,7 +8,6 @@ import Hoolheyak.powers.phases.SextilePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class TriggerKeywordAction extends AbstractGameAction {
 
@@ -28,16 +28,46 @@ public class TriggerKeywordAction extends AbstractGameAction {
 
     // ★ 核心计算公式：统一写在这里，方便未来维护 ★
     public static int getThreshold(AbstractCreature target, KeywordType type) {
-        // 基础阈值：博览(ERUDITION)为 4，其他(如 MEANDER)为 5
+        // 1. 获取默认基础阈值：博览(ERUDITION)为 4，逶迤(MEANDER)为 5
         int baseThreshold = (type == KeywordType.ERUDITION) ? 4 : 5;
 
-        // 如果有 SextilePower，则博览变为 2 (4-2)，逶迤变为 3 (5-2) -> 这里假设减少量是固定的
-        // 或者你可以直接指定具体数值：
-        int threshold = target.hasPower(SextilePower.POWER_ID) ? (baseThreshold - 2) : baseThreshold;
+        // 2. 根据难度选项调整基础阈值 (引入你的 DifficultyHelper)
+        HoolheyakDifficultyHelper.DifficultyLevel diff = HoolheyakDifficultyHelper.currentDifficulty;
 
-        if (target.hasPower(KukulkanLegacyPower.POWER_ID)) {
-            threshold += 3 * target.getPower(KukulkanLegacyPower.POWER_ID).amount;
+        if (diff == HoolheyakDifficultyHelper.DifficultyLevel.EASY && type == KeywordType.MEANDER) {
+            // 简单难度 (初步调查)：逶迤的层数上限减少 1 (5 -> 4)
+            baseThreshold -= 1;
+        } else if (diff == HoolheyakDifficultyHelper.DifficultyLevel.HARD && type == KeywordType.ERUDITION) {
+            // 困难难度 (深入分析)：博览的层数上限增加 1 (4 -> 5)
+            baseThreshold += 1;
         }
+
+        // 如果 target 为空（理论上不应该，但加个保险防报错），直接返回当前算出的基础阈值
+        if (target == null) {
+            return baseThreshold;
+        }
+
+        // 3. 计算遗物 / 能力 (Power) 带来的修饰
+        int threshold = baseThreshold;
+
+        if (target.hasPower(SextilePower.POWER_ID)) {
+            threshold -= 2; // 减少2层需求
+        }
+
+        if (target.hasPower(KukulkanLegacyPower.POWER_ID)){
+            int legacyAmount = target.getPower(KukulkanLegacyPower.POWER_ID).amount;
+
+            if (diff == HoolheyakDifficultyHelper.DifficultyLevel.EASY) {
+                threshold += 2 * legacyAmount;
+            } else {
+                threshold += 3 * legacyAmount;
+            }
+        }
+
+        if (threshold < 1) {
+            threshold = 1;
+        }
+
         return threshold;
     }
 
@@ -53,6 +83,6 @@ public class TriggerKeywordAction extends AbstractGameAction {
                 addToTop(new ApplyPowerAction(this.target, this.target, new MeanderPower(this.target, totalStacks), totalStacks));
             }
         }
-        this.isDone = true; // Action 执行完毕必须标记为 true
+        this.isDone = true;
     }
 }

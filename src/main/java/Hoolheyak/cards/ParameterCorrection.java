@@ -1,6 +1,7 @@
 package Hoolheyak.cards;
 
 import Hoolheyak.character.Hoolheyak;
+import Hoolheyak.character.HoolheyakDifficultyHelper;
 import Hoolheyak.powers.MeanderPower;
 import Hoolheyak.util.CardStats;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;

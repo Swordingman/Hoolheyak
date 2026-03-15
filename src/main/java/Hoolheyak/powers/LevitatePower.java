@@ -67,26 +67,27 @@ public class LevitatePower extends BasePower {
         return damage;
     }
 
-    @Override
-    public void atEndOfRound() {
-        // 1. 获取重力层数和升力层数
-        // 注意：此时拿到的 GravityPower.amount，已经是经过 GravityPower 内部被对冲减半计算过的正确数值了！
+    public void triggerFall() {
         int gravityAmt = this.owner.hasPower(GravityPower.POWER_ID) ? this.owner.getPower(GravityPower.POWER_ID).amount : 0;
         int remainingLift = this.owner.hasPower(LiftPower.POWER_ID) ? this.owner.getPower(LiftPower.POWER_ID).amount : 0;
 
-        // 计算总伤害
         int damageAmt = (gravityAmt + remainingLift) * 2;
 
         flash();
 
-        // 2. 【核心修复】：必须先结算摔落的伤害！然后再把状态移除！
+        // 结算摔落伤害
         addToBot(new DamageAction(this.owner, new DamageInfo(this.source, damageAmt, DamageInfo.DamageType.THORNS)));
 
-        // 3. 随后移除所有升力和浮空状态
+        // 移除自身(浮空)和升力
         addToBot(new RemoveSpecificPowerAction(this.owner, this.source, this));
         if (this.owner.hasPower(LiftPower.POWER_ID)) {
             addToBot(new RemoveSpecificPowerAction(this.owner, this.source, LiftPower.POWER_ID));
         }
+    }
+
+    @Override
+    public void atEndOfRound() {
+        triggerFall();
     }
 
     @Override

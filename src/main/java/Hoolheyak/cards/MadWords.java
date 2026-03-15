@@ -2,6 +2,7 @@ package Hoolheyak.cards;
 
 import Hoolheyak.actions.RepeatAction;
 import Hoolheyak.character.Hoolheyak;
+import Hoolheyak.character.HoolheyakDifficultyHelper;
 import Hoolheyak.powers.LiftPower;
 import Hoolheyak.util.CardStats;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -29,9 +30,13 @@ public class MadWords extends BaseCard {
                 CardTarget.ENEMY,
                 COST
         ));
-        setDamage(DAMAGE);
+
+        int finalDamage = DAMAGE;
+        if (HoolheyakDifficultyHelper.currentDifficulty == HoolheyakDifficultyHelper.DifficultyLevel.HARD)
+            finalDamage = 5;
+        setDamage(finalDamage);
         setMagic(MAGIC, UPGRADE_PLUS_MAGIC);
-        setCustomVar("LIFT", 2); // 2 层升力
+        setCustomVar("LIFT", 2);
     }
 
     @Override

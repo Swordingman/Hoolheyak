@@ -1,106 +1,97 @@
 [
   {
-    "PROPER_NAME": "解析",
+    "PROPER_NAME": "Analysis",
     "NAMES": [
-      "解析",
       "analysis"
     ],
-    "DESCRIPTION": "用于增强特定效果的数值。"
+    "DESCRIPTION": "A value used to enhance specific effects."
   },
   {
-    "PROPER_NAME": "逶迤",
+    "PROPER_NAME": "Meander",
     "NAMES": [
-      "逶迤",
       "meander"
     ],
-    "DESCRIPTION": "每打出 5 张技能牌，对随机敌人造成 3 点伤害并给予 1 层 升力 （触发次数等同于 解析 层数）。"
+    "DESCRIPTION": "For every 5 Skills played (default on normal difficulty), deal 3 damage to a random enemy and apply 1 Lift (Triggers a number of times equal to your Analysis)."
   },
   {
-    "PROPER_NAME": "博览",
+    "PROPER_NAME": "Erudition",
     "NAMES": [
-      "博览",
       "erudition"
     ],
-    "DESCRIPTION": "每打出 4 张攻击牌，对随机敌人造成等同于 解析 层数的伤害，并给予 1 层 升力 （触发 4 次）。"
+    "DESCRIPTION": "For every 4 Attacks played (default on normal difficulty), deal damage to a random enemy equal to your Analysis, and apply 1 Lift (Triggers 4 times)."
   },
   {
-    "PROPER_NAME": "重力",
+    "PROPER_NAME": "Gravity",
     "NAMES": [
-      "重力",
       "gravity"
     ],
-    "DESCRIPTION": "敌人的固有属性，等于其最大生命值的 10%（向下取整）。当 升力 达到此数值时，触发 浮空 。"
+    "DESCRIPTION": "An innate property of enemies, equal to 10% of their Max HP (rounded down). When Lift reaches this value, triggers Levitate."
   },
   {
-    "PROPER_NAME": "升力",
+    "PROPER_NAME": "Lift",
     "NAMES": [
-      "升力",
       "lift"
     ],
-    "DESCRIPTION": "当层数达到 重力 时，清空层数并触发 浮空 。"
+    "DESCRIPTION": "When stacks reach the target's Gravity, clears all stacks and triggers Levitate."
   },
   {
-    "PROPER_NAME": "浮空",
+    "PROPER_NAME": "Levitate",
     "NAMES": [
-      "浮空",
       "levitate"
     ],
-    "DESCRIPTION": "失去所有 格挡 并获得 20 层 解构 。受到的伤害增加 50%，造成的伤害减少 70%。 NL 回合结束时，受到 (重力 + 升力) × 2 点伤害，随后解除此状态并清空 升力 。"
+    "DESCRIPTION": "Loses all Block and gains 20 Deconstruction. Damage taken is increased by 50% and damage dealt is decreased by 70%. NL At the end of the turn, takes (Gravity + Lift) × 2 damage, then removes this status and clears all Lift."
   },
   {
-    "PROPER_NAME": "失重",
+    "PROPER_NAME": "Weightless",
     "NAMES": [
-      "失重",
       "weightless"
     ],
-    "DESCRIPTION": "获得的 升力 翻倍。回合结束时，层数 -1 。"
+    "DESCRIPTION": "Lift gained is doubled. At the end of the turn, reduces stacks by 1."
   },
   {
-    "PROPER_NAME": "变量",
+    "PROPER_NAME": "Variable",
     "NAMES": [
-      "变量",
       "variable"
     ],
-    "DESCRIPTION": "打出时，选择一项效果发动。"
+    "DESCRIPTION": "When played, choose one effect to activate."
   },
   {
-    "PROPER_NAME": "解构",
+    "PROPER_NAME": "Deconstruction",
     "NAMES": [
-      "解构",
       "deconstruction"
     ],
-    "DESCRIPTION": "获得 格挡 时，消耗等量层数以抵消获得的 格挡 。"
+    "DESCRIPTION": "When gaining Block, consumes an equal number of stacks to offset the Block gained."
   },
   {
-    "PROPER_NAME": "相位",
+    "PROPER_NAME": "Aspect",
     "NAMES": [
-      "相位",
-      "aspects"
+      "aspects",
+      "aspect"
     ],
-    "DESCRIPTION": "全局场地效果。触发新 相位 时会替换原有的 相位 。同一时间只能存在 1 个。"
+    "DESCRIPTION": "Global field effect. Triggering a new Aspect replaces the existing one. Only 1 can be active at a time."
   },
   {
-    "PROPER_NAME": "吉相",
+    "PROPER_NAME": "Harmonious Aspect",
     "NAMES": [
-      "吉相",
-      "harmonious aspects"
+      "harmonious aspects",
+      "harmonious aspect"
     ],
-    "DESCRIPTION": "偏向于带来正面增益或连击机会的 相位 。"
+    "DESCRIPTION": "Aspects that tend to provide positive buffs or combo opportunities."
   },
   {
-    "PROPER_NAME": "凶相",
+    "PROPER_NAME": "Challenging Aspect",
     "NAMES": [
-      "凶相",
-      "challenging aspects"
+      "challenging aspects",
+      "challenging aspect"
     ],
-    "DESCRIPTION": "伴随着强烈负面惩罚或极高风险的 相位 。"
+    "DESCRIPTION": "Aspects accompanied by severe negative penalties or extremely high risks."
   },
   {
-    "PROPER_NAME": "中性",
+    "PROPER_NAME": "Neutral Aspect",
     "NAMES": [
-      "中性",
-      "neutral aspects"
+      "neutral aspects",
+      "neutral aspect"
     ],
-    "DESCRIPTION": "具有双刃剑效果，或能够改变基础运转规则的 相位 。"
+    "DESCRIPTION": "Aspects that have double-edged sword effects or can alter basic gameplay mechanics."
   }
 ]

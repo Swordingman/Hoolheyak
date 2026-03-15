@@ -10,7 +10,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 public class CorrectedVariable extends BaseCard {
     public static final String ID = makeID("CorrectedVariable");
 
-    private static final int COST = 2;
+    private static final int COST = 1;
+    private static final int MAGIC = 1;
+    private static final int UPGRADE_PLUS_MAGIC = 1;
 
     public CorrectedVariable() {
         super(ID, new CardStats(
@@ -20,10 +22,12 @@ public class CorrectedVariable extends BaseCard {
                 CardTarget.SELF,
                 COST
         ));
+
+        setMagic(MAGIC, UPGRADE_PLUS_MAGIC);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new CorrectedVariablePower(p, 1), 1));
+        addToBot(new ApplyPowerAction(p, p, new CorrectedVariablePower(p, magicNumber), magicNumber));
     }
 }

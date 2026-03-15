@@ -1,24 +1,24 @@
 {
   "Hoolheyak:FriendlyManifold": {
-    "NAME": "流形",
+    "NAME": "Flowing Shape",
     "DIALOG": [],
     "MOVES": []
   },
   "Hoolheyak:EnemyManifold": {
-    "NAME": "流形",
+    "NAME": "Flowing Shape",
     "DIALOG": [],
     "MOVES": []
   },
   "Hoolheyak:Muelsyse": {
-    "NAME": "缪尔赛斯",
+    "NAME": "Muelsyse",
     "DIALOG": [
-      "真让人意外，在这座破塔里也能闻到令人讨厌的羽毛味。"
+      "What a surprise, to smell that disgusting feather stench even in this broken tower."
     ],
     "MOVES": [
-      "水影召唤",
-      "源石技艺",
-      "生态干预",
-      "窒息"
+      "Summon Flowing Shape",
+      "Originium Arts",
+      "Ecological Intervention",
+      "Suffocation"
     ]
   }
 }

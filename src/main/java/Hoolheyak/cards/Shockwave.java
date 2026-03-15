@@ -14,9 +14,9 @@ public class Shockwave extends BaseCard {
     public static final String ID = makeID("Shockwave");
 
     private static final int COST = 1;
-    private static final int DAMAGE = 5;
+    private static final int DAMAGE = 12;
     private static final int UPGRADE_PLUS_DMG = 3;
-    private static final int MAGIC = 1;
+    private static final int MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
     public Shockwave() {

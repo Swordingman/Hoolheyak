@@ -34,17 +34,17 @@ public class Coercion extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        // 第一步：造成伤害
+        // 第一步：造成普通攻击伤害
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SMASH));
 
-        // 第二步：判定并移除浮空，返还能量
+        // 第二步：判定浮空，如果存在则强制触发落地并返还能量
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {
                 if (m != null && m.hasPower(LevitatePower.POWER_ID)) {
-                    // 栈结构后进先出，所以先压入移除状态，再压入返还能量
-                    addToTop(new RemoveSpecificPowerAction(m, p, LevitatePower.POWER_ID));
-                    addToTop(new GainEnergyAction(magicNumber));
+                    LevitatePower levitate = (LevitatePower) m.getPower(LevitatePower.POWER_ID);
+                    levitate.triggerFall();
+                    addToBot(new GainEnergyAction(magicNumber));
                 }
                 this.isDone = true;
             }

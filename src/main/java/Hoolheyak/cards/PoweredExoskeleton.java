@@ -1,6 +1,7 @@
 package Hoolheyak.cards;
 
 import Hoolheyak.character.Hoolheyak;
+import Hoolheyak.character.HoolheyakDifficultyHelper;
 import Hoolheyak.util.CardStats;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -22,7 +23,12 @@ public class PoweredExoskeleton extends BaseCard {
                 CardTarget.SELF,
                 COST
         ));
-        setMagic(MAGIC, UPGRADE_PLUS_MAGIC);
+
+        int finalMagic = MAGIC;
+        if (HoolheyakDifficultyHelper.currentDifficulty  == HoolheyakDifficultyHelper.DifficultyLevel.EASY)
+            finalMagic = 4;
+        
+        setMagic(finalMagic, UPGRADE_PLUS_MAGIC);
     }
 
     @Override

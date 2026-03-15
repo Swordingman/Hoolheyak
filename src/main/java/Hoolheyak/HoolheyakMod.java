@@ -1,5 +1,7 @@
 package Hoolheyak;
 
+import Hoolheyak.character.HoolheyakDifficultyHelper;
+import Hoolheyak.character.HoolheyakPresetHelper;
 import Hoolheyak.events.FalseDomeEvent;
 import Hoolheyak.events.IntersectionEvent;
 import Hoolheyak.events.WaterLikeShapeEvent;
@@ -32,6 +34,7 @@ import com.evacipated.cardcrawl.modthespire.ModInfo;
 import com.evacipated.cardcrawl.modthespire.Patcher;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
@@ -62,7 +65,8 @@ public class HoolheyakMod implements
         AddAudioSubscriber,       // 订阅音频添加事件
         PostInitializeSubscriber, // 订阅初始化后处理事件（用于添加徽章等）
         EditCardsSubscriber,      // 订阅卡牌编辑事件
-        EditRelicsSubscriber{    // 订阅遗物编辑事件
+        EditRelicsSubscriber,
+        PostCreateStartingRelicsSubscriber{    // 订阅遗物编辑事件
 
     public static ModInfo info;
     public static String modID; // 修改你的 pom.xml 文件来改变这个ID
@@ -173,6 +177,7 @@ public class HoolheyakMod implements
                 HoolheyakSkinHelper.currentSkinIndex = 0;
             }
 
+            HoolheyakDifficultyHelper.loadDifficulty();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -217,6 +222,14 @@ public class HoolheyakMod implements
         BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, settingsPanel);
     }
 
+    // 根据预设添加遗物
+    @Override
+    public void receivePostCreateStartingRelics(AbstractPlayer.PlayerClass chosenClass, ArrayList<String> addRelicsToMe) {
+        if (chosenClass == Hoolheyak.Meta.HOOLHEYAK) {
+            Collections.addAll(addRelicsToMe, HoolheyakPresetHelper.currentPreset.extraRelics);
+        }
+    }
+
     /*---------- 本地化 (Localization) ----------*/
 
     // 这用于根据语言加载适当的本地化文件。
@@ -230,11 +243,9 @@ public class HoolheyakMod implements
 
     @Override
     public void receiveEditCards() {
-        // AutoAdd 会自动扫描你的包，找到所有继承自 AbstractCard 的类并添加它们。
-        // 这样你就不用手动一个个 new Card() 了。
         new AutoAdd(modID)
                 .packageFilter(HoolheyakMod.class)
-                .setDefaultSeen(true) // 默认在图鉴中可见
+                .setDefaultSeen(true)
                 .cards();
     }
 

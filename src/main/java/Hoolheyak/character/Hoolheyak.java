@@ -45,6 +45,7 @@ import com.Hoolheyak.spine38.SkeletonJson;
 import com.Hoolheyak.spine38.SkeletonRenderer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static Hoolheyak.HoolheyakMod.characterPath;
@@ -260,16 +261,12 @@ public class Hoolheyak extends CustomPlayer {
     @Override
     public ArrayList<String> getStartingDeck() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(Strike.ID);
-        retVal.add(Strike.ID);
-        retVal.add(Strike.ID);
-        retVal.add(Strike.ID);
-        retVal.add(Defend.ID);
-        retVal.add(Defend.ID);
-        retVal.add(Defend.ID);
-        retVal.add(Defend.ID);
-        retVal.add(FeatherStrike.ID);
-        retVal.add(Linger.ID);
+        // 一行代码搞定！直接把当前预设里存的卡牌数组加进去
+        Collections.addAll(retVal, HoolheyakPresetHelper.currentPreset.startingDeck);
+
+        for (String id : retVal) {
+            System.out.println("正在检查卡牌 ID: " + id);
+        }
         return retVal;
     }
 
