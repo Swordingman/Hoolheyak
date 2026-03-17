@@ -58,7 +58,7 @@
   },
   "Hoolheyak:Turbulence": {
     "NAME": "Turbulence",
-    "DESCRIPTION": "Deal !D! damage. NL Once per turn, for every 2 Turbulence played this combat, add 1 Turbulence to your hand."
+    "DESCRIPTION": "Deal !D! damage. NL Once per turn, for every 2 Turbulence played this combat, add !M! Turbulence to your hand."
   },
   "Hoolheyak:TailSting": {
     "NAME": "Tail Sting",

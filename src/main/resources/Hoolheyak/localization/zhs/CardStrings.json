@@ -58,7 +58,7 @@
   },
   "Hoolheyak:Turbulence": {
     "NAME": "湍流",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 每回合限 1 次，本场战斗中每打出 2 张 湍流 ，将 1 张 湍流 加入手牌。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 每回合限 1 次，本场战斗中每打出 2 张 湍流 ，将 !M! 张 湍流 加入手牌。"
   },
   "Hoolheyak:TailSting": {
     "NAME": "尾刺",

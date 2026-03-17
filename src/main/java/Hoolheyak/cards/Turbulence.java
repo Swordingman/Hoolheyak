@@ -16,6 +16,8 @@ public class Turbulence extends BaseCard {
 
     private static final int COST = 0;
     private static final int DAMAGE = 3;
+    private static final int MAGIC = 1;
+    private static final int UPGRADE_PLUS_MAGIC = 1;
 
     public Turbulence() {
         super(ID, new CardStats(
@@ -26,6 +28,7 @@ public class Turbulence extends BaseCard {
                 COST
         ));
         setDamage(DAMAGE);
+        setMagic(MAGIC, UPGRADE_PLUS_MAGIC);
     }
 
     @Override
@@ -56,7 +59,7 @@ public class Turbulence extends BaseCard {
                         }
                     }
 
-                    int cardsToAdd = combatCount / 2;
+                    int cardsToAdd = (combatCount / 2) * magicNumber;
                     if (cardsToAdd > 0) {
                         AbstractCard temp = new Turbulence();
                         if (upgraded) {

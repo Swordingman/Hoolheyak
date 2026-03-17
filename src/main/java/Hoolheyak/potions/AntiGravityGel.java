@@ -36,8 +36,8 @@ public class AntiGravityGel extends BasePotion {
 
         if (target != null && !target.isDeadOrEscaped()) {
             // 先给失重，再给升力，这样如果失重有联动效果可以立即生效
-            addToBot(new ApplyPowerAction(target, p, new WeightlessPower(target, p, this.potency), this.potency));
-            addToBot(new ApplyPowerAction(target, p, new LiftPower(target, p, this.potency * 15), this.potency * 15));
+            addToBot(new ApplyPowerAction(target, p, new WeightlessPower(target, p, this.potency * 15), this.potency * 15));
+            addToBot(new ApplyPowerAction(target, p, new LiftPower(target, p, this.potency), this.potency));
         }
     }
 }
