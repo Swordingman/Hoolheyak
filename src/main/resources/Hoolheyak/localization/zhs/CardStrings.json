@@ -352,21 +352,20 @@
       "给予 !Hoolheyak:DECONSTRUCTION! 层 解构 "
     ]
   },
-
   "Hoolheyak:ControlExperiment": {
     "NAME": "对照实验",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 获得 !M! 层 解析 ； NL 给予 !M! 层 失重 。",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 将1张随机 相位 置入你的抽牌堆，并抽 *2 张牌； NL 将1张随机 相位 置入你的弃牌堆，随后立即洗牌。",
     "EXTENDED_DESCRIPTION": [
-      "获得 !M! 层 解析 ",
-      "给予 !M! 层 失重 "
+      "将1张随机 相位 置入你的抽牌堆，并抽 *2 张牌",
+      "将1张随机 相位 置入你的弃牌堆，随后立即洗牌"
     ]
   },
   "Hoolheyak:MutagenesisExperiment": {
     "NAME": "诱变实验",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予目标 变量 ： NL !M! 层 虚弱 ； NL !M! 层 易伤 。",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 随机触发一个 相位 ； NL 消耗 [E] ，随机触发一个 吉相 。",
     "EXTENDED_DESCRIPTION": [
-      "给予 !M! 层 虚弱 ",
-      "给予 !M! 层 易伤 "
+      "随机触发一个 相位 ",
+      "消耗 [E] ，随机触发一个 吉相 "
     ]
   },
   "Hoolheyak:TransitionalFlow": {
@@ -431,7 +430,7 @@
   },
   "Hoolheyak:PreUniverse": {
     "NAME": "只是借鉴而已",
-    "DESCRIPTION": "为卡组带来混乱！ NL 初始获得 *星界棱镜 和 *调酒瓶 。"
+    "DESCRIPTION": "使你的卡组变得 *色彩缤纷 ！ NL 初始获得 *星界棱镜 和 *调酒瓶 。"
   },
   "Hoolheyak:PreVariable": {
     "NAME": "选择，选择",
@@ -439,6 +438,6 @@
   },
   "Hoolheyak:PrePhase": {
     "NAME": "今夜星光闪闪",
-    "DESCRIPTION": "天象开始变得混乱！ NL 初始获得 *狂乱星晷 。"
+    "DESCRIPTION": "天象开始变得 *混乱 ！ NL 初始获得 *狂乱星晷 。"
   }
 }

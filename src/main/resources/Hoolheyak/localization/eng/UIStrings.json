@@ -25,5 +25,10 @@
       "Star Map Projection",
       "Spend 1 Energy to get *ALL !!!"
     ]
+  },
+  "Hoolheyak:EnergyNoticeUI": {
+    "TEXT": [
+      "I don't have enough energy!"
+    ]
   }
 }

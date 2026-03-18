@@ -1,5 +1,6 @@
 package Hoolheyak.util;
 
+import Hoolheyak.cards.phases.*;
 import Hoolheyak.powers.phases.*;
 import Hoolheyak.vfx.PhaseAuroraEffect;
 import com.badlogic.gdx.graphics.Color;
@@ -131,6 +132,29 @@ public class PhaseManager {
             case 3: return new TrinePower(owner);
             case 4: return new SquarePower(owner);
             default: return new OppositionPower(owner);
+        }
+    }
+
+    // 4. 随机获取一个吉相
+    public static AbstractPower getRandomGoodPhase(AbstractCreature owner) {
+        int roll = AbstractDungeon.cardRandomRng.random(1);
+        if (roll == 0) {
+            return new SextilePower(owner);
+        } else {
+            return new TrinePower(owner);
+        }
+    }
+
+    // 5. 随机获取一张相位卡牌
+    public static AbstractCard getRandomPhaseCard() {
+        int roll = AbstractDungeon.cardRandomRng.random(5);
+        switch (roll) {
+            case 0: return new ConjunctionCard();
+            case 1: return new QuincunxCard();
+            case 2: return new SextileCard();
+            case 3: return new TrineCard();
+            case 4: return new SquareCard();
+            default: return new OppositionCard();
         }
     }
 }

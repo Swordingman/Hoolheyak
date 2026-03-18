@@ -25,5 +25,10 @@
       "特殊变量",
       "消耗 1 点能量，获得 *ALL ！！！"
     ]
+  },
+  "Hoolheyak:EnergyNoticeUI": {
+    "TEXT": [
+      "我没有足够的能量！"
+    ]
   }
 }
