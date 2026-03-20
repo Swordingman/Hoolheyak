@@ -1,443 +1,448 @@
 {
   "Hoolheyak:Strike": {
-    "NAME": "Strike",
-    "DESCRIPTION": "Deal !D! damage."
+    "NAME": "打击",
+    "DESCRIPTION": "造成 !D! 点伤害。"
   },
   "Hoolheyak:Defend": {
-    "NAME": "Defend",
-    "DESCRIPTION": "Gain !B! Block."
+    "NAME": "防御",
+    "DESCRIPTION": "获得 !B! 点 格挡 。"
   },
   "Hoolheyak:FeatherStrike": {
-    "NAME": "Feather Strike",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Lift."
+    "NAME": "羽击",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 升力。"
   },
   "Hoolheyak:Linger": {
-    "NAME": "Linger",
-    "DESCRIPTION": "Gain !B! Block. NL Draw !M! cards."
+    "NAME": "盘亘",
+    "DESCRIPTION": "获得 !B! 层 格挡 。 NL 抽 !M! 张牌。"
   },
   "Hoolheyak:ControlGroup": {
-    "NAME": "Control Group",
-    "DESCRIPTION": "Deal !D! damage. NL Apply 1 Weightless. NL This card is considered a Variable: NL Attack; NL Skill.",
+    "NAME": "对照组",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 1 层 失重 。 NL 这张卡将被视为 变量 ： NL 攻击卡 ； NL 技能卡 。",
     "EXTENDED_DESCRIPTION": [
-      " Attack.",
-      " Skill."
+      " 攻击卡 。",
+      " 技能卡 。"
     ]
   },
   "Hoolheyak:Research": {
-    "NAME": "Research",
-    "DESCRIPTION": "Draw !M! cards. NL Gain 1 Meander."
+    "NAME": "考据",
+    "DESCRIPTION": "抽 !M! 张牌。 NL 获得 1 点 逶迤 。"
   },
   "Hoolheyak:LaminarFlow": {
-    "NAME": "Laminar Flow",
-    "DESCRIPTION": "Deal !D! damage. NL Draw !M! cards."
+    "NAME": "层流",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 抽 !M! 张牌。"
   },
   "Hoolheyak:DistilledTime": {
-    "NAME": "Distilled Time",
-    "DESCRIPTION": "At the start of your turn, gain !M! random Attack, Skill, or Power potions."
+    "NAME": "岁月蒸馏",
+    "DESCRIPTION": "在你的回合开始时，随机获得 !M! 瓶攻击药水、技能药水或能力药水。"
   },
   "Hoolheyak:Compose": {
-    "NAME": "Compose",
-    "DESCRIPTION": "Exhaust. NL Until the end of your turn, Variable: NL A card in your hand costs -3; NL All cards in your hand cost -1.",
+    "NAME": "撰写",
+    "DESCRIPTION": "消耗 。 NL 直到回合结束， 变量 ： NL 使一张手牌耗能 -3 ； NL 使所有手牌耗能 -1 。",
     "EXTENDED_DESCRIPTION": [
-      "A card in your hand costs -3.",
-      "All cards in your hand cost -1.",
-      "Choose a card to cost -3."
+      "使一张手牌耗能 -3 。",
+      "使所有手牌耗能 -1 。",
+      "选择一张手牌耗能 -3 。"
     ]
   },
   "Hoolheyak:Refutation": {
-    "NAME": "Refutation",
-    "DESCRIPTION": "Deal !D! damage. NL Randomly reduce 1 stack of a buff on the target."
+    "NAME": "驳论",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 随机使目标身上的增益效果减少 1 层。"
   },
   "Hoolheyak:Headwind": {
-    "NAME": "Headwind",
-    "DESCRIPTION": "Deal !D! damage !M! times to a random enemy. NL Whenever this deals damage, apply 1 Lift."
+    "NAME": "逆风",
+    "DESCRIPTION": "对随机敌人造成 !D! 点伤害 !M! 次。 NL 每次造成伤害，给予一层 升力 。"
   },
   "Hoolheyak:WindShear": {
-    "NAME": "Wind Shear",
-    "DESCRIPTION": "Deal !D! damage. NL Play this card again."
+    "NAME": "切变",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 再次打出本牌。"
   },
   "Hoolheyak:Turbulence": {
-    "NAME": "Turbulence",
-    "DESCRIPTION": "Deal !D! damage. NL Once per turn, for every 2 Turbulence played this combat, add !M! Turbulence to your hand."
+    "NAME": "湍流",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 每回合限 1 次，本场战斗中每打出 2 张 湍流 ，将 !M! 张 湍流 加入手牌。"
   },
   "Hoolheyak:TailSting": {
-    "NAME": "Tail Sting",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+    "NAME": "尾刺",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 易伤 。"
   },
   "Hoolheyak:Convection": {
-    "NAME": "Convection",
-    "DESCRIPTION": "Exhaust. NL Deal !D! damage. NL For each Attack played this turn, costs 1 less [E]."
+    "NAME": "对流",
+    "DESCRIPTION": "消耗 。 NL 造成 !D! 点伤害。 NL 本回合每打出 1 张攻击牌，耗能 -1 。"
   },
   "Hoolheyak:Archive": {
-    "NAME": "Archive",
-    "DESCRIPTION": "Exhaust. NL Deal !D! damage. NL Fatal, Variable: NL Choose an extra card of a random color after combat; NL Choose an extra Colorless card after combat.",
+    "NAME": "归档",
+    "DESCRIPTION": "消耗 。 NL 造成 !D! 点伤害。 NL 斩杀 时， 变量 ： NL 在战斗结束后，额外选择一张随机颜色牌 ； NL 在战斗结束后，额外选择一张无色牌。",
     "EXTENDED_DESCRIPTION": [
-      "Choose an extra card of a random color after combat.",
-      "Choose an extra Colorless card after combat."
+      "在战斗结束后，额外选择一张随机颜色牌。",
+      "在战斗结束后，额外选择一张无色牌。"
     ]
   },
   "Hoolheyak:Coercion": {
-    "NAME": "Coercion",
-    "DESCRIPTION": "Deal !D! damage. NL If the target is Levitating, knock them down and gain [E].",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If the target is Levitating, knock them down and gain [E] [E]."
+    "NAME": "强压",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 若目标 浮空 ，使其摔落并获得 [E] 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 若目标 浮空 ，使其摔落并获得 [E] [E] 。"
   },
   "Hoolheyak:Surveying": {
-    "NAME": "Surveying",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Analysis."
+    "NAME": "测绘",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 解析 。"
   },
   "Hoolheyak:Brushstroke": {
-    "NAME": "Brushstroke",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Erudition."
+    "NAME": "笔锋",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 博览 。"
   },
   "Hoolheyak:MadWords": {
-    "NAME": "Well-Read Ravings",
-    "DESCRIPTION": "Deal !D! damage, apply !Hoolheyak:LIFT! Lift. NL Play this card again !M! times."
+    "NAME": "博览者的狂语",
+    "DESCRIPTION": "造成 !D! 点伤害，给予 !Hoolheyak:LIFT! 层 升力 。 NL 重复打出 !M! 次。"
   },
   "Hoolheyak:CrossExperiment": {
-    "NAME": "Cross Experiment",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL When played, permanently Variable: NL +!M! Damage; NL +!M! Block.",
+    "NAME": "交叉实验",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !B! 层 格挡 。 NL 打出时，该卡永久获得 变量 ： NL + !M! 伤害 ； NL + !M! 格挡。",
     "EXTENDED_DESCRIPTION": [
-      "+!M! Damage.",
-      "+!M! Block."
+      "+ !M! 伤害。",
+      "+ !M! 格挡。"
     ]
   },
   "Hoolheyak:Revision": {
-    "NAME": "Revision",
-    "DESCRIPTION": "Exhaust. NL Exhaust a card in your hand, then add a random card of the same type to your hand.",
-    "UPGRADE_DESCRIPTION": "Exhaust. NL Exhaust a card in your hand, then add a random card of the same type to your hand. It costs 0 this turn.",
+    "NAME": "修订",
+    "DESCRIPTION": "消耗 。 NL 消耗你手中的一张牌，并随机获得一张与其同类型的牌。",
+    "UPGRADE_DESCRIPTION": "消耗 。 NL 消耗你手中的一张牌，并随机获得一张与其同类型的牌。使其在本回合中降为 0 费。",
     "EXTENDED_DESCRIPTION": [
-      "Choose a card to Exhaust."
+      "选择一张牌消耗。"
     ]
   },
   "Hoolheyak:Foreshadowing": {
-    "NAME": "Foreshadowing",
-    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Erudition. NL Gain !Hoolheyak:MEANDER! Meander."
+    "NAME": "伏笔",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 点 博览 。 NL 获得 !Hoolheyak:MEANDER! 点 逶迤 。"
   },
   "Hoolheyak:Observation": {
-    "NAME": "Observation",
-    "DESCRIPTION": "Draw !M! cards. NL Gain !Hoolheyak:ENERGY! [E]."
+    "NAME": "观测",
+    "DESCRIPTION": "抽 !M! 张牌。 NL 获得 !Hoolheyak:ENERGY! 点 [E] 。"
   },
   "Hoolheyak:Footnote": {
-    "NAME": "Footnote",
-    "DESCRIPTION": "Gain !B! Block. NL Draw 1 Skill."
+    "NAME": "脚注",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 抽 1 张技能牌。"
   },
   "Hoolheyak:Tamper": {
-    "NAME": "Tamper",
-    "DESCRIPTION": "Gain !B! Block. NL If this card triggered Meander, play it again."
+    "NAME": "篡改",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 如果本牌触发了 逶迤 ，再次打出本牌。"
   },
   "Hoolheyak:ParameterCorrection": {
-    "NAME": "Parameter Correction",
-    "DESCRIPTION": "Exhaust. NL At the end of your turn, you may Retain up to !M! other cards in your hand. NL Whenever this effect triggers, gain 1 Meander."
+    "NAME": "参数修正",
+    "DESCRIPTION": "消耗 。 NL 回合结束时，可以至多使另外 !M! 张手牌在本回合中获得 保留 。 NL 每次触发该效果，获得 1 层 逶迤 。"
   },
   "Hoolheyak:LiteratureRetrieval": {
-    "NAME": "Literature Retrieval",
-    "DESCRIPTION": "Choose 1 of 3 cards of a random color to add to your hand.",
-    "UPGRADE_DESCRIPTION": "Choose 1 of 3 cards of a random color to add to your hand. NL It costs 0 this turn."
+    "NAME": "文献检索",
+    "DESCRIPTION": "从 3 张随机颜色的牌中选择 1 张加入你的手牌。",
+    "UPGRADE_DESCRIPTION": "从 3 张随机颜色的牌中选择 1 张加入你的手牌。 NL 这张牌在本回合耗能变为 0。"
   },
   "Hoolheyak:MassOffset": {
-    "NAME": "Mass Offset",
-    "DESCRIPTION": "Apply X Lift to ALL enemies, and gain X Analysis.",
-    "UPGRADE_DESCRIPTION": "Apply X+1 Lift to ALL enemies, and gain X+1 Analysis."
+    "NAME": "质量抵消",
+    "DESCRIPTION": "使所有敌人获得 X 点 升力 ，并获得 X 点 解析 。",
+    "UPGRADE_DESCRIPTION": "使所有敌人获得 X+1 点 升力 ，并获得 X+1 点 解析 。"
   },
   "Hoolheyak:FlyUp": {
-    "NAME": "Fly Up!",
-    "DESCRIPTION": "Trigger X times Variable: NL Erudition; NL Meander.",
-    "UPGRADE_DESCRIPTION": "Gain !M! Analysis. NL Trigger X+1 times Variable: NL Erudition; NL Meander.",
+    "NAME": "飞起来！",
+    "DESCRIPTION": "触发 X 次 变量 ： NL 博览 ； NL 逶迤 。",
+    "UPGRADE_DESCRIPTION": "获得 !M! 层 解析 。 NL 触发 X+1 次 变量 ： NL 博览 ； NL 逶迤 。",
     "EXTENDED_DESCRIPTION": [
-      "Trigger Erudition",
-      "Trigger Meander"
+      "触发博览",
+      "触发逶迤"
     ]
   },
   "Hoolheyak:ColdEye": {
-    "NAME": "Cold Eye",
-    "DESCRIPTION": "If the target has taken damage from you this turn, gain !M! Analysis; otherwise, gain !B! Block."
+    "NAME": "冷眼",
+    "DESCRIPTION": "如果目标在本回合中受到过来自你的伤害，则获得 !M! 点 解析 ；如果没有，则获得 !B! 点 格挡 。"
   },
   "Hoolheyak:InheritedEnd": {
-    "NAME": "Inherited End",
-    "DESCRIPTION": "Exhaust. NL This turn, whenever you alternate playing Attacks and Skills, gain [E] and draw 1 card."
+    "NAME": "传承终焉",
+    "DESCRIPTION": "消耗 。 NL 本回合中，每当交替打出攻击牌与技能牌时，获得 [E] 并抽 1 张牌。"
   },
   "Hoolheyak:PoweredExoskeleton": {
-    "NAME": "Powered Exoskeleton",
-    "DESCRIPTION": "Gain !M! Plated Armor."
+    "NAME": "动力外骨骼",
+    "DESCRIPTION": "获得 !M! 层 多重护甲 。"
   },
   "Hoolheyak:Stargazing": {
-    "NAME": "Stargazing",
-    "DESCRIPTION": "Look at the top !M! cards of your draw pile. NL Choose up to 3 cards, Variable: NL Discard them; NL Place them at the bottom of your draw pile.",
+    "NAME": "观星",
+    "DESCRIPTION": "查看牌堆顶的 !M! 张牌。 NL 选择至多 3 张卡， 变量 ： NL 弃掉它们 ； NL 将它们置于抽牌堆底部。",
     "EXTENDED_DESCRIPTION": [
-      "Discard them.",
-      "Place them at the bottom of your draw pile.",
-      "Choose cards to modify."
+      "弃掉它们。",
+      "将它们置于抽牌堆底部。",
+      "选择你要修改的牌"
     ]
   },
   "Hoolheyak:RecursiveExperiment": {
-    "NAME": "Recursive Experiment",
-    "DESCRIPTION": "Exhaust. NL Spend 1 [E] to start an experiment. NL Variable: NL End this experiment; NL Play 1 random card and permanently remove it from your deck. After combat, gain an additional card reward of the same type. Then start another experiment.",
+    "NAME": "递归实验",
+    "DESCRIPTION": "消耗 。 NL 以 1 点费用开启一次实验。 NL 变量 ： NL 终止本次实验； NL 随机打出 1 张牌并将其从卡组中永久移除。战斗结束后，额外获得一组相同类型的选牌奖励。然后再开启一次实验。",
     "EXTENDED_DESCRIPTION": [
-      "End this experiment.",
-      "Play 1 random card and permanently remove it from your deck. After combat, gain an additional card reward of the same type. Then start another experiment."
+      "终止本次实验。",
+      "随机打出 1 张牌并将其从卡组中永久移除。战斗结束后，额外获得一组相同类型的选牌奖励。然后再开启一次实验。"
     ]
   },
   "Hoolheyak:RedundantExperiment": {
-    "NAME": "Redundant Experiment",
-    "DESCRIPTION": "Choose !M! cards in your hand, Variable: NL This turn, the chosen cards are played when discarded (end of turn discard counts!); NL Discard them, and draw that many cards.",
+    "NAME": "冗余实验",
+    "DESCRIPTION": "选择手牌中的 !M! 张牌， 变量 ： NL 在本回合中，被选中的牌在被丢弃时视为被打出。（回合结束的弃牌也会触发！）； NL 弃掉它们，并抽等量的牌。",
     "EXTENDED_DESCRIPTION": [
-      "Choose cards as experiment targets.",
-      "Play them when discarded.",
-      "Discard them, and draw that many cards."
+      "选择牌作为实验目标",
+      "使它们在丢弃时视为被打出",
+      "弃掉它们，并抽等量的牌。",
+      "自动实验"
     ]
   },
   "Hoolheyak:BygoneWings": {
-    "NAME": "Bygone Wings",
-    "DESCRIPTION": "Whenever you play a card of a different color, a random card in your hand costs 1 less [E]."
+    "NAME": "曾有羽翼",
+    "DESCRIPTION": "每当你使用一张其他颜色的卡牌时，使一张随机手牌费用 -1 。"
   },
   "Hoolheyak:InheritedMemories": {
-    "NAME": "Inherited Memories",
-    "DESCRIPTION": "Whenever you trigger Meander or Erudition, gain 1 Analysis.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you trigger Meander or Erudition, gain 1 Analysis."
+    "NAME": "传承记忆",
+    "DESCRIPTION": "你每触发一次 逶迤 或者 博览 ，就获得 1 点 解析 。",
+    "UPGRADE_DESCRIPTION": "固有 。 NL 你每触发一次 逶迤 或者 博览 ，就获得 1 点 解析 。"
   },
   "Hoolheyak:ForbiddenKnowledge": {
-    "NAME": "Forbidden Knowledge",
-    "DESCRIPTION": "Variable: NL When Erudition is triggered, draw 1 extra card; NL When Meander is triggered, deal 5 damage to ALL enemies.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Variable: NL When Erudition is triggered, draw 1 extra card; NL When Meander is triggered, deal 5 damage to ALL enemies.",
+    "NAME": "禁忌知识",
+    "DESCRIPTION": "变量 ： NL 触发博览时，额外抽 1 张牌 ； NL 触发逶迤时，对所有敌人造成 5 点伤害 。",
+    "UPGRADE_DESCRIPTION": "固有 。 NL 变量 ： NL 触发博览时，额外抽 1 张牌 ； NL 触发逶迤时，对所有敌人造成 5 点伤害 。",
     "EXTENDED_DESCRIPTION": [
-      "When Erudition is triggered, draw 1 extra card.",
-      "When Meander is triggered, deal 5 damage to ALL enemies."
+      "触发博览时，额外抽 1 张牌 。",
+      "触发逶迤时，对所有敌人造成 5 点伤害 。"
     ]
   },
   "Hoolheyak:Cyclone": {
-    "NAME": "Cyclone",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Erudition."
+    "NAME": "气旋",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 博览 。"
   },
   "Hoolheyak:Wingblade": {
-    "NAME": "Wingblade",
-    "DESCRIPTION": "Deal !D! damage. NL If this card triggered Erudition, gain !M! Meander."
+    "NAME": "翼刃",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果本牌触发了 博览 ，获得 !M! 逶迤 。"
   },
   "Hoolheyak:EntropyIncrease": {
-    "NAME": "Entropy Increase",
-    "DESCRIPTION": "At the start of your turn, add 1 Power card of a random color to your hand."
+    "NAME": "熵增",
+    "DESCRIPTION": "在回合开始时，增加 1 张随机颜色的能力牌到你的手牌。"
   },
   "Hoolheyak:AncientCovenant": {
-    "NAME": "Ancient Covenant",
-    "DESCRIPTION": "Variable: NL When Erudition is triggered, gain !M! Strength; NL When Meander is triggered, gain !M! Dexterity.",
+    "NAME": "古老盟约",
+    "DESCRIPTION": "变量 ： NL 触发 博览 时，获得 !M! 力量 ; NL 触发 逶迤 时，获得 !M! 敏捷 。",
     "EXTENDED_DESCRIPTION": [
-      "When Erudition is triggered, gain !M! Strength.",
-      "When Meander is triggered, gain !M! Dexterity."
+      "触发 博览 时，获得 !M! 力量 。",
+      "触发 逶迤 时，获得 !M! 敏捷 。"
     ]
   },
   "Hoolheyak:Wardrobe": {
-    "NAME": "Kukulkan's Wardrobe",
-    "DESCRIPTION": "Whenever you play a card of a different color, add *1 random card of your color to your hand and give it Exhaust.",
-    "UPGRADE_DESCRIPTION": "Whenever you play a card of a different color, add *1 random card of your color to your hand and give it Exhaust, and it costs *0 this combat."
+    "NAME": "羽蛇的衣柜",
+    "DESCRIPTION": "每打出 1 张其他颜色的牌，随机将 *1 张本颜色牌加入手牌并赋予 消耗 。",
+    "UPGRADE_DESCRIPTION": "每打出 1 张其他颜色的牌，随机将 *1 张本颜色牌加入手牌并赋予 消耗 ，并使其在本场战斗中耗能变为 *0 。"
   },
   "Hoolheyak:OmniscientHorizon": {
-    "NAME": "Omniscient Horizon",
-    "DESCRIPTION": "Whenever an enemy Levitates, draw 2 cards and gain [E] [E]."
+    "NAME": "全知视界",
+    "DESCRIPTION": "每当有敌人进入 浮空 状态，抽 2 张牌，获得 [E] [E] 。"
   },
   "Hoolheyak:SerpentBloodline": {
-    "NAME": "Serpent Bloodline",
-    "DESCRIPTION": "Gain Ritual equal to your Analysis. Then whenever you gain Analysis, gain that much Ritual. NL At the start of each turn, lose [E]."
+    "NAME": "羽蛇血脉",
+    "DESCRIPTION": "获得等同于 解析 层数的 仪式 。然后每次获得 解析 时，获得等量 仪式 。 NL 每回合开始时，失去 [E] 。"
   },
   "Hoolheyak:DistantLight": {
-    "NAME": "Distant Light",
-    "DESCRIPTION": "At the end of your turn, if Attack damage you dealt this turn is less than 6, trigger Meander and Erudition."
+    "NAME": "光行遥遥",
+    "DESCRIPTION": "回合结束时，若你本回合造成的攻击伤害低于 6 ，触发 逶迤 与 博览 。"
   },
   "Hoolheyak:CorrectedVariable": {
-    "NAME": "Corrected Variable",
-    "DESCRIPTION": "Whenever you draw a Status card, gain 1 Erudition. NL Whenever you draw a Curse card, gain 1 Meander."
+    "NAME": "修正变量",
+    "DESCRIPTION": "每当你抽到一张状态牌，获得 1 点 博览 。 NL 每当你抽到一张诅咒牌，获得 1 点 逶迤 。"
   },
   "Hoolheyak:Byproduct": {
-    "NAME": "Byproduct",
-    "DESCRIPTION": "Whenever you perform a Variable, gain 1 random card.",
-    "UPGRADE_DESCRIPTION": "Whenever you perform a Variable, gain 1 upgraded random card."
+    "NAME": "副产品",
+    "DESCRIPTION": "每当你进行一次 变量 ，获得 1 张随机牌。",
+    "UPGRADE_DESCRIPTION": "每当你进行一次 变量 ，获得 1 张升级后的随机牌。"
   },
   "Hoolheyak:ComplementaryExperiment": {
-    "NAME": "Complementary Experiment",
-    "DESCRIPTION": "Whenever you perform a Variable, gain !M! Block."
+    "NAME": "互补实验",
+    "DESCRIPTION": "每当你进行一次 变量 时，获得 !M! 点 格挡 。"
   },
   "Hoolheyak:KukulkanLegacy": {
-    "NAME": "Kukulkan's Legacy",
-    "DESCRIPTION": "Increase your Erudition and Meander limits by !M! each. However, damage dealt and Lift applied are doubled."
+    "NAME": "库库尔坎的传承",
+    "DESCRIPTION": "使你的 博览 和 逶迤 上限各 + !M! 。但是造成的伤害和给予的 升力 翻倍。"
   },
   "Hoolheyak:TwinExperiment": {
-    "NAME": "Twin Experiment",
-    "DESCRIPTION": "Deal !D! damage 2 times to 2 random enemies. NL If you hit two different enemies, deal !D! damage 2 times to the one with higher HP."
+    "NAME": "双生子实验",
+    "DESCRIPTION": "对随机两个敌人造成 !D! 点伤害 2 次。 NL 若击中两个不同的敌人，则将额外的 *2 次 !D! 点伤害给予 变量 ： NL 剩余血量更多的敌人； NL 剩余血量更少的敌人。",
+    "EXTENDED_DESCRIPTION": [
+      "将额外的伤害给予剩余血量 *更多 的敌人",
+      "将额外的伤害给予剩余血量 *更少 的敌人"
+    ]
   },
   "Hoolheyak:KnockInExperiment": {
-    "NAME": "Knock-in Experiment",
-    "DESCRIPTION": "Deal !D! damage. NL Variable: NL Spend [E] to heal 3 HP; NL Gain [E].",
+    "NAME": "敲入实验",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 花费 [E] ，回复 3 生命 ; NL 获得 [E] 。",
     "EXTENDED_DESCRIPTION": [
-      "Spend [E] to heal 3 HP.",
-      "Gain [E]."
+      "花费 [E] ，回复 3 生命 。",
+      "获得 [E] 。"
     ]
   },
   "Hoolheyak:ConjunctionCard": {
-    "NAME": "Conjunction",
-    "DESCRIPTION": "Neutral Aspect NL Unplayable. NL Automatically triggers and Exhausts when drawn. NL Replaces the current field Aspect with Conjunction: All characters deal 50% more damage."
+    "NAME": "合相",
+    "DESCRIPTION": "中性 NL 不可打出 。 NL 抽到时自动触发并 消耗 。 NL 替换当前的场地相位为 合相 ：所有角色造成的伤害增加 50% 。"
   },
   "Hoolheyak:QuincunxCard": {
-    "NAME": "Quincunx",
-    "DESCRIPTION": "Neutral Aspect NL Unplayable. NL Automatically triggers and Exhausts when drawn. NL Replaces the current field Aspect with Quincunx: Your Skills provide Erudition, Attacks provide Meander."
+    "NAME": "梅花相",
+    "DESCRIPTION": "中性 NL 不可打出 。 NL 抽到时自动触发并 消耗 。 NL 替换当前的场地相位为 梅花相 ：你的技能牌提供 博览 ，攻击牌提供 逶迤 。"
   },
   "Hoolheyak:SextileCard": {
-    "NAME": "Sextile",
-    "DESCRIPTION": "Harmonious Aspect NL Unplayable. NL Automatically triggers and Exhausts when drawn. NL Replaces the current field Aspect with Sextile: Your Erudition and Meander trigger requirements are reduced by 2, but you can no longer apply Lift."
+    "NAME": "六合",
+    "DESCRIPTION": "吉相 NL 不可打出 。 NL 抽到时自动触发并 消耗 。 NL 替换当前的场地相位为 六合 ：你的 博览 与 逶迤 触发需要的层数减少 2 点，但你无法再给予 升力 。"
   },
   "Hoolheyak:TrineCard": {
-    "NAME": "Trine",
-    "DESCRIPTION": "Harmonious Aspect NL Unplayable. NL Automatically triggers and Exhausts when drawn. NL Replaces the current field Aspect with Trine: At the start of your turn, gain [E] and draw 2 cards. Your Attacks have Exhaust."
+    "NAME": "拱相",
+    "DESCRIPTION": "吉相 NL 不可打出 。 NL 抽到时自动触发并 消耗 。 NL 替换当前的场地相位为 拱相 ：回合开始时获得 [E] 并抽 2 张牌。你的攻击牌附带 消耗 。"
   },
   "Hoolheyak:SquareCard": {
-    "NAME": "Square",
-    "DESCRIPTION": "Challenging Aspect NL Unplayable. NL Automatically triggers and Exhausts when drawn. NL Replaces the current field Aspect with Square: Whenever you play a card, lose 1 HP and apply 1 Lift to ALL enemies."
+    "NAME": "刑克",
+    "DESCRIPTION": "凶相 NL 不可打出 。 NL 抽到时自动触发并 消耗 。 NL 替换当前的场地相位为 刑克 ：你每打出一张牌，失去 1 点生命并给予所有敌人 1 层 升力 。"
   },
   "Hoolheyak:OppositionCard": {
-    "NAME": "Opposition",
-    "DESCRIPTION": "Challenging Aspect NL Unplayable. NL Automatically triggers and Exhausts when drawn. NL Replaces the current field Aspect with Opposition: You cannot gain Block. Enemy Gravity is halved."
+    "NAME": "对冲",
+    "DESCRIPTION": "凶相 NL 不可打出 。 NL 抽到时自动触发并 消耗 。 NL 替换当前的场地相位为 对冲 ：你无法获得 格挡 。敌人的 重力 视为原本的一半。"
   },
   "Hoolheyak:Transit": {
-    "NAME": "Transit",
-    "DESCRIPTION": "Exhaust. NL Choose and trigger an Aspect."
+    "NAME": "行运",
+    "DESCRIPTION": " 消耗 。 NL 选择并触发一个 相位 。"
   },
   "Hoolheyak:Shockwave": {
-    "NAME": "Shockwave",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies and apply !M! Weightless."
+    "NAME": "激波",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害，并给予 !M! 层 失重 。"
   },
   "Hoolheyak:Separation": {
-    "NAME": "Separation",
-    "DESCRIPTION": "Deal !D! damage. NL Deduct an equal amount from the target's Max HP."
+    "NAME": "分离",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 扣除目标等量的最大生命值。"
   },
   "Hoolheyak:ChimeraExperiment": {
-    "NAME": "Chimera Experiment",
-    "DESCRIPTION": "Play the top X cards of your draw pile. Variable: NL Attacks; NL Skills.",
-    "UPGRADE_DESCRIPTION": "Play the top X+1 cards of your draw pile. Variable: NL Attacks; NL Skills.",
+    "NAME": "嵌合体实验",
+    "DESCRIPTION": "打出你的抽牌堆顶端的 X 张 变量 ： NL 攻击牌； NL 技能牌。",
+    "UPGRADE_DESCRIPTION": "打出你的抽牌堆顶端的 X+1 张 变量 ： NL 攻击牌； NL 技能牌。",
     "EXTENDED_DESCRIPTION": [
-      "Play *Attacks ",
-      "Play *Skills "
+      "打出 *攻击牌 ",
+      "打出 *技能牌 "
     ]
   },
   "Hoolheyak:ContingencyPlan": {
-    "NAME": "Contingency Plan",
-    "DESCRIPTION": "Gain [E]. NL Whenever Meander is triggered, return this card from your discard pile to your hand.",
-    "UPGRADE_DESCRIPTION": "Gain [E]. NL Whenever Meander or Erudition is triggered, return this card from your discard pile to your hand."
+    "NAME": "预案",
+    "DESCRIPTION": "获得 [E] 。 NL 每当触发 逶迤 时，将此牌从弃牌堆移回手牌。",
+    "UPGRADE_DESCRIPTION": "获得 [E] 。 NL 每当触发 逶迤 或 博览 时，将此牌从弃牌堆移回手牌。"
   },
   "Hoolheyak:DynamicPressure": {
-    "NAME": "Dynamic Pressure",
-    "DESCRIPTION": "Deal !D! damage. NL Draw !M! Attacks."
+    "NAME": "动压",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 抽 !M! 张攻击牌。"
   },
   "Hoolheyak:BaroclinicInstability": {
-    "NAME": "Baroclinic Instability",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Deconstruction."
+    "NAME": "斜压不稳",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 解构 。"
   },
   "Hoolheyak:Deepthink": {
-    "NAME": "Deepthink",
-    "DESCRIPTION": "Gain !Hoolheyak:ANALYSIS! Analysis. NL Gain !M! Meander and Erudition."
+    "NAME": "深思",
+    "DESCRIPTION": "获得 !Hoolheyak:ANALYSIS! 点 解析 。 NL 获得 !M! 层 逶迤 和 博览 。"
   },
   "Hoolheyak:BorrowedWeapons": {
-    "NAME": "Borrowed Weapons",
-    "DESCRIPTION": "Exhaust. NL Deal !D! damage. NL Add 1 random Attack of a different color to your hand."
+    "NAME": "借用武装",
+    "DESCRIPTION": "消耗 。 NL 造成 !D! 点伤害。 NL 随机将 1 张其他颜色的攻击牌加入你的手牌。"
   },
   "Hoolheyak:AugmentationExperiment": {
-    "NAME": "Augmentation Experiment",
-    "DESCRIPTION": "Deal !D! damage. NL Variable: NL Gain !M! Analysis; NL Add a copy of this card to your hand and gain !Hoolheyak:ANALYSIS! Analysis.",
+    "NAME": "扩增实验",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 获得 !M! 层 解析 ； NL 将一张本卡置入手牌，并获得 !Hoolheyak:ANALYSIS! 层 解析 。",
     "EXTENDED_DESCRIPTION": [
-      "Gain !M! Analysis",
-      "Add a copy of this card to your hand and gain 3 Analysis"
+      "获得 !M! 层 解析 ",
+      "将一张本卡置入手牌，并获得 3 层 解析 "
     ]
   },
   "Hoolheyak:ApoptosisExperiment": {
-    "NAME": "Apoptosis Experiment",
-    "DESCRIPTION": "Deal !D! damage. NL Apply to target, Variable: NL !M! Lift; NL !Hoolheyak:DECONSTRUCTION! Deconstruction.",
+    "NAME": "凋亡实验",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予目标 变量 ： NL !M! 层 升力 ； NL !Hoolheyak:DECONSTRUCTION! 层 解构 。",
     "EXTENDED_DESCRIPTION": [
-      "Apply !M! Lift",
-      "Apply !Hoolheyak:DECONSTRUCTION! Deconstruction"
+      "给予 !M! 层 升力 ",
+      "给予 !Hoolheyak:DECONSTRUCTION! 层 解构 "
     ]
   },
   "Hoolheyak:ControlExperiment": {
-    "NAME": "Control Experiment",
-    "DESCRIPTION": "Deal !D! damage. NL Variable: NL Gain !M! Analysis; NL Apply !M! Weightless.",
+    "NAME": "对照实验",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 将1张随机 相位 置入你的抽牌堆，并抽 *2 张牌； NL 将1张随机 相位 置入你的弃牌堆，随后立即洗牌。",
     "EXTENDED_DESCRIPTION": [
-      "Gain !M! Analysis",
-      "Apply !M! Weightless"
+      "将1张随机 相位 置入你的抽牌堆，并抽 *2 张牌",
+      "将1张随机 相位 置入你的弃牌堆，随后立即洗牌"
     ]
   },
   "Hoolheyak:MutagenesisExperiment": {
-    "NAME": "Mutagenesis Experiment",
-    "DESCRIPTION": "Deal !D! damage. NL Apply to target, Variable: NL !M! Weak; NL !M! Vulnerable.",
+    "NAME": "诱变实验",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 随机触发一个 相位 ； NL 消耗 [E] ，随机触发一个 吉相 。",
     "EXTENDED_DESCRIPTION": [
-      "Apply !M! Weak",
-      "Apply !M! Vulnerable"
+      "随机触发一个 相位 ",
+      "消耗 [E] ，随机触发一个 吉相 "
     ]
   },
   "Hoolheyak:TransitionalFlow": {
-    "NAME": "Transitional Flow",
-    "DESCRIPTION": "Gain !B! Block. Play this card an additional time."
+    "NAME": "过渡流",
+    "DESCRIPTION": "获得 !B! 点 格挡 。额外打出一次。"
   },
   "Hoolheyak:Wake": {
-    "NAME": "Wake",
-    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Analysis. NL If the last card you played was a Skill, play this card an additional time."
+    "NAME": "尾流",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 层 解析 。 NL 如果你打出的上一张牌是技能牌，本牌额外打出一次。"
   },
   "Hoolheyak:UniversalMapping": {
-    "NAME": "Universal Mapping",
-    "DESCRIPTION": "Deal !D! damage. Randomly play !M! Rare Attacks of different colors."
+    "NAME": "万界测绘",
+    "DESCRIPTION": "造成 !D! 点 伤害 。随机打出 !M! 张其他颜色的稀有攻击牌。"
   },
   "Hoolheyak:Divergence": {
-    "NAME": "Divergence",
-    "DESCRIPTION": "Exhaust. NL Gain !B! Block. NL Consume all Lift from the target, gain !M! additional Block for each stack consumed."
+    "NAME": "气流辐散",
+    "DESCRIPTION": "消耗 。 NL 获得 !B! 点 格挡 。 NL 消耗目标所有 升力 ，每消耗 1 层，额外获得 !M! 点 格挡 。"
   },
   "Hoolheyak:Convergence": {
-    "NAME": "Convergence",
-    "DESCRIPTION": "Exhaust. NL Gain !B! Block. NL Gain additional Block equal to the sum of ALL enemies' Gravity (Max !M!)."
+    "NAME": "气流辐合",
+    "DESCRIPTION": "消耗 。 NL 获得 !B! 点 格挡 。 NL 额外获得所有敌人 重力 总和的 格挡 （最多 !M! 点）。"
   },
   "Hoolheyak:CrossSearch": {
-    "NAME": "Cross Search",
-    "DESCRIPTION": "Draw !M! cards, discard 1 card. NL If you discard an Attack, gain 1 Erudition; NL If you discard a Skill, gain 1 Meander."
+    "NAME": "交叉检索",
+    "DESCRIPTION": "抽 !M! 张牌，弃 1 张牌。 NL 若弃置攻击牌，获得 1 点 博览 ； NL 若弃置技能牌，获得 1 点 逶迤 。"
   },
   "Hoolheyak:Rapids": {
-    "NAME": "Rapids",
-    "DESCRIPTION": "Exhaust. NL Apply 99 Weightless."
+    "NAME": "急流",
+    "DESCRIPTION": "消耗 。 NL 给予 99 层 失重 。"
   },
   "Hoolheyak:FactorialExperiment": {
-    "NAME": "Factorial Experiment",
-    "DESCRIPTION": "Deal !D! damage. NL Variable: NL Trigger a random Variable effect for (most) Variable cards in your hand; NL Add 3 random Variable cards to your hand, they cost *0 this turn.",
+    "NAME": "析因实验",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 变量 ： NL 触发手牌中（大部分） 变量 卡的随机 变量 ； NL 将3张随机 变量 卡置入你的手牌，并在本回合中使它们的耗能变为 *0 。",
     "EXTENDED_DESCRIPTION": [
-      "Trigger a random Variable effect for (most) Variable cards in your hand",
-      "Add 3 random Variable cards to your hand, they cost *0 this turn"
+      "触发手牌中（大部分） 变量 卡的随机 变量 ",
+      "将3张随机 变量 卡置入你的手牌，并在本回合中使它们的耗能变为 *0 "
     ]
   },
   "Hoolheyak:DifficultyOption": {
-    "NAME": "Difficulty Option",
-    "DESCRIPTION": "Placeholder"
+    "NAME": "难度选择",
+    "DESCRIPTION": "占位符"
   },
   "Hoolheyak:DiffNormal": {
-    "NAME": "Standard Evaluation",
-    "DESCRIPTION": "Standard gameplay experience. NL No special modifiers."
+    "NAME": "标准评估",
+    "DESCRIPTION": "标准的游戏体验。 NL 没有任何特殊的修改。"
   },
   "Hoolheyak:DiffHard": {
-    "NAME": "In-depth Analysis",
-    "DESCRIPTION": "A challenging experience. NL Erudition stack limit increased by *1. NL Some card values or effects are adjusted."
+    "NAME": "深入分析",
+    "DESCRIPTION": "具备挑战性的体验。 NL 博览 的层数上限增加 *1 。 NL 部分卡牌数值或效果获得调整。"
   },
   "Hoolheyak:DiffEasy": {
-    "NAME": "Preliminary Investigation",
-    "DESCRIPTION": "A difficulty suited for learning the mechanics. NL Meander stack limit decreased by *1. NL Some card values or effects are adjusted."
+    "NAME": "初步调查",
+    "DESCRIPTION": "适合熟悉玩法的难度。 NL 逶迤 的层数上限减少 *1 。 NL 部分卡牌数值或效果获得调整。"
   },
   "Hoolheyak:PresetOptionCard": {
-    "NAME": "Preset Option",
-    "DESCRIPTION": "Placeholder"
+    "NAME": "预设选择",
+    "DESCRIPTION": "占位符"
   },
   "Hoolheyak:PreDefault": {
-    "NAME": "Routine Investigation",
-    "DESCRIPTION": "Default deck, no special modifiers."
+    "NAME": "常规调查",
+    "DESCRIPTION": "默认的卡组，无特殊修改。"
   },
   "Hoolheyak:PreUniverse": {
-    "NAME": "Just Borrowing",
-    "DESCRIPTION": "Bring chaos to your starting deck! NL Start with *Prismatic *Shard and *Cocktail *Shaker."
+    "NAME": "只是借鉴而已",
+    "DESCRIPTION": "使你的卡组变得 *色彩缤纷 ！ NL 初始获得 *星界棱镜 和 *调酒瓶 。"
   },
   "Hoolheyak:PreVariable": {
-    "NAME": "Choices, Choices",
-    "DESCRIPTION": "Fill your starting deck with *Experiment cards! NL Start with *Star *Map *Projection."
+    "NAME": "选择，选择",
+    "DESCRIPTION": "用 *实验 卡填满你的初始卡组！ NL 初始获得 *星图投影 。"
   },
   "Hoolheyak:PrePhase": {
-    "NAME": "Starry Night",
-    "DESCRIPTION": "Celestial phenomenons become chaotic! NL Start with *Frantic *Sundial."
+    "NAME": "今夜星光闪闪",
+    "DESCRIPTION": "天象开始变得 *混乱 ！ NL 初始获得 *狂乱星晷 。"
   }
 }

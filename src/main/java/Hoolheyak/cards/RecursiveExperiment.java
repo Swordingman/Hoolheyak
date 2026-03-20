@@ -2,6 +2,7 @@ package Hoolheyak.cards;
 
 import Hoolheyak.actions.VariableAction;
 import Hoolheyak.character.Hoolheyak;
+import Hoolheyak.relics.FailedExperimentProduct;
 import Hoolheyak.util.CardStats;
 import Hoolheyak.util.IVariableCard;
 import Hoolheyak.util.RecursiveExperimentReward;
@@ -116,26 +117,45 @@ public class RecursiveExperiment extends BaseCard implements IVariableCard {
                         addToBot(new WaitAction(Settings.ACTION_DUR_FASTER));
                     }
 
+                    // 1. 提前判断这是否是一次“失败”的实验
+                    boolean isFailure = (removedCard.type == AbstractCard.CardType.CURSE || removedCard.type == AbstractCard.CardType.STATUS);
+
                     addToBot(new AbstractGameAction() {
                         @Override
                         public void update() {
-                            // 3. 在这里使用改名后的 randomMonster
+                            // 2. 原本的 use 逻辑
                             copy.use(p, randomMonster);
-
-                            // 4. UseCardAction 也使用 randomMonster
                             addToBot(new UseCardAction(copy, randomMonster));
 
                             addToBot(new AbstractGameAction() {
                                 @Override
                                 public void update() {
-                                    RecursiveExperimentReward reward = new RecursiveExperimentReward(removedCard.type);
-                                    AbstractDungeon.getCurrRoom().rewards.add(reward);
 
+                                    // 3. 核心分歧点：根据是否失败决定奖励
+                                    if (isFailure) {
+                                        // 如果玩家已经有了这个遗物
+                                        if (AbstractDungeon.player.hasRelic(FailedExperimentProduct.ID)) {
+                                            FailedExperimentProduct relic = (FailedExperimentProduct) AbstractDungeon.player.getRelic(FailedExperimentProduct.ID);
+                                            relic.incrementCounter(); // 次数 +1
+                                            relic.flash();            // 闪烁一下提示玩家
+                                        } else {
+                                            // 首次获得遗物，直接在屏幕中央生成并获取
+                                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain(
+                                                    Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F,
+                                                    new FailedExperimentProduct()
+                                            );
+                                        }
+                                    } else {
+                                        // 如果是常规卡牌，按原计划给卡牌奖励
+                                        RecursiveExperimentReward reward = new RecursiveExperimentReward(removedCard.type);
+                                        AbstractDungeon.getCurrRoom().rewards.add(reward);
+                                    }
+
+                                    // 继续递归
                                     addToBot(new RecursiveExperimentAction(sourceCard));
                                     this.isDone = true;
                                 }
                             });
-
                             this.isDone = true;
                         }
                     });

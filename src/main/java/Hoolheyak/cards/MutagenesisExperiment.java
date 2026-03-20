@@ -95,7 +95,6 @@ public class MutagenesisExperiment extends BaseCard implements IVariableCard {
         // 1. 造成伤害
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
         // 2. 触发变量选择
-        // 注意看你的需求，如果这里不是 AutoTrigger，可以传 false
         addToBot(new VariableAction(this, getVariableChoices(p, m), false));
     }
 }

@@ -44,7 +44,7 @@ public class RedundantExperiment extends BaseCard implements IVariableCard {
         // 🌟 分歧：如果被大招自动触发
         if (isAutoTriggered) {
             // 大招触发时，我们直接把 α 和 β 的效果揉在一起做成纯后台 Action
-            choices.add(new VariableAction.VariableChoice("自动实验", () -> {
+            choices.add(new VariableAction.VariableChoice(cardStrings.EXTENDED_DESCRIPTION[3], () -> {
                 addToBot(new AbstractGameAction() {
                     @Override
                     public void update() {

@@ -183,7 +183,8 @@
     "EXTENDED_DESCRIPTION": [
       "选择牌作为实验目标",
       "使它们在丢弃时视为被打出",
-      "弃掉它们，并抽等量的牌。"
+      "弃掉它们，并抽等量的牌。",
+      "自动实验"
     ]
   },
   "Hoolheyak:BygoneWings": {
@@ -260,7 +261,11 @@
   },
   "Hoolheyak:TwinExperiment": {
     "NAME": "双生子实验",
-    "DESCRIPTION": "对随机两个敌人造成 !D! 点伤害 2 次。 NL 若击中两个不同的敌人，对生命值较高的敌人额外造成 !D! 点伤害 2 次。"
+    "DESCRIPTION": "对随机两个敌人造成 !D! 点伤害 2 次。 NL 若击中两个不同的敌人，则将额外的 *2 次 !D! 点伤害给予 变量 ： NL 剩余血量更多的敌人； NL 剩余血量更少的敌人。",
+    "EXTENDED_DESCRIPTION": [
+      "将额外的伤害给予剩余血量 *更多 的敌人",
+      "将额外的伤害给予剩余血量 *更少 的敌人"
+    ]
   },
   "Hoolheyak:KnockInExperiment": {
     "NAME": "敲入实验",

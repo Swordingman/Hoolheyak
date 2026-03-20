@@ -96,5 +96,13 @@
     "DESCRIPTIONS": [
       "战斗开始时，召唤 #b1 个拥有 #b16 点生命的流形。流形存活时敌人强制攻击它。流形死亡 #b3 回合后满血复活。"
     ]
+  },
+  "Hoolheyak:FailedExperimentProduct": {
+    "NAME": "实验失败的产物",
+    "FLAVOR": "...看起来不能吃。",
+    "DESCRIPTIONS": [
+      "恭喜你！你的实验失败了 #r",
+      " 次。"
+    ]
   }
 }

@@ -26,7 +26,6 @@ public class ControlExperiment extends BaseCard implements IVariableCard {
     public ControlExperiment() {
         super(ID, new CardStats(Hoolheyak.Meta.CARD_COLOR, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY, COST));
         setDamage(DAMAGE, UPGRADE_PLUS_DMG);
-        // 不再需要虚弱/易伤，所以把 MagicNumber 去掉了，让代码更干净
     }
 
     @Override
@@ -69,7 +68,6 @@ public class ControlExperiment extends BaseCard implements IVariableCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        // 注意看这里，如果你不想让它被当成 AutoTrigger 打出，传 false，或者保留你的 true 都可以
         addToBot(new VariableAction(this, getVariableChoices(p, m), true));
     }
 }

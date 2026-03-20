@@ -1,100 +1,108 @@
 {
   "Hoolheyak:Bibliotheca": {
-    "NAME": "Bibliotheca",
-    "FLAVOR": "Memory is like a library, though clearly, each library has a different amount of books.",
+    "NAME": "“图书馆”",
+    "FLAVOR": "记忆就像是一座图书馆，不过很明显，每座图书馆的藏书量都各不相同。",
     "DESCRIPTIONS": [
-      "At the start of combat, gain #b2 Analysis."
+      "战斗开始时，获得 #b2 点 解析 。"
     ]
   },
   "Hoolheyak:FrenziedSundial": {
-    "NAME": "Frenzied Sundial",
-    "FLAVOR": "\"Refract truth, project the future.\"",
+    "NAME": "狂乱星晷",
+    "FLAVOR": "“折射真相，投映未来”",
     "DESCRIPTIONS": [
-      "At the start of each turn, gain [E] and enter a random #y Aspect."
+      "每回合开始时，获得 [E] 并进入一个随机 #y相位 。"
     ]
   },
   "Hoolheyak:StarMapProjection": {
-    "NAME": "Star Map Projection",
-    "FLAVOR": "Many people first approach astrology out of curiosity about their own death.",
+    "NAME": "星图投影",
+    "FLAVOR": "许多人接触占星学的初衷，只是好奇自己的死期。",
     "DESCRIPTIONS": [
-      "Most #yVariables can spend extra [E] to trigger all effects simultaneously."
+      "大部分 #y变量 可额外耗费 [E] 以同时触发所有效果。"
     ]
   },
   "Hoolheyak:OldNotes": {
-    "NAME": "Old Notes",
-    "FLAVOR": "They contain a lot of valuable literature. As for how they were collected…",
+    "NAME": "陈旧的笔记",
+    "FLAVOR": "这上面记录了很多珍贵的文献资料。至于收集到的途径嘛……",
     "DESCRIPTIONS": [
-      "For every #b5 Attack cards drawn, gain #b1 Erudition; for every #b5 Skill cards drawn, gain #b1 Meander."
+      "每抽 #b5 张攻击牌，获得 #b1 层 #y博览 ；每抽 #b5 张技能牌，获得 #b1 层 #y逶迤 。"
     ]
   },
   "Hoolheyak:TimeMuseum": {
-    "NAME": "Time Gallery of K'uk'ulkan",
-    "FLAVOR": "The Fool builds high walls, the Philosopher knocks them down, and vice versa… History is an interesting library, surely containing insights for the future, since history was once the future of countless generations.",
+    "NAME": "羽蛇的时间博物馆",
+    "FLAVOR": "愚人砌好了高墙，哲人推倒它，反之亦有......历史是个有趣的资料库，里面必然藏着对未来的启示，毕竟历史也曾是无数代人的未来。",
     "DESCRIPTIONS": [
-      "In each combat, the first time you play each card type, play it an additional #b1 time."
+      "每场战斗中，首次打出各类型的牌时，额外打出 #b1 次。"
     ]
   },
   "Hoolheyak:CocktailShaker": {
-    "NAME": "Cocktail Shaker",
-    "FLAVOR": "Stay alert.",
+    "NAME": "调酒瓶",
+    "FLAVOR": "保持清醒。",
     "DESCRIPTIONS": [
-      "Upon pickup, Max HP + #b3. For every #b1 other-colored cards played, heal #b1 HP."
+      "拾起时，最大生命值 + #b3 。每打出 #b1 张其他颜色的牌，回复 #b1 点生命值。"
     ]
   },
   "Hoolheyak:TailCareKit": {
-    "NAME": "Tail Care Kit",
-    "FLAVOR": "\"Are you a thick-tail or a thin-tail person?\"",
+    "NAME": "尾巴养护套装",
+    "FLAVOR": "“你是粗尾巴党，还是细尾巴党？”",
     "DESCRIPTIONS": [
-      "At the start of combat, apply #b7 Deconstruction to all enemies."
+      "对局开始时，给予所有敌人 #b7 层 #y解构 。"
     ]
   },
   "Hoolheyak:BeautifulHistoryBook": {
-    "NAME": "Beautifully Bound History Book",
-    "FLAVOR": "The same technique is ineffective on a clever person.",
+    "NAME": "装帧精美的历史书",
+    "FLAVOR": "同样的招式对聪明人是无效的。",
     "DESCRIPTIONS": [
-      "Enemies defeated in this run start combat with #b50% Max HP lost. NL (Right-click to view the list.)"
+      "本局游戏中曾击败过的敌人，在战斗开始时失去 #b50% 的最大生命值。 NL （右键点击查看名单。）"
     ]
   },
   "Hoolheyak:AstronomicalTelescope": {
-    "NAME": "Astronomical Telescope",
-    "FLAVOR": "Those constellations, planets, and trajectories are not commands but metaphors.",
+    "NAME": "天文望远镜",
+    "FLAVOR": "那些星座、行星与轨迹，并非命令，而是隐喻。",
     "DESCRIPTIONS": [
-      "Upon pickup, transform #b1 random Attack or Skill card in your deck into a colorless card. If none exist, gain #b1 random #yRare colorless card."
+      "拾起时，将牌组中 #b1 张打击或防御随机变化为无色牌。若没有基础牌，则获得 #b1 张随机 #y稀有 无色牌。"
     ]
   },
   "Hoolheyak:BottledCloud": {
-    "NAME": "Bottled Cloud",
-    "FLAVOR": "\"Great, now I can double jump better.\"",
+    "NAME": "瓶装云朵",
+    "FLAVOR": "“太好了，我现在可以更好地二连跳了。”",
     "DESCRIPTIONS": [
-      "Whenever you gain #yAgility, gain an additional #b1 #yAgility."
+      "每当你获得 #y敏捷 时，额外获得 #b1 点 #y敏捷 。"
     ]
   },
   "Hoolheyak:WeatherBalloon": {
-    "NAME": "Weather Balloon",
-    "FLAVOR": "\"Compete with the heavens themselves.\"",
+    "NAME": "探空气球",
+    "FLAVOR": "“欲与天公试比高”",
     "DESCRIPTIONS": [
-      "When an enemy triggers #yLevitate, they gain an additional #b5 Lift."
+      "敌人触发 #y浮空 时，额外获得 #b5 层 #y升力 。"
     ]
   },
   "Hoolheyak:ZodiacModel": {
-    "NAME": "Zodiac Model",
-    "FLAVOR": "Feathers are moistened by the forest dew, tails sweep over crumbling pillars, and knowledge continues generation after generation.",
+    "NAME": "黄道盘模型",
+    "FLAVOR": "羽毛被森林的露珠打湿，尾巴扫过倾颓的石柱，知识就此代代延续。",
     "DESCRIPTIONS": [
-      "When an enemy’s intent differs from the previous turn, apply #b2 Lift to them."
+      "当敌人的意图与上一回合不同时，给予其 #b2 层 #y升力 。"
     ]
   },
   "Hoolheyak:StarryRevelation": {
-    "NAME": "Galleria Stellaria's Splendor",
-    "FLAVOR": "The sky of Tremon has been restored, but surely no one can forget the sight of it being torn apart.",
+    "NAME": "万星园之辉",
+    "FLAVOR": "特里蒙的天幕已经恢复如初，但想必没人能忘记它被撕开后的景象。",
     "DESCRIPTIONS": [
-      "At the start of elite or boss fights, apply Lift equal to half their #yGravity to all enemies."
+      "精英或首领战开始时，给予所有敌人等同于其一半 #y重力 的 #y升力 。"
     ]
   },
   "Hoolheyak:PureWaterSpriteAssist": {
-    "NAME": "Pure Water Elf Assistance",
-    "FLAVOR": "\"Just this once, I promise.\"",
+    "NAME": "纯水精灵的协助",
+    "FLAVOR": "“事先说好，仅限这一次。”",
     "DESCRIPTIONS": [
-      "At the start of combat, summon #b1 Shapeshifter with #b16 HP. While alive, enemies are forced to attack it. It respawns at full HP #b3 turns after death."
+      "战斗开始时，召唤 #b1 个拥有 #b16 点生命的流形。流形存活时敌人强制攻击它。流形死亡 #b3 回合后满血复活。"
+    ]
+  },
+  "Hoolheyak:FailedExperimentProduct": {
+    "NAME": "实验失败的产物",
+    "FLAVOR": "...看起来不能吃。",
+    "DESCRIPTIONS": [
+      "恭喜你！你的实验失败了 #r",
+      " 次。"
     ]
   }
 }
