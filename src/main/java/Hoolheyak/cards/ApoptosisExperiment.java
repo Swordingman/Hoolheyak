@@ -19,15 +19,16 @@ import java.util.ArrayList;
 public class ApoptosisExperiment extends BaseCard implements IVariableCard {
     public static final String ID = makeID("ApoptosisExperiment");
     private static final int COST = 1;
-    private static final int DAMAGE = 5;
-    private static final int UPGRADE_PLUS_DMG = 2;
-    private static final int MAGIC = 2; // 升力
+    private static final int DAMAGE = 12;
+    private static final int UPGRADE_PLUS_DMG = 3;
+    private static final int MAGIC = 4; // 升力
     private static final int UPGRADE_PLUS_MAGIC = 1;
-    private static final int DECONSTRUCTION = 8;
+    private static final int DECONSTRUCTION = 15;
     private static final int DECONSTRUCTION_UPG = 2;
 
     public ApoptosisExperiment() {
         super(ID, new CardStats(Hoolheyak.Meta.CARD_COLOR, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY, COST));
+        this.exhaust = true;
         setDamage(DAMAGE, UPGRADE_PLUS_DMG);
         setMagic(MAGIC, UPGRADE_PLUS_MAGIC);
         setCustomVar("DECONSTRUCTION", DECONSTRUCTION, DECONSTRUCTION_UPG);

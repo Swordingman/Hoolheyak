@@ -1,5 +1,7 @@
 package Hoolheyak.cards;
 
+import Hoolheyak.actions.RepeatAction;
+import Hoolheyak.actions.TriggerKeywordAction;
 import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.powers.EruditionPower;
 import Hoolheyak.powers.MeanderPower;
@@ -12,13 +14,14 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
+
 public class Wingblade extends BaseCard {
     public static final String ID = makeID("Wingblade");
 
     private static final int COST = 1;
     private static final int DAMAGE = 9;
     private static final int UPGRADE_PLUS_DMG = 3;
-    private static final int MEANDER = 1;
 
     public Wingblade() {
         super(ID, new CardStats(
@@ -29,16 +32,19 @@ public class Wingblade extends BaseCard {
                 COST
         ));
         setDamage(DAMAGE, UPGRADE_PLUS_DMG);
-        setMagic(MEANDER);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        // 1. 造成基础伤害
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
 
-        if (p.hasPower(EruditionPower.POWER_ID)) {
-            if (p.getPower(EruditionPower.POWER_ID).amount == 4) {
-                addToBot(new ApplyPowerAction(p, p, new MeanderPower(p, magicNumber), magicNumber));
+        // 2. 检查博览触发条件，并确保当前卡牌不是被 RepeatAction 复制出来的临时卡（防止无限循环）
+        if (!this.purgeOnUse && p.hasPower(EruditionPower.POWER_ID)) {
+            int currentThreshold = TriggerKeywordAction.getThreshold(p, TriggerKeywordAction.KeywordType.ERUDITION);
+            if (p.getPower(EruditionPower.POWER_ID).amount >= currentThreshold) {
+                // 满足条件，将自身再次打出 1 次
+                addToBot(new RepeatAction(this, m, 1));
             }
         }
     }
@@ -46,8 +52,9 @@ public class Wingblade extends BaseCard {
     @Override
     public void triggerOnGlowCheck() {
         this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
-        if (com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.hasPower(EruditionPower.POWER_ID)) {
-            if (com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.getPower(EruditionPower.POWER_ID).amount == 4) {
+        if (player.hasPower(EruditionPower.POWER_ID)) {
+            int currentThreshold = TriggerKeywordAction.getThreshold(player, TriggerKeywordAction.KeywordType.ERUDITION);
+            if (player.getPower(EruditionPower.POWER_ID).amount >= currentThreshold) {
                 this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
             }
         }

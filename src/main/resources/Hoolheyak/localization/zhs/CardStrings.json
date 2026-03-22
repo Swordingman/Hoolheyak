@@ -207,11 +207,11 @@
   },
   "Hoolheyak:Cyclone": {
     "NAME": "气旋",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 博览 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 博览 。 NL 获得 !Hoolheyak:ANALYSIS! 层 解析 。"
   },
   "Hoolheyak:Wingblade": {
     "NAME": "翼刃",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果本牌触发了 博览 ，获得 !M! 逶迤 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果本牌触发了 博览 ，重复打出一次 。"
   },
   "Hoolheyak:EntropyIncrease": {
     "NAME": "熵增",
@@ -331,7 +331,7 @@
   },
   "Hoolheyak:BaroclinicInstability": {
     "NAME": "斜压不稳",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 解构 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 解构 。 NL 给予 !Hoolheyak:LIFT! 层 升力 。"
   },
   "Hoolheyak:Deepthink": {
     "NAME": "深思",
@@ -351,7 +351,7 @@
   },
   "Hoolheyak:ApoptosisExperiment": {
     "NAME": "凋亡实验",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予目标 变量 ： NL !M! 层 升力 ； NL !Hoolheyak:DECONSTRUCTION! 层 解构 。",
+    "DESCRIPTION": "消耗 。 NL 造成 !D! 点伤害。 NL 给予目标 变量 ： NL !M! 层 升力 ； NL !Hoolheyak:DECONSTRUCTION! 层 解构 。",
     "EXTENDED_DESCRIPTION": [
       "给予 !M! 层 升力 ",
       "给予 !Hoolheyak:DECONSTRUCTION! 层 解构 "

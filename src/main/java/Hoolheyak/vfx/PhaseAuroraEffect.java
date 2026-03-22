@@ -112,9 +112,11 @@ public class PhaseAuroraEffect extends AbstractGameEffect {
     public void render(SpriteBatch sb) {
         // 1. 绘制暗场
         if (this.alpha > 0) {
-            sb.setBlendFunction(770, 771);
-            sb.setColor(new Color(0f, 0f, 0f, 0.4f * (this.alpha / this.maxAlpha)));
-            sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0, 0, Settings.WIDTH, Settings.HEIGHT);
+            if (!this.isFadingOut) {
+                sb.setBlendFunction(770, 771);
+                sb.setColor(new Color(0f, 0f, 0f, 0.4f * (this.alpha / this.maxAlpha)));
+                sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0, 0, Settings.WIDTH, Settings.HEIGHT);
+            }
 
             // 2. 绘制扇形光柱
             sb.setBlendFunction(770, 1);

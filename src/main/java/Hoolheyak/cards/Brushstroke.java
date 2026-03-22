@@ -14,7 +14,7 @@ public class Brushstroke extends BaseCard {
     public static final String ID = makeID("Brushstroke");
 
     private static final int COST = 0;
-    private static final int DAMAGE = 3;
+    private static final int DAMAGE = 4;
     private static final int UPGRADE_PLUS_DMG = 1;
     private static final int MAGIC = 1;
     private static final int UPGRADE_PLUS_MAGIC = 1;

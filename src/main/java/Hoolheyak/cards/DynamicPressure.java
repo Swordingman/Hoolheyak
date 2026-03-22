@@ -15,8 +15,8 @@ public class DynamicPressure extends BaseCard {
     private static final int COST = 1;
     private static final int DAMAGE = 5;
     private static final int UPGRADE_PLUS_DMG = 1;
-    private static final int MAGIC = 1; // 抽 1 张
-    private static final int UPGRADE_PLUS_MAGIC = 1; // 升级变 2 张
+    private static final int MAGIC = 2;
+    private static final int UPGRADE_PLUS_MAGIC = 1;
 
     public DynamicPressure() {
         super(ID, new CardStats(

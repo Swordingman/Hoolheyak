@@ -12,7 +12,7 @@ public class OppositionPower extends BasePower {
     public static final String POWER_ID = HoolheyakMod.makeID("Opposition");
 
     public OppositionPower(AbstractCreature owner) {
-        super(POWER_ID, PowerType.DEBUFF, false, owner, -1);
+        super(POWER_ID, PowerType.BUFF, false, owner, -1);
     }
 
     @Override

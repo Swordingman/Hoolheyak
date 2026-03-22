@@ -35,8 +35,8 @@ public class MutagenesisExperiment extends BaseCard implements IVariableCard {
 
     // 调整为1费，打15
     private static final int COST = 1;
-    private static final int DAMAGE = 15;
-    private static final int UPGRADE_PLUS_DMG = 5;
+    private static final int DAMAGE = 12;
+    private static final int UPGRADE_PLUS_DMG = 3;
 
     private static final UIStrings energyNoticeUI = CardCrawlGame.languagePack.getUIString("Hoolheyak:EnergyNoticeUI");
     public static final String[] TEXT = energyNoticeUI.TEXT;

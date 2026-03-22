@@ -46,12 +46,18 @@ public class PhaseManager {
         AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
             @Override
             public void update() {
+                for (AbstractGameEffect effect : AbstractDungeon.effectList) {
+                    if (effect instanceof PhaseAuroraEffect) {
+                        ((PhaseAuroraEffect) effect).forceFadeOut();
+                    }
+                }
+
                 for (AbstractGameEffect effect : AbstractDungeon.effectsQueue) {
                     if (effect instanceof PhaseAuroraEffect) {
                         ((PhaseAuroraEffect) effect).forceFadeOut();
                     }
                 }
-                // 保险起见，顶层特效队列也遍历一遍
+
                 for (AbstractGameEffect effect : AbstractDungeon.topLevelEffects) {
                     if (effect instanceof PhaseAuroraEffect) {
                         ((PhaseAuroraEffect) effect).forceFadeOut();
