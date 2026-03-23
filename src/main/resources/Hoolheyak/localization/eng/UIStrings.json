@@ -8,7 +8,7 @@
   },
   "Hoolheyak:RecursiveRewards": {
     "TEXT": [
-      "Recursive Rewards",
+      "Experiment Product",
       "Choose a card to add to your deck"
     ]
   },
@@ -22,13 +22,30 @@
   "Hoolheyak:VariableActionUI": {
     "TEXT": [
       "Variable ",
-      "Star Map Projection",
-      "Spend 1 Energy to get *ALL !!!"
+      "Special Variable",
+      "Spend 1 Energy, gain *ALL!!!"
     ]
   },
   "Hoolheyak:EnergyNoticeUI": {
     "TEXT": [
-      "I don't have enough energy!"
+      "I don't have enough Energy!"
+    ]
+  },
+  "Hoolheyak:PhaseQuotes": {
+    "TEXT": [
+      "The starlight flickers, even the gentle breeze guides your way. NL #bHarmonious #bAspect #b— #bSextile ",
+      "Fate is never stingy with its favor, as long as you know how to listen. NL #bHarmonious #bAspect #b— #bTrine ",
+      "All things become one, the intersection of trajectories is the destination. NL #gNeutral #gAspect #g— #gConjunction ",
+      "There are always secrets hidden in the corner of your eye. NL #gNeutral #gAspect #g— #gQuincunx ",
+      "Friction generates heat, but also pain. Watch your balance. NL #rChallenging #rAspect #r— #rSquare ",
+      "The me in the mirror is also a nemesis. After the collision, who will survive? NL #rChallenging #rAspect #r— #rOpposition "
+    ]
+  },
+  "Hoolheyak:StargazingActionUI": {
+    "TEXT": [
+      "Choose the cards to process.",
+      "Discard them.",
+      "Place them at the bottom of the draw pile."
     ]
   }
 }

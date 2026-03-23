@@ -2,6 +2,7 @@
   {
     "PROPER_NAME": "Analysis",
     "NAMES": [
+      "Analysis",
       "analysis"
     ],
     "DESCRIPTION": "A value used to enhance specific effects."
@@ -9,48 +10,55 @@
   {
     "PROPER_NAME": "Meander",
     "NAMES": [
+      "Meander",
       "meander"
     ],
-    "DESCRIPTION": "For every 5 Skills played (default on normal difficulty), deal 3 damage to a random enemy and apply 1 Lift (Triggers a number of times equal to your Analysis)."
+    "DESCRIPTION": "Whenever you play 5 Skill cards (default on standard difficulty), deals 3 damage to a random enemy and applies 1 Lift (triggers a number of times equal to Analysis)."
   },
   {
     "PROPER_NAME": "Erudition",
     "NAMES": [
+      "Erudition",
       "erudition"
     ],
-    "DESCRIPTION": "For every 4 Attacks played (default on normal difficulty), deal damage to a random enemy equal to your Analysis, and apply 1 Lift (Triggers 4 times)."
+    "DESCRIPTION": "Whenever you play 4 Attack cards (default on standard difficulty), deals damage to a random enemy equal to Analysis, and applies 1 Lift (triggers 4 times)."
   },
   {
     "PROPER_NAME": "Gravity",
     "NAMES": [
+      "Gravity",
       "gravity"
     ],
-    "DESCRIPTION": "An innate property of enemies, equal to 10% of their Max HP (rounded down). When Lift reaches this value, triggers Levitate."
+    "DESCRIPTION": "An inherent attribute of enemies, equal to 10% of their Max HP (rounded down). When Lift reaches this value, triggers Levitate."
   },
   {
     "PROPER_NAME": "Lift",
     "NAMES": [
+      "Lift",
       "lift"
     ],
-    "DESCRIPTION": "When stacks reach the target's Gravity, clears all stacks and triggers Levitate."
+    "DESCRIPTION": "When its stacks reach Gravity, clears all stacks and triggers Levitate."
   },
   {
     "PROPER_NAME": "Levitate",
     "NAMES": [
+      "Levitate",
       "levitate"
     ],
-    "DESCRIPTION": "Loses all Block and gains 20 Deconstruction. Damage taken is increased by 50% and damage dealt is decreased by 70%. NL At the end of the turn, takes (Gravity + Lift) × 2 damage, then removes this status and clears all Lift."
+    "DESCRIPTION": "Lose all Block and gain 20 Deconstruction. Damage taken is increased by 50%, and damage dealt is reduced by 70%. NL At the end of the turn, takes (Gravity + Lift) × 2 damage, then removes this status and clears Lift."
   },
   {
     "PROPER_NAME": "Weightless",
     "NAMES": [
+      "Weightless",
       "weightless"
     ],
-    "DESCRIPTION": "Lift gained is doubled. At the end of the turn, reduces stacks by 1."
+    "DESCRIPTION": "Lift gained is doubled. At the end of the turn, loses 1 stack."
   },
   {
     "PROPER_NAME": "Variable",
     "NAMES": [
+      "Variable",
       "variable"
     ],
     "DESCRIPTION": "When played, choose one effect to activate."
@@ -58,40 +66,41 @@
   {
     "PROPER_NAME": "Deconstruction",
     "NAMES": [
+      "Deconstruction",
       "deconstruction"
     ],
-    "DESCRIPTION": "When gaining Block, consumes an equal number of stacks to offset the Block gained."
+    "DESCRIPTION": "Whenever you gain Block, consumes an equal number of stacks to negate the Block gained."
   },
   {
-    "PROPER_NAME": "Aspect",
+    "PROPER_NAME": "Aspects",
     "NAMES": [
-      "aspects",
-      "aspect"
+      "Aspects",
+      "aspects"
     ],
-    "DESCRIPTION": "Global field effect. Triggering a new Aspect replaces the existing one. Only 1 can be active at a time."
+    "DESCRIPTION": "A global field effect. Triggering a new Aspect will replace the existing one. Only 1 can exist at a time."
   },
   {
-    "PROPER_NAME": "Harmonious Aspect",
+    "PROPER_NAME": "Harmonious Aspects",
     "NAMES": [
-      "harmonious aspects",
-      "harmonious aspect"
+      "Harmonious Aspects",
+      "harmonious aspects"
     ],
-    "DESCRIPTION": "Aspects that tend to provide positive buffs or combo opportunities."
+    "DESCRIPTION": "Aspects that lean towards providing positive buffs or combo opportunities."
   },
   {
-    "PROPER_NAME": "Challenging Aspect",
+    "PROPER_NAME": "Challenging Aspects",
     "NAMES": [
-      "challenging aspects",
-      "challenging aspect"
+      "Challenging Aspects",
+      "challenging aspects"
     ],
-    "DESCRIPTION": "Aspects accompanied by severe negative penalties or extremely high risks."
+    "DESCRIPTION": "Aspects accompanied by severe negative penalties or extreme risks."
   },
   {
-    "PROPER_NAME": "Neutral Aspect",
+    "PROPER_NAME": "Neutral Aspects",
     "NAMES": [
-      "neutral aspects",
-      "neutral aspect"
+      "Neutral Aspects",
+      "neutral aspects"
     ],
-    "DESCRIPTION": "Aspects that have double-edged sword effects or can alter basic gameplay mechanics."
+    "DESCRIPTION": "Aspects with double-edged effects, or that are capable of altering fundamental mechanic rules."
   }
 ]

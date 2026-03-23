@@ -27,11 +27,6 @@ public class Bibliotheca extends BaseRelic {
         this.flash();
 
         // 给玩家施加 2 层解析
-        addToBot(new ApplyPowerAction(
-                AbstractDungeon.player,
-                AbstractDungeon.player,
-                new AnalysisPower(AbstractDungeon.player, 2),
-                2
-        ));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new AnalysisPower(AbstractDungeon.player, 2), 2));
     }
 }

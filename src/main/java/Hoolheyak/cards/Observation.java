@@ -13,7 +13,6 @@ public class Observation extends BaseCard {
     private static final int COST = 1;
     private static final int UPGRADED_COST = 0;
     private static final int DRAW_AMT = 1;
-    private static final int ENERGY_AMT = 1;
 
     public Observation() {
         super(ID, new CardStats(
@@ -25,12 +24,11 @@ public class Observation extends BaseCard {
         ));
         setCostUpgrade(UPGRADED_COST);
         setMagic(DRAW_AMT);
-        setCustomVar("ENERGY", ENERGY_AMT);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DrawCardAction(p, magicNumber));
-        addToBot(new GainEnergyAction(customVar("ENERGY")));
+        addToBot(new GainEnergyAction(1));
     }
 }

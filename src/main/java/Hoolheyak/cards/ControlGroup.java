@@ -20,8 +20,8 @@ public class ControlGroup extends BaseCard {
     public static final String ID = makeID("ControlGroup");
 
     public ControlGroup() {
-        super(ID, 1, CardType.ATTACK, CardTarget.ENEMY, CardRarity.COMMON, Hoolheyak.Meta.CARD_COLOR);
-        setDamage(5, 3);
+        super(ID, 1, CardType.ATTACK, CardTarget.ENEMY, CardRarity.BASIC, Hoolheyak.Meta.CARD_COLOR);
+        setDamage(6, 3);
         setMagic(1);
 
         this.tags.add(CustomTags.HOOLHEYAK_VARIABLE);

@@ -137,7 +137,6 @@ public class HoolheyakMod implements
         );
 
         BaseMod.addEvent(new AddEventParams.Builder(IntersectionEvent.ID, IntersectionEvent.class)
-                .dungeonID(Exordium.ID)
                 .playerClass(Hoolheyak.Meta.HOOLHEYAK)
                 .create());
 
@@ -147,7 +146,7 @@ public class HoolheyakMod implements
                 .create());
 
         BaseMod.addEvent(new AddEventParams.Builder(WaterLikeShapeEvent.ID, WaterLikeShapeEvent.class)
-                .dungeonID(TheCity.ID)
+                .dungeonIDs(TheCity.ID, TheBeyond.ID)
                 .playerClass(Hoolheyak.Meta.HOOLHEYAK)
                 .create());
 
@@ -265,6 +264,7 @@ public class HoolheyakMod implements
         BaseMod.addRelic(new BeautifulHistoryBook(), RelicType.SHARED);
         BaseMod.addRelic(new AstronomicalTelescope(), RelicType.SHARED);
         BaseMod.addRelic(new BottledCloud(), RelicType.SHARED);
+        BaseMod.addRelic(new EyesOfPriestess(), RelicType.SHARED);
     }
 
     @Override

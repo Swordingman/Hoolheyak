@@ -32,11 +32,11 @@ public class HoolheyakPresetHelper {
                         Strike.ID,
                         Strike.ID,
                         Strike.ID,
-                        Strike.ID,
                         Defend.ID,
                         Defend.ID,
                         Defend.ID,
                         Defend.ID,
+                        ControlGroup.ID,
                         FeatherStrike.ID,
                         Linger.ID
                 },

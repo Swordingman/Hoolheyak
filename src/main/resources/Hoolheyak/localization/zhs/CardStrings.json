@@ -13,7 +13,7 @@
   },
   "Hoolheyak:Linger": {
     "NAME": "盘亘",
-    "DESCRIPTION": "获得 !B! 层 格挡 。 NL 抽 !M! 张牌。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 查看牌堆顶的 !M! 张牌， NL 选择至多 !M! 张卡， 变量 ： NL 弃掉它们 ； NL 将它们置于抽牌堆底部。 NL 抽 !Hoolheyak:DRAW! 张牌。"
   },
   "Hoolheyak:ControlGroup": {
     "NAME": "对照组",
@@ -54,7 +54,7 @@
   },
   "Hoolheyak:WindShear": {
     "NAME": "切变",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 再次打出本牌。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 额外打出一次。"
   },
   "Hoolheyak:Turbulence": {
     "NAME": "湍流",
@@ -91,7 +91,7 @@
   },
   "Hoolheyak:MadWords": {
     "NAME": "博览者的狂语",
-    "DESCRIPTION": "造成 !D! 点伤害，给予 !Hoolheyak:LIFT! 层 升力 。 NL 重复打出 !M! 次。"
+    "DESCRIPTION": "造成 !D! 点伤害，给予 !Hoolheyak:LIFT! 层 升力 。 NL 额外打出 !M! 次。"
   },
   "Hoolheyak:CrossExperiment": {
     "NAME": "交叉实验",
@@ -115,7 +115,7 @@
   },
   "Hoolheyak:Observation": {
     "NAME": "观测",
-    "DESCRIPTION": "抽 !M! 张牌。 NL 获得 !Hoolheyak:ENERGY! 点 [E] 。"
+    "DESCRIPTION": "抽 !M! 张牌。 NL 获得 [E] 。"
   },
   "Hoolheyak:Footnote": {
     "NAME": "脚注",
@@ -123,7 +123,7 @@
   },
   "Hoolheyak:Tamper": {
     "NAME": "篡改",
-    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 如果本牌触发了 逶迤 ，再次打出本牌。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 如果本牌触发了 逶迤 ，额外打出一次。"
   },
   "Hoolheyak:ParameterCorrection": {
     "NAME": "参数修正",
@@ -162,12 +162,7 @@
   },
   "Hoolheyak:Stargazing": {
     "NAME": "观星",
-    "DESCRIPTION": "查看牌堆顶的 !M! 张牌。 NL 选择至多 3 张卡， 变量 ： NL 弃掉它们 ； NL 将它们置于抽牌堆底部。",
-    "EXTENDED_DESCRIPTION": [
-      "弃掉它们。",
-      "将它们置于抽牌堆底部。",
-      "选择你要修改的牌"
-    ]
+    "DESCRIPTION": "查看牌堆顶的 !M! 张牌， NL 选择至多 !M! 张卡， 变量 ： NL 弃掉它们 ； NL 将它们置于抽牌堆底部。"
   },
   "Hoolheyak:RecursiveExperiment": {
     "NAME": "递归实验",
@@ -211,7 +206,7 @@
   },
   "Hoolheyak:Wingblade": {
     "NAME": "翼刃",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果本牌触发了 博览 ，重复打出一次 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果本牌触发了 博览 ，额外打出一次 。"
   },
   "Hoolheyak:EntropyIncrease": {
     "NAME": "熵增",

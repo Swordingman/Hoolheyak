@@ -12,14 +12,30 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.SpeechBubble;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 
 public class PhaseManager {
     public static final String[] ALL_PHASE_IDS = {
             "Hoolheyak:Conjunction", "Hoolheyak:Quincunx", "Hoolheyak:Sextile",
             "Hoolheyak:Trine", "Hoolheyak:Square", "Hoolheyak:Opposition"
     };
+
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("Hoolheyak:PhaseQuotes");
+    public static String getQuote(String phaseId) {
+        switch (phaseId) {
+            case "Hoolheyak:Sextile":     return uiStrings.TEXT[0];
+            case "Hoolheyak:Trine":       return uiStrings.TEXT[1];
+            case "Hoolheyak:Conjunction": return uiStrings.TEXT[2];
+            case "Hoolheyak:Quincunx":    return uiStrings.TEXT[3];
+            case "Hoolheyak:Square":      return uiStrings.TEXT[4];
+            case "Hoolheyak:Opposition":  return uiStrings.TEXT[5];
+            default: return "";
+        }
+    }
 
     // 1. 纯粹的施加相位逻辑（供遗物和技能卡调用）
     public static void applyPhase(AbstractPower newPhasePower) {
@@ -42,7 +58,14 @@ public class PhaseManager {
         // 2. 挂上新相位的动作
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, newPhasePower));
 
-        // 3. 生成极光特效的动作 (确保在 ApplyPower 之后才执行)
+        String quote = getQuote(newPhasePower.ID);
+
+        // 3. 生成提示词
+        if (!quote.isEmpty()) {
+            AbstractDungeon.effectList.add(new SpeechBubble(p.dialogX, p.dialogY, 5.0f, quote, true));
+        }
+
+        // 4. 生成极光特效的动作 (确保在 ApplyPower 之后才执行)
         AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
             @Override
             public void update() {

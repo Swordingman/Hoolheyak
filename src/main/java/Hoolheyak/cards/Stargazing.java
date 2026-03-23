@@ -1,5 +1,6 @@
 package Hoolheyak.cards;
 
+import Hoolheyak.actions.StargazingAction;
 import Hoolheyak.actions.VariableAction;
 import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.util.CardStats;
@@ -21,10 +22,8 @@ import java.util.function.Consumer;
 public class Stargazing extends BaseCard implements IVariableCard {
     public static final String ID = makeID("Stargazing");
 
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-
     private static final int COST = 0;
-    private static final int MAGIC = 3; // 看3张
+    private static final int MAGIC = 3; // 基础看3张
     private static final int UPGRADE_PLUS_MAGIC = 2; // 升级看5张
 
     public Stargazing() {
@@ -40,136 +39,22 @@ public class Stargazing extends BaseCard implements IVariableCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        // 如果抽牌堆为空但弃牌堆有牌，先洗牌
         if (p.drawPile.isEmpty() && !p.discardPile.isEmpty()) {
             addToBot(new EmptyDeckShuffleAction());
         }
-        addToBot(new StargazingAction(this, this.magicNumber));
+
+        // 呼叫观星 Action：看 magicNumber 张，最多选 3 张
+        addToBot(new StargazingAction(this, this.magicNumber, this.magicNumber));
     }
 
-    // 2. 必须重写的接口方法：返回空列表，因为真正的选项在 StargazingAction 内部生成
     @Override
     public ArrayList<VariableAction.VariableChoice> getVariableChoices(AbstractPlayer p, AbstractMonster m, boolean isAutoTriggered) {
         return new ArrayList<>();
     }
 
-    // 3. 🚨 核心安全阀：严禁被自动触发！
     @Override
     public boolean canBeAutoTriggered() {
-        return false;
-    }
-
-    // 核心 Action
-    private static class StargazingAction extends AbstractGameAction {
-        private final AbstractCard sourceCard;
-        private final int lookAmount;
-        private final CardGroup tempGroup;
-
-        public StargazingAction(AbstractCard sourceCard, int lookAmount) {
-            this.sourceCard = sourceCard;
-            this.lookAmount = lookAmount;
-            this.actionType = ActionType.CARD_MANIPULATION;
-            this.duration = Settings.ACTION_DUR_FAST;
-            this.tempGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        }
-
-        @Override
-        public void update() {
-            // 第一阶段：从牌堆顶取出牌，并打开网格选择界面
-            if (this.duration == Settings.ACTION_DUR_FAST) {
-                AbstractPlayer p = AbstractDungeon.player;
-
-                int count = Math.min(this.lookAmount, p.drawPile.size());
-                if (count == 0) {
-                    this.isDone = true;
-                    return;
-                }
-
-                // 取出顶部的牌
-                for (int i = 0; i < count; i++) {
-                    tempGroup.addToBottom(p.drawPile.getNCardFromTop(i));
-                }
-                for (AbstractCard c : tempGroup.group) {
-                    p.drawPile.removeCard(c);
-                }
-
-                // 打开选择界面
-                // 假设 EXTENDED_DESCRIPTION[2] 是 "选择至多 3 张牌。"
-                String msg = Stargazing.cardStrings.EXTENDED_DESCRIPTION.length > 2 ?
-                        Stargazing.cardStrings.EXTENDED_DESCRIPTION[2] : "选择至多 3 张牌。";
-
-                AbstractDungeon.gridSelectScreen.open(tempGroup, 3, true, msg);
-
-                this.tickDuration();
-                return;
-            }
-
-            // 第二阶段：玩家选完牌，界面关闭后
-            if (!AbstractDungeon.isScreenUp) {
-                AbstractPlayer p = AbstractDungeon.player;
-                // 获取玩家选中的牌
-                ArrayList<AbstractCard> selected = new ArrayList<>(AbstractDungeon.gridSelectScreen.selectedCards);
-
-                // 1. 将没有被选中的牌放回抽牌堆顶部（倒序放回以保持原序）
-                for (int i = tempGroup.size() - 1; i >= 0; i--) {
-                    AbstractCard c = tempGroup.group.get(i);
-                    if (!selected.contains(c)) {
-                        p.drawPile.addToTop(c);
-                    }
-                }
-
-                // 清理选牌网格的缓存
-                AbstractDungeon.gridSelectScreen.selectedCards.clear();
-
-                // 2. 如果玩家确实选中了牌，才呼出变量选项处理它们
-                if (!selected.isEmpty()) {
-                    ArrayList<VariableAction.VariableChoice> choices = new ArrayList<>();
-
-                    // 选项 α：弃掉它们
-                    choices.add(new VariableAction.VariableChoice(Stargazing.cardStrings.EXTENDED_DESCRIPTION[0], () -> {
-                        for (int i = 0; i < selected.size(); i++) {
-                            AbstractCard c = selected.get(i);
-
-                            // 【动画关键1】赋予卡牌在屏幕中央的初始坐标，否则它没有起点可以飞
-                            c.current_x = Settings.WIDTH / 2.0F;
-                            c.current_y = Settings.HEIGHT / 2.0F;
-
-                            // 逻辑上：真正放入弃牌堆并触发弃牌效果
-                            p.discardPile.addToTop(c);
-                            c.triggerOnManualDiscard();
-
-                            // 【动画关键2】视觉上：呼叫底层灵魂动画，让它飞向弃牌堆
-                            c.shrink();
-                            c.darken(false);
-                            // true 表示 "仅视觉动画"，因为我们已经在上一行逻辑上把它放进弃牌堆了
-                            AbstractDungeon.getCurrRoom().souls.discard(c, true);
-                        }
-                    }));
-
-                    // 选项 β：置于抽牌堆底
-                    choices.add(new VariableAction.VariableChoice(Stargazing.cardStrings.EXTENDED_DESCRIPTION[1], () -> {
-                        for (int i = 0; i < selected.size(); i++) {
-                            AbstractCard c = selected.get(i);
-
-                            c.current_x = Settings.WIDTH / 2.0F;
-                            c.current_y = Settings.HEIGHT / 2.0F;
-
-                            // 逻辑上：真正放入抽牌堆底部
-                            p.drawPile.addToBottom(c);
-
-                            // 视觉上：呼叫底层灵魂动画，让它飞向抽牌堆
-                            c.shrink();
-                            c.darken(false);
-                            // 参数：(卡牌, 是否随机位置=false, 是否仅视觉动画=true)
-                            AbstractDungeon.getCurrRoom().souls.onToDeck(c, false, true);
-                        }
-                    }));
-
-                    // 把变量选择界面压入队列
-                    AbstractDungeon.actionManager.addToBottom(new VariableAction(this.sourceCard, choices));
-                }
-
-                this.isDone = true;
-            }
-        }
+        return false; // 严禁被自动触发
     }
 }
