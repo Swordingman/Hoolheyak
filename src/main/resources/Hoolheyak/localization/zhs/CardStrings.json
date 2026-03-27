@@ -78,8 +78,8 @@
   },
   "Hoolheyak:Coercion": {
     "NAME": "强压",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 若目标 浮空 ，使其摔落并获得 [E] 。",
-    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 若目标 浮空 ，使其摔落并获得 [E] [E] 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 若目标 浮空 ，使其摔落并获得相当于此次摔落伤害的 格挡 ，以及 [E] 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 若目标 浮空 ，使其摔落并获得相当于此次摔落伤害的 格挡 ，以及 [E] [E] 。"
   },
   "Hoolheyak:Surveying": {
     "NAME": "测绘",
@@ -326,7 +326,7 @@
   },
   "Hoolheyak:BaroclinicInstability": {
     "NAME": "斜压不稳",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 解构 。 NL 给予 !Hoolheyak:LIFT! 层 升力 。"
+    "DESCRIPTION": "对所有造成 !D! 点伤害， NL 给予 !M! 层 解构 ， NL 并给予 !Hoolheyak:LIFT! 层 升力 。"
   },
   "Hoolheyak:Deepthink": {
     "NAME": "深思",
@@ -439,5 +439,9 @@
   "Hoolheyak:PrePhase": {
     "NAME": "今夜星光闪闪",
     "DESCRIPTION": "天象开始变得 *混乱 ！ NL 初始获得 *狂乱星晷 。"
+  },
+  "Hoolheyak:PreFuture": {
+    "NAME": "未来战士",
+    "DESCRIPTION": " *战个未来！ NL 初始获得 *化学物X 。"
   }
 }

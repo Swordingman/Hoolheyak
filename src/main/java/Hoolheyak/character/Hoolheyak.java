@@ -93,7 +93,7 @@ public class Hoolheyak extends CustomPlayer {
         sr.setPremultipliedAlpha(true);
     }
 
-    private HoolheyakAnimHelper animHelper;
+    public HoolheyakAnimHelper animHelper;
 
     // --- Meta ---
     public static class Meta {

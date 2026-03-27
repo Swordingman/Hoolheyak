@@ -78,8 +78,8 @@
   },
   "Hoolheyak:Coercion": {
     "NAME": "Coercion",
-    "DESCRIPTION": "Deal !D! damage. NL If the target has Levitate, make them fall and gain [E].",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If the target has Levitate, make them fall and gain [E] [E]."
+    "DESCRIPTION": "Deal !D! damage. NL If the target has Levitate, make them fall and gain Block equal to the Fall damage, and [E].",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If the target has Levitate, make them fall and gain Block equal to the Fall damage, and [E] [E]."
   },
   "Hoolheyak:Surveying": {
     "NAME": "Surveying",
@@ -326,7 +326,7 @@
   },
   "Hoolheyak:BaroclinicInstability": {
     "NAME": "Baroclinic Instability",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Deconstruction. NL Apply !Hoolheyak:LIFT! Lift."
+    "DESCRIPTION": "Deal !D! damage, NL apply !M! Deconstruction, NL apply !Hoolheyak:LIFT! Lift to all enemies."
   },
   "Hoolheyak:Deepthink": {
     "NAME": "Deepthink",
@@ -437,7 +437,11 @@
     "DESCRIPTION": "Fill your starting deck with *Experiment cards! NL Start with *Star *Map *Projection."
   },
   "Hoolheyak:PrePhase": {
-    "NAME": "Starry Night",
+    "NAME": "Twinkle Twinkle Little Star",
     "DESCRIPTION": "The astronomical phenomena start to get *chaotic! NL Start with *Frenzied *Sundial."
+  },
+  "Hoolheyak:PreFuture": {
+    "NAME": "Xnake",
+    "DESCTIPTION": " *XXXnake~ NL Start with *Chemical *X."
   }
 }

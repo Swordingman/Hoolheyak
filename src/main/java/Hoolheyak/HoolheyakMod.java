@@ -152,9 +152,9 @@ public class HoolheyakMod implements
 
         BaseMod.addMonster(Muelsyse.ID + "_Encounter", Muelsyse.NAME, () -> new MonsterGroup(new Muelsyse(0.0F, 0.0F)));
 
-        BaseMod.addPotion(AntiGravityGel.class, Color.SKY.cpy(), Color.LIME, null, AntiGravityGel.POTION_ID);
-        BaseMod.addPotion(AstrolabeResidue.class, Color.GOLD, null, null, AstrolabeResidue.POTION_ID);
-        BaseMod.addPotion(ElixirOfEpiphany.class, Color.CHARTREUSE, Color.BLUE, null, ElixirOfEpiphany.POTION_ID);
+        BaseMod.addPotion(AntiGravityGel.class, Color.SKY.cpy(), Color.LIME, null, AntiGravityGel.POTION_ID, Hoolheyak.Meta.HOOLHEYAK);
+        BaseMod.addPotion(AstrolabeResidue.class, Color.GOLD, null, null, AstrolabeResidue.POTION_ID, Hoolheyak.Meta.HOOLHEYAK);
+        BaseMod.addPotion(ElixirOfEpiphany.class, Color.CHARTREUSE, Color.BLUE, null, ElixirOfEpiphany.POTION_ID, Hoolheyak.Meta.HOOLHEYAK);
 
         BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, null);
 
@@ -236,7 +236,7 @@ public class HoolheyakMod implements
     {
         return language.name().toLowerCase();
     }
-    private static final String defaultLanguage = "zhs"; // 默认语言为英语
+    private static final String defaultLanguage = "eng"; // 默认语言为英语
 
     public static final Map<String, KeywordInfo> keywords = new HashMap<>();
 
@@ -307,10 +307,17 @@ public class HoolheyakMod implements
     public void receiveEditKeywords() {
         Gson gson = new Gson();
 
-        String lang = Settings.language == Settings.GameLanguage.ZHS ? "zhs" : "eng";
+        // 1. 获取当前游戏语言的缩写（韩语在杀戮尖塔中是 "kor"）
+        String lang = getLangString();
         String path = HoolheyakMod.localizationPath(lang, "Keywords.json");
 
-        // 1. 改为使用你文件底部自带 PROPER_NAME 字段的 LocalKeyword 类
+        // 2. 检查该语言的 Keywords.json 是否存在，如果不存在则回退到默认语言 (zhs)
+        if (!Gdx.files.internal(path).exists()) {
+            lang = defaultLanguage;
+            path = HoolheyakMod.localizationPath(lang, "Keywords.json");
+        }
+
+        // 3. 读取并解析 JSON 文件
         LocalKeyword[] loaded = gson.fromJson(
                 Gdx.files.internal(path).readString(StandardCharsets.UTF_8.name()),
                 LocalKeyword[].class
@@ -318,7 +325,6 @@ public class HoolheyakMod implements
 
         if (loaded != null) {
             for (LocalKeyword k : loaded) {
-                // 2. 传入完整的 4 个参数，把 k.PROPER_NAME 作为标题传进去
                 BaseMod.addKeyword(
                         k.PROPER_NAME,
                         k.NAMES,
@@ -327,6 +333,7 @@ public class HoolheyakMod implements
             }
         }
     }
+
 
 
     @Override

@@ -5,6 +5,7 @@ import Hoolheyak.powers.LevitatePower;
 import Hoolheyak.util.CardStats;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -43,8 +44,12 @@ public class Coercion extends BaseCard {
             public void update() {
                 if (m != null && m.hasPower(LevitatePower.POWER_ID)) {
                     LevitatePower levitate = (LevitatePower) m.getPower(LevitatePower.POWER_ID);
-                    levitate.triggerFall();
+                    int fallDamage = levitate.triggerFall();
                     addToBot(new GainEnergyAction(magicNumber));
+
+                    if (fallDamage > 0) {
+                        addToBot(new GainBlockAction(p, p, fallDamage));
+                    }
                 }
                 this.isDone = true;
             }

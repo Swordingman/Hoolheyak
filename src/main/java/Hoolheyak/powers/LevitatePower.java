@@ -67,7 +67,7 @@ public class LevitatePower extends BasePower {
         return damage;
     }
 
-    public void triggerFall() {
+    public int triggerFall() {
         int gravityAmt = this.owner.hasPower(GravityPower.POWER_ID) ? this.owner.getPower(GravityPower.POWER_ID).amount : 0;
         int remainingLift = this.owner.hasPower(LiftPower.POWER_ID) ? this.owner.getPower(LiftPower.POWER_ID).amount : 0;
 
@@ -83,6 +83,8 @@ public class LevitatePower extends BasePower {
         if (this.owner.hasPower(LiftPower.POWER_ID)) {
             addToBot(new RemoveSpecificPowerAction(this.owner, this.source, LiftPower.POWER_ID));
         }
+
+        return damageAmt;
     }
 
     @Override
@@ -94,11 +96,19 @@ public class LevitatePower extends BasePower {
     public void update(int slot) {
         super.update(slot);
 
+        if (this.owner.isDying || this.owner.isDead || this.owner.halfDead) {
+            this.owner.drawY = baseY;
+            return;
+        }
+
         floatTimer += Gdx.graphics.getDeltaTime();
-
         float offset = MathUtils.sin(floatTimer * 2f) * 10f * Settings.scale;
-
         owner.drawY = baseY + 120f * Settings.scale + offset;
+    }
+
+    @Override
+    public void onDeath() {
+        this.owner.drawY = baseY;
     }
 
     @Override

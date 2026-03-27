@@ -25,10 +25,12 @@
     <!-- This information will be displayed in ModTheSpire, the modded launcher. -->
 
     <name>【明日方舟】 霍尔海雅 / Ho'olheyak</name>
-    <version>0.9.8</version>
+    <version>1.0.0</version>
     <!-- Avoid using \ in this description, as they can cause the description to fail to load. -->
     <!-- If you really want to use them, you'll need to "escape" them by putting another one in front, like \\ -->
-    <description>本 Mod 将《明日方舟》中的霍尔海雅带入了尖塔。</description>
+    <description>本 Mod 将《明日方舟》中的霍尔海雅带入了尖塔。 \n
+        霍尔海雅通过博览与逶迤的累计，实现升力与重力的博弈，让敌人在浮空的失控状态下走向灭亡。 \n
+        利用精妙的变量抉择与相位的转换，体验属于羽蛇的优雅与致命。</description>
 
     <!--You shouldn't need to change anything below this point, but feel free to look at it.-->
     <!--You'll get a warning regarding these when you package your mod, but don't worry, it's just set up like this for convenience.-->

@@ -50,6 +50,12 @@ public class LiftPower extends BasePower {
     public void checkLevitate() {
         if (this.owner.hasPower(LevitatePower.POWER_ID)) return;
 
+        // 给没有重力的目标加上重力
+        if (!this.owner.hasPower(GravityPower.POWER_ID)) {
+            addToTop(new ApplyPowerAction(this.owner, this.source, new GravityPower(this.owner)));
+            return;
+        }
+
         if (this.owner.hasPower(GravityPower.POWER_ID)) {
             int gravity = this.owner.getPower(GravityPower.POWER_ID).amount;
             if (this.amount >= gravity && gravity > 0) { // 加一个 gravity > 0 兜底，防止重力为 0 时报错

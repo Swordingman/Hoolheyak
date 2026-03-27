@@ -4,6 +4,7 @@ import Hoolheyak.actions.RepeatAction;
 import Hoolheyak.actions.TriggerKeywordAction;
 import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.powers.MeanderPower;
+import Hoolheyak.powers.phases.QuincunxPower;
 import Hoolheyak.util.CardStats;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -31,17 +32,37 @@ public class Tamper extends BaseCard {
         setBlock(BLOCK, UPGRADE_PLUS_BLOCK);
     }
 
+    // 辅助方法：判断打出这张牌会不会增加“逶迤”层数
+    private boolean willGainMeanderStack(AbstractPlayer p) {
+        // 默认情况下，技能牌会增加逶迤层数
+        boolean willGain = (this.type == AbstractCard.CardType.SKILL);
+
+        if (p.hasPower(QuincunxPower.POWER_ID)) {
+            willGain = (this.type == AbstractCard.CardType.ATTACK);
+        }
+
+        return willGain;
+    }
+
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        // 获得格挡
+        // 1. 获得基础格挡
         addToBot(new GainBlockAction(p, p, block));
 
-
-        // 如果玩家拥有逶迤，且层数为3（打出这张技能牌后刚好触发），则重复打出 1 次
-        if (p.hasPower(MeanderPower.POWER_ID)){
+        // 2. 预判“逶迤”触发条件
+        if (!this.purgeOnUse && p.hasPower(MeanderPower.POWER_ID)) {
             int currentThreshold = TriggerKeywordAction.getThreshold(p, TriggerKeywordAction.KeywordType.MEANDER);
-            if (p.getPower(MeanderPower.POWER_ID).amount >= currentThreshold) {
-                addToBot(new RepeatAction(this, m, 1));
+            int currentAmount = p.getPower(MeanderPower.POWER_ID).amount;
+
+            // 预判打出后的层数
+            int projectedAmount = currentAmount + (willGainMeanderStack(p) ? 1 : 0);
+
+            if (projectedAmount >= currentThreshold) {
+                // 满足条件！复制并额外打出一次。
+                // 同样，扣除层数的操作交给 MeanderPower 的 onUseCard / checkAndTrigger 去做
+                AbstractCard tmp = this.makeStatEquivalentCopy();
+                tmp.purgeOnUse = true;
+                addToBot(new com.megacrit.cardcrawl.actions.utility.NewQueueCardAction(tmp, m, false, true));
             }
         }
     }
@@ -49,13 +70,18 @@ public class Tamper extends BaseCard {
     // 提示框变黄的逻辑
     @Override
     public void triggerOnGlowCheck() {
-        this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy(); // 默认蓝框
+        this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
 
-        // 检查发光条件：玩家有逶迤，且层数刚好为3
-        if (player.hasPower(MeanderPower.POWER_ID)) {
-            int currentThreshold = TriggerKeywordAction.getThreshold(player, TriggerKeywordAction.KeywordType.MEANDER);
-            if (player.getPower(MeanderPower.POWER_ID).amount >= currentThreshold) {
-                this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy(); // 满足则金框
+        if (AbstractDungeon.player.hasPower(MeanderPower.POWER_ID)) {
+            AbstractPlayer p = AbstractDungeon.player;
+            int currentThreshold = TriggerKeywordAction.getThreshold(p, TriggerKeywordAction.KeywordType.MEANDER);
+            int currentAmount = p.getPower(MeanderPower.POWER_ID).amount;
+
+            // 同样使用预判逻辑，保证差1层满时就能提前发金光
+            int projectedAmount = currentAmount + (willGainMeanderStack(p) ? 1 : 0);
+
+            if (projectedAmount >= currentThreshold) {
+                this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
             }
         }
     }

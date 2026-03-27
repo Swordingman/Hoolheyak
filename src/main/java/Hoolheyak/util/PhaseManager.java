@@ -58,14 +58,7 @@ public class PhaseManager {
         // 2. 挂上新相位的动作
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, newPhasePower));
 
-        String quote = getQuote(newPhasePower.ID);
-
-        // 3. 生成提示词
-        if (!quote.isEmpty()) {
-            AbstractDungeon.effectList.add(new SpeechBubble(p.dialogX, p.dialogY, 5.0f, quote, true));
-        }
-
-        // 4. 生成极光特效的动作 (确保在 ApplyPower 之后才执行)
+        // 3. 生成极光特效的动作 (确保在 ApplyPower 之后才执行)
         AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
             @Override
             public void update() {
@@ -134,6 +127,13 @@ public class PhaseManager {
                 this.isDone = true;
             }
         });
+
+        String quote = getQuote(newPhasePower.ID);
+
+        // 4. 生成提示词
+        if (!quote.isEmpty()) {
+            AbstractDungeon.effectList.add(new SpeechBubble(p.dialogX, p.dialogY, 5.0f, quote, true));
+        }
     }
 
     // 2. 状态牌抽到时的逻辑（消耗卡牌 + 施加相位）

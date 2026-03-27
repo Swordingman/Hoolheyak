@@ -18,6 +18,8 @@ public class HoolheyakAnimHelper {
     // 如果霍尔海雅的 Spine 动画名字不一样，请在这里修改
     private static final String IDLE_NORMAL = "Idle";
     private static final String ATTACK_NORMAL = "Attack";
+    private static final String SKILL_3 = "Skill_3_Loop"; // 博览动画
+    private static final String SKILL_2 = "Skill_2_Loop"; // 逶迤动画
 
     public HoolheyakAnimHelper(AnimationState state, SkeletonData data) {
         this.state = state;
@@ -62,8 +64,38 @@ public class HoolheyakAnimHelper {
         }
     }
 
+    // 触发博览（播放一次）
+    public void playErudition() {
+        AnimationState.TrackEntry trackEntry = state.setAnimation(0, SKILL_3, false);
+        trackEntry.setTimeScale(1.5f);
+
+        state.addAnimation(0, IDLE_NORMAL, true, 0f);
+
+        this.currentIdleAnim = IDLE_NORMAL;
+
+        Animation animObj = data.findAnimation(SKILL_3);
+        if (animObj != null) {
+            this.animationLockTimer = animObj.getDuration() / 1.5f ;
+        } else {
+            this.animationLockTimer = 1.0f / 1.5f ;
+        }
+    }
+
+    // 触发逶迤开始（无限循环，直到手动停止）
+    public void playMeanderStart() {
+        state.setAnimation(0, SKILL_2, true); // loop = true
+        this.currentIdleAnim = SKILL_2;
+        // 设置一个极长的锁，防止 update 把它切回待机，直到我们手动结束它
+        this.animationLockTimer = 999.0f;
+    }
+
+    // 触发逶迤结束（清空锁，自动回到待机）
+    public void playMeanderEnd() {
+        this.animationLockTimer = 0.0f;
+        updateIdleStance();
+    }
+
     private void updateIdleStance() {
-        // 如果当前不在待机状态，则重置回待机
         if (!currentIdleAnim.equals(IDLE_NORMAL)) {
             state.setAnimation(0, IDLE_NORMAL, true);
             currentIdleAnim = IDLE_NORMAL;

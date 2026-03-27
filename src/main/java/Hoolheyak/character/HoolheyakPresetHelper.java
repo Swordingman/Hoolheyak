@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.relics.PrismaticShard;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 
@@ -101,6 +102,24 @@ public class HoolheyakPresetHelper {
                         Linger.ID
                 },
                 new String[]{FrenziedSundial.ID}
+                ),
+        FUTURE(4, "PreFuture", "Hoolheyak/images/cards/skill/FlyUp.png",
+                new String[]{
+                        Strike.ID,
+                        Strike.ID,
+                        Strike.ID,
+                        Strike.ID,
+                        Defend.ID,
+                        Defend.ID,
+                        Defend.ID,
+                        Defend.ID,
+                        FeatherStrike.ID,
+                        Linger.ID,
+                        MassOffset.ID,
+                        FlyUp.ID,
+                        ChimeraExperiment.ID
+                },
+                new String[]{ChemicalX.ID}
                 )
         ;
         public final int index;
@@ -153,6 +172,7 @@ public class HoolheyakPresetHelper {
             presetCards.put(PresetLevel.UNIVERSE, new PresetOptionCard(PresetLevel.UNIVERSE));
             presetCards.put(PresetLevel.VARIABLE, new PresetOptionCard(PresetLevel.VARIABLE));
             presetCards.put(PresetLevel.PHASE, new PresetOptionCard(PresetLevel.PHASE));
+            presetCards.put(PresetLevel.FUTURE, new PresetOptionCard(PresetLevel.FUTURE));
         }
     }
 

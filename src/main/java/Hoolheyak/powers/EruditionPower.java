@@ -3,6 +3,7 @@ package Hoolheyak.powers;
 import Hoolheyak.HoolheyakMod;
 import Hoolheyak.actions.TriggerKeywordAction;
 import Hoolheyak.cards.ContingencyPlan;
+import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.powers.phases.QuincunxPower;
 import Hoolheyak.powers.phases.SextilePower;
 import Hoolheyak.util.CustomTags;
@@ -68,7 +69,17 @@ public class EruditionPower extends BasePower {
 
             // 应用翻倍效果
             int finalDamage = x * multiplier;
-            int finalLift = 1 * multiplier;
+            int finalLift = multiplier;
+
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    if (AbstractDungeon.player instanceof Hoolheyak) {
+                        ((Hoolheyak) AbstractDungeon.player).animHelper.playErudition();
+                    }
+                    this.isDone = true;
+                }
+            });
 
             for (int i = 0; i < 4; i++) {
                 addToBot(new AbstractGameAction() {

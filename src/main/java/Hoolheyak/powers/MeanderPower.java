@@ -4,6 +4,7 @@ import Hoolheyak.HoolheyakMod;
 import Hoolheyak.actions.TriggerKeywordAction;
 import Hoolheyak.cards.ContingencyPlan;
 import Hoolheyak.cards.phases.QuincunxCard;
+import Hoolheyak.character.Hoolheyak;
 import Hoolheyak.powers.phases.QuincunxPower;
 import Hoolheyak.powers.phases.SextilePower;
 import Hoolheyak.util.CustomTags;
@@ -49,7 +50,7 @@ public class MeanderPower extends BasePower {
     }
 
     private void checkAndTrigger() {
-        int threshold = Hoolheyak.actions.TriggerKeywordAction.getThreshold(this.owner, TriggerKeywordAction.KeywordType.MEANDER);
+        int threshold = TriggerKeywordAction.getThreshold(this.owner, TriggerKeywordAction.KeywordType.MEANDER);
         int multiplier = 1;
 
         if (this.owner.hasPower(KukulkanLegacyPower.POWER_ID)) {
@@ -64,7 +65,17 @@ public class MeanderPower extends BasePower {
             int x = this.owner.hasPower(AnalysisPower.POWER_ID) ? this.owner.getPower(AnalysisPower.POWER_ID).amount : 0;
 
             int finalDamage = 3 * multiplier;
-            int finalLift = 1 * multiplier;
+            int finalLift = multiplier;
+
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    if (AbstractDungeon.player instanceof Hoolheyak) {
+                        ((Hoolheyak) AbstractDungeon.player).animHelper.playMeanderStart();
+                    }
+                    this.isDone = true;
+                }
+            });
 
             for (int i = 0; i < x; i++) {
                 addToBot(new AbstractGameAction() {
@@ -79,6 +90,16 @@ public class MeanderPower extends BasePower {
                     }
                 });
             }
+
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    if (AbstractDungeon.player instanceof Hoolheyak) {
+                        ((Hoolheyak) AbstractDungeon.player).animHelper.playMeanderEnd();
+                    }
+                    this.isDone = true;
+                }
+            });
 
             if (AbstractDungeon.player.hasPower(ForbiddenKnowledgeMeaPower.POWER_ID)) {
                 ForbiddenKnowledgeMeaPower power = (ForbiddenKnowledgeMeaPower) AbstractDungeon.player.getPower(ForbiddenKnowledgeMeaPower.POWER_ID);
