@@ -326,7 +326,7 @@
   },
   "Hoolheyak:BaroclinicInstability": {
     "NAME": "斜压不稳",
-    "DESCRIPTION": "对所有造成 !D! 点伤害， NL 给予 !M! 层 解构 ， NL 并给予 !Hoolheyak:LIFT! 层 升力 。"
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害， NL 给予 !M! 层 解构 ， NL 并给予 !Hoolheyak:LIFT! 层 升力 。"
   },
   "Hoolheyak:Deepthink": {
     "NAME": "深思",

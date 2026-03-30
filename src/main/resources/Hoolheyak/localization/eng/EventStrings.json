@@ -11,10 +11,10 @@
   "Hoolheyak:IntersectionOfPastAndPresent": {
     "NAME": "Intersection of Past and Present",
     "DESCRIPTIONS": [
-      "The sound of scraping metal comes from behind you, followed by that signature male voice. NL \"#r@Hoolheyak,@ #r@traitor.@ #r@Did@ #r@you@ #r@come@ #r@to@ #r@this@ #r@Spire@ #r@just@ #r@to@ #r@satisfy@ #r@your@ #r@ridiculous@ #r@thirst@ #r@for@ #r@knowledge?@\" NL It is the #yTin #yMan. Given your past encounters, you know full well that clashing with him will only put you at a disadvantage.",
-      "\"#g~Oh~ #g~my,~ #g~if~ #g~it~ #g~isn't~ #g~Mr.~ #g~Tin~ #g~Man.~ #g~What~ #g~a~ #g~pleasure.~ #g~To~ #g~tell~ #g~you~ #g~the~ #g~truth,~ #g~I~ #g~am~ #g~indeed~ #g~here~ #g~to~ #g~study~ #g~this~ #g~tower.~\" NL \"#r@In@ #r@that@ #r@case,@ #r@you@ #r@should@ #r@be@ #r@careful.@ #r@This@ #r@place@ #r@is@ #r@not@ #r@that@ #r@safe.@\" NL He shares some of his belongings with you. You then part ways.",
-      "\"#g~I~ #g~am~ #g~a~ #g~historian,~ #g~isn't~ #g~research~ #g~my~ #g~very~ #g~job?~\" NL \"#r@It@ #r@seems@ #r@you@ #r@still@ #r@haven't@ #r@learned@ #r@your@ #r@lesson@ #r@from@ #r@our@ #r@last@ #r@encounter.@ #r@I@ #r@thought@ #r@you@ #r@would@ #r@be@ #r@slightly@ #r@smarter.@\" NL As soon as his words fall, you feel your heart being #r@gripped@ for a moment. By the time you recover, he is gone.",
-      "\"#g~As~ #g~you~ #g~can~ #g~see,~ #g~Mr.~ #g~Tin~ #g~Man.~ #g~I~ #g~believe~ #g~you~ #g~surely~ #g~wouldn't~ #g~leave~ #g~a~ #g~former~ #g~colleague~ #g~to~ #g~die,~ #g~right?~\" NL \"#r@Hmph,@ #r@smooth@ #r@talker.@ #r@In@ #r@a@ #r@place@ #r@like@ #r@this,@ #r@you@ #r@should@ #r@have@ #r@been@ #r@more@ #r@careful.@\" NL He shoves two potions into your hands. You then part ways."
+      "The sound of scraping metal comes from behind you, followed by that signature male voice. NL \" #rHoolheyak, #rtraitor. #rDid #ryou #rcome #rto #rthis #rSpire #rjust #rto #rsatisfy #ryour #rridiculous #rthirst #rfor #rknowledge? \" NL It is the #yTin #yMan . Given your past encounters, you know full well that clashing with him will only put you at a disadvantage.",
+      "\" #g~Oh~ #g~my,~ #g~if~ #g~it~ #g~isn't~ #g~Mr.~ #g~Tin~ #g~Man.~ #g~What~ #g~a~ #g~pleasure.~ #g~To~ #g~tell~ #g~you~ #g~the~ #g~truth,~ #g~I~ #g~am~ #g~indeed~ #g~here~ #g~to~ #g~study~ #g~this~ #g~tower.~ \" NL \" #rIn #rthat #rcase, #ryou #rshould #rbe #rcareful. #rThis #rplace #ris #rnot #rthat #rsafe. \" NL He shares some of his belongings with you. You then part ways.",
+      "\" #g~I~ #g~am~ #g~a~ #g~historian,~ #g~isn't~ #g~research~ #g~my~ #g~very~ #g~job?~ \" NL \" #rIt #rseems #ryou #rstill #rhaven't #rlearned #ryour #rlesson #rfrom #rour #rlast #rencounter. #rI #rthought #ryou #rwould #rbe #rslightly #rsmarter. \" NL As soon as his words fall, you feel your heart being #r@gripped@ for a moment. By the time you recover, he is gone.",
+      "\" #g~As~ #g~you~ #g~can~ #g~see,~ #g~Mr.~ #g~Tin~ #g~Man.~ #g~I~ #g~believe~ #g~you~ #g~surely~ #g~wouldn't~ #g~leave~ #g~a~ #g~former~ #g~colleague~ #g~to~ #g~die,~ #g~right?~ \" NL \" #rHmph, #rsmooth #rtalker. #rIn #ra #rplace #rlike #rthis, #ryou #rshould #rhave #rbeen #rmore #rcareful. \" NL He shoves two potions into your hands. You then part ways."
     ],
     "OPTIONS": [
       "[Respond Politely] Gain #g50 Gold. Randomly #gUpgrade #b1 card.",
@@ -29,14 +29,14 @@
   "Hoolheyak:FalseDome": {
     "NAME": "False Dome",
     "DESCRIPTIONS": [
-      "You finally climbed to the heights of the #ySpire. Looking up, the ceiling is inlaid with countless shimmering, bizarre ores. They are arranged according to some precise mathematical law, masquerading as a brilliant starry sky in this endless darkness. NL You pause. This false dome reminds you of an old acquaintance, a mad pioneer, and that spaceship that broke through the barriers of #yTerra.",
-      "\"#g~May~ #g~your~ #g~soul~ #g~rest~ #g~in~ #g~peace~ #g~among~ #g~the~ #g~true~ #g~stars.~\"",
+      "You finally climbed to the heights of the #ySpire . Looking up, the ceiling is inlaid with countless shimmering, bizarre ores. They are arranged according to some precise mathematical law, masquerading as a brilliant starry sky in this endless darkness. NL You pause. This false dome reminds you of an old acquaintance, a mad pioneer, and that spaceship that broke through the barriers of #yTerra .",
+      "\" #g~May~ #g~your~ #g~soul~ #g~rest~ #g~in~ #g~peace~ #g~among~ #g~the~ #g~true~ #g~stars.~ \"",
       "You record the orbital laws of these forged stars in your mind; they confirm some of your previous hypotheses.",
       "The past is not worth mentioning, and the present likewise leads to the future."
     ],
     "OPTIONS": [
-      "[Remember the Pioneer] Obtain Relic: #yGalleria #yStellaria's #ySplendor.",
-      "[Analyze Trajectories] Choose #b3 cards in your deck to #gUpgrade.",
+      "[Remember the Pioneer] Obtain Relic: #yGalleria #yStellaria's #ySplendor .",
+      "[Analyze Trajectories] Choose #b3 cards in your deck to #gUpgrade .",
       "[Seek the Future] #rRemove all #rCurse cards from your deck.",
       "[Leave]",
       "(Not enough cards to Upgrade)"
@@ -45,15 +45,15 @@
   "Hoolheyak:WaterLikeShape": {
     "NAME": "Shape Like Water",
     "DESCRIPTIONS": [
-      "Clear water suddenly gushes from the cracks in the stone slabs beneath your feet. The stream swirls before you, gathering into an incredibly familiar figure. NL \"#b@What@ #b@a@ #b@surprise,@ #b@to@ #b@smell@ #b@that@ #b@disgusting@ #b@feather@ #b@stench@ #b@even@ #b@in@ #b@this@ #b@broken@ #b@tower.@\" You look towards the voice; it is #yMuelsyse. NL \"#g~Still~ #g~holding~ #g~a~ #g~grudge,~ #g~my~ #g~lovely~ #g~elf?~\" Before you can finish speaking, a blast of water rushes at you. You raise your staff to block the attack. NL \"#b@Since@ #b@no@ #b@one@ #b@can@ #b@see@ #b@us@ #b@in@ #b@this@ #b@Spire@ #b@anyway,@ #b@I@ #b@might@ #b@as@ #b@well@ #b@just@ #b@drown@ #b@you@ #b@right@ #b@here@ #b@and@ #b@stuff@ #b@you@ #b@into@ #b@a@ #b@defected@ #b@robot.@\"",
-      "You sigh, pull out an extremely precious document from your files, and hand it over: \"#g~Don't~ #g~be~ #g~so~ #g~angry.~ #g~A~ #g~valuable~ #g~trade~ #g~for~ #g~a~ #g~little~ #g~'assistance'~ #g~from~ #g~you,~ #g~how~ #g~about~ #g~it?~\" NL #yMuelsyse stares at the document for a moment before snatching it away. \"#b@...Fine,@ #b@this@ #b@is@ #b@mine@ #b@now.@\" She turns her head, her tone softening slightly, \"#b@Let's@ #b@get@ #b@one@ #b@thing@ #b@straight:@ #b@for@ #b@the@ #b@sake@ #b@of@ #b@the@ #b@gift,@ #b@I'll@ #b@spare@ #b@your@ #b@life@ #b@this@ #b@time,@ #b@feathered@ #b@serpent.@\"",
-      "\"#g~Oh~ #g~my,~ #g~speaking~ #g~of~ #g~defect,~\" you point to the ruins behind her, \"#g~look,~ #g~isn't~ #g~that~ #g~a~ #g~defected~ #g~robot~ #g~lying~ #g~by~ #g~the~ #g~road?~\" NL \"#b@What?@ #b@Where?@\" NL In the split second the elf turns to look, you lightly leap onto a high wall. Of course, as a qualified agent, you don't forget to conveniently \"borrow\" something from her before leaving.",
-      "\"#g~I~ #g~told~ #g~you,~ #g~I~ #g~don't~ #g~like~ #g~my~ #g~feathers~ #g~getting~ #g~wet.~\" NL You step over the now unconscious water elf, adjust your belongings, and continue onward."
+      "Clear water gushes from cracks beneath you, swirling into a familiar figure. NL \" #bWhat #ba #bdisgusting #bfeather #bstench, #beven #bin #bthis #bbroken #btower . \" You look towards the voice; it is #yMuelsyse . NL \" #g~Still~ #g~holding~ #g~a~ #g~grudge,~ #g~my~ #g~lovely~ #g~elf?~ \" Water blasts at you instantly. You raise your staff barely in time. NL \" #bSince #bwe're #balone, #bI'll #bjust #bdrown #byou #band #bstuff #byou #binto #ba #bdefected #brobot . \"",
+      "You sigh, pull out an extremely precious document from your files, and hand it over: \" #g~Don't~ #g~be~ #g~so~ #g~angry.~ #g~A~ #g~valuable~ #g~trade~ #g~for~ #g~a~ #g~little~ #g~'assistance'~ #g~from~ #g~you,~ #g~how~ #g~about~ #g~it?~ \" NL #yMuelsyse stares at the document for a moment before snatching it away. \" #b...Fine, #bthis #bis #bmine #bnow. \" She turns her head, her tone softening slightly, \" #bLet's #bget #bone #bthing #bstraight: #bfor #bthe #bsake #bof #bthe #bgift, #bI'll #bspare #byour #blife #bthis #btime, #bfeathered #bserpent. \"",
+      "\" #g~Oh~ #g~my,~ #g~speaking~ #g~of~ #g~defect,~ \" you point to the ruins behind her, \" #g~look,~ #g~isn't~ #g~that~ #g~a~ #g~defected~ #g~robot~ #g~lying~ #g~by~ #g~the~ #g~road?~ \" NL \" #bWhat? #bWhere? \" NL In the split second the elf turns to look, you lightly leap onto a high wall. Of course, as a qualified agent, you don't forget to conveniently \"borrow\" something from her before leaving.",
+      "\" #g~I~ #g~told~ #g~you,~ #g~I~ #g~don't~ #g~like~ #g~my~ #g~feathers~ #g~getting~ #g~wet.~ \" NL You step over the now unconscious water elf, adjust your belongings, and continue onward."
     ],
     "OPTIONS": [
-      "[Prepare for Battle] Enter a #rHard combat. Reward: #yRare Relic.",
+      "[Prepare for Battle] Enter a #rHard combat. Reward: #yRare #yRelic .",
       "[Propose Cooperation] Lose #r",
-      ". Obtain Relic: #yPure #yWater #yElf's #yAssistance.",
+      ". Obtain Relic: #yPure #yWater #yElf's #yAssistance .",
       "[Make an Excuse to Slip Away] Gain #b1 random #gCommon Relic.",
       "[Leave]",
       "(No cards in deck to trade)"

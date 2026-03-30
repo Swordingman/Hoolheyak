@@ -130,9 +130,25 @@ public class EnemyManifold extends AbstractMonster {
 
     @Override
     public void die() {
-        // 当 super.damage() 触发致死时，来到这里，此时 halfDead 还是 false
+        // 【新增最优先判定】：先看缪尔赛斯死了没
+        boolean bossAlive = false;
+        for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+            if (m.id.equals(Muelsyse.ID) && !m.isDead && !m.isDying) {
+                bossAlive = true;
+                break;
+            }
+        }
+
+        // 1. 如果缪尔赛斯已经挂了（或者正在死），流形没有任何理由假死，直接真死退场！
+        if (!bossAlive) {
+            this.halfDead = false; // 确保不会拦截原版死亡逻辑
+            super.die();
+            return; // 极其重要：直接 return 截断后面的假死逻辑，保证死得透透的
+        }
+
+        // 2. 缪尔赛斯还活着，走正常的假死与全灭判定逻辑
         if (!this.halfDead) {
-            // 【关键拦截】拦截掉 super.die()，不让它清空 powers
+            // 进入假死状态
             this.halfDead = true;
             this.isDead = false;
             this.isDying = false;
@@ -140,9 +156,10 @@ public class EnemyManifold extends AbstractMonster {
 
             this.playDeathAnimation();
 
+            // 检查是否有其他流形存活
             boolean otherManifoldsAlive = false;
             for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
-                // 注意排除自己
+                // 排除自己，找活着的流形
                 if (m instanceof EnemyManifold && !m.halfDead && !m.isDead && m != this) {
                     otherManifoldsAlive = true;
                     break;
@@ -150,21 +167,22 @@ public class EnemyManifold extends AbstractMonster {
             }
 
             if (!otherManifoldsAlive) {
-                // 如果其他流形全灭，一起死
+                // 如果其他流形全灭（全是假死状态），一起真死
                 for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
                     if (m instanceof EnemyManifold && m.halfDead) {
-                        m.halfDead = false;
-                        m.die(); // 这里会递归调用 die()，但此时 halfDead 为 false，会走下方的 else 分支彻底死亡
+                        m.die(); // 此时会进入底下的 else 分支，彻底死亡
                     }
                 }
             } else {
+                // 还有队友活着，开始读条复活
                 this.reviveTimer = 3;
                 this.setMove((byte) 3, Intent.UNKNOWN);
                 this.createIntent();
                 AbstractDungeon.effectList.add(new com.megacrit.cardcrawl.vfx.TextAboveCreatureEffect(this.hb.cX, this.hb.cY, "复活倒计时: 3", com.badlogic.gdx.graphics.Color.WHITE));
             }
         } else {
-            // 真正死亡时，才允许执行原版的清理和彻底退场逻辑
+            // 3. 彻底死亡的兜底分支 (halfDead 已经是 false，或者被机制要求强行处决)
+            this.halfDead = false;
             super.die();
         }
     }
@@ -180,18 +198,10 @@ public class EnemyManifold extends AbstractMonster {
             skeleton38.setColor(this.tint.color);
         }
 
-        // 倒计时复活逻辑（在回合开始更新）
-        if (this.halfDead && !this.isDead) {
-            if (AbstractDungeon.actionManager.turnHasEnded) {
-                // do nothing
-            }
-        }
-
-        // ===== 【核心修复】：检测缪尔赛斯是否存活 =====
+        // ===== 检测缪尔赛斯是否存活 =====
         if (!this.isDead && !this.isSelfDestructing) {
             boolean bossAlive = false;
             for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
-                // 遍历寻找缪尔赛斯。如果找到且没死，说明 Boss 还在
                 if (m.id.equals(Muelsyse.ID) && !m.isDead && !m.isDying) {
                     bossAlive = true;
                     break;
@@ -201,7 +211,13 @@ public class EnemyManifold extends AbstractMonster {
             // 如果缪尔赛斯死了，流形立刻自我销毁
             if (!bossAlive) {
                 this.isSelfDestructing = true;
-                this.halfDead = false; // 【关键】必须先解除假死状态，否则下面的 die() 无法生效
+
+                // 【修复3】为了保险起见，强制清空血量
+                this.currentHealth = 0;
+
+                // 【修复4】这里必须设为 true！
+                // 这样后续直接调用 die() 时，才能跳过假死逻辑，进入 else 分支彻底销毁
+                this.halfDead = true;
 
                 if (state38 != null) {
                     state38.setAnimation(0, "A_Die", false); // 顺便播个死亡动画化成水
@@ -211,7 +227,6 @@ public class EnemyManifold extends AbstractMonster {
                 this.die();
             }
         }
-        // ===============================================
     }
 
     // 我们拦截回合结束的逻辑，在这里递减复活倒计时
@@ -238,7 +253,7 @@ public class EnemyManifold extends AbstractMonster {
 
     @Override
     public void render(SpriteBatch sb) {
-        if (!this.isDead || (state38 != null && !state38.getCurrent(0).isComplete())) {
+        if (!this.isDead || (state38 != null && state38.getCurrent(0) != null && !state38.getCurrent(0).isComplete())) {
             sb.end();
             psb.begin();
             sr.draw(psb, skeleton38);
@@ -246,39 +261,6 @@ public class EnemyManifold extends AbstractMonster {
             sb.begin();
         }
 
-        if (!this.halfDead) {
-            this.hb.render(sb);
-            this.intentHb.render(sb);
-            this.healthHb.render(sb);
-
-            if (!com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.isDead) {
-                this.renderHealth(sb);
-                // 渲染名字
-                basemod.ReflectionHacks.privateMethod(com.megacrit.cardcrawl.monsters.AbstractMonster.class, "renderName", com.badlogic.gdx.graphics.g2d.SpriteBatch.class).invoke(this, sb);
-            }
-
-            if (!this.powers.isEmpty()) {
-                float offset = 10.0F * com.megacrit.cardcrawl.core.Settings.scale;
-                // 先画图标
-                for (com.megacrit.cardcrawl.powers.AbstractPower p : this.powers) {
-                    p.renderIcons(sb, this.hb.cX - this.hb.width / 2.0F + offset, this.hb.cY - this.hb.height / 2.0F - 48.0F * com.megacrit.cardcrawl.core.Settings.scale, com.badlogic.gdx.graphics.Color.WHITE);
-                    offset += 48.0F * com.megacrit.cardcrawl.core.Settings.scale;
-                }
-                offset = 10.0F * com.megacrit.cardcrawl.core.Settings.scale;
-                // 再画层数数字 (如果有的话)
-                for (com.megacrit.cardcrawl.powers.AbstractPower p : this.powers) {
-                    p.renderAmount(sb, this.hb.cX - this.hb.width / 2.0F + offset, this.hb.cY - this.hb.height / 2.0F - 48.0F * com.megacrit.cardcrawl.core.Settings.scale, com.badlogic.gdx.graphics.Color.WHITE);
-                    offset += 48.0F * com.megacrit.cardcrawl.core.Settings.scale;
-                }
-            }
-
-            if (!this.isDying && !this.isEscaping && com.megacrit.cardcrawl.dungeons.AbstractDungeon.getCurrRoom().phase == com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase.COMBAT && !com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.isDead && !com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.hasRelic("Runic Dome") && this.intent != Intent.NONE && !com.megacrit.cardcrawl.core.Settings.hideCombatElements) {
-                basemod.ReflectionHacks.privateMethod(com.megacrit.cardcrawl.monsters.AbstractMonster.class, "renderIntentVfxBehind", com.badlogic.gdx.graphics.g2d.SpriteBatch.class).invoke(this, sb);
-                basemod.ReflectionHacks.privateMethod(com.megacrit.cardcrawl.monsters.AbstractMonster.class, "renderIntent", com.badlogic.gdx.graphics.g2d.SpriteBatch.class).invoke(this, sb);
-                basemod.ReflectionHacks.privateMethod(com.megacrit.cardcrawl.monsters.AbstractMonster.class, "renderIntentVfxAfter", com.badlogic.gdx.graphics.g2d.SpriteBatch.class).invoke(this, sb);
-
-                basemod.ReflectionHacks.privateMethod(com.megacrit.cardcrawl.monsters.AbstractMonster.class, "renderDamageRange", com.badlogic.gdx.graphics.g2d.SpriteBatch.class).invoke(this, sb);
-            }
-        }
+        super.render(sb);
     }
 }

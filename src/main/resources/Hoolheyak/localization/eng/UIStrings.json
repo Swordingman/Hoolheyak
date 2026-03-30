@@ -47,5 +47,12 @@
       "Discard them.",
       "Place them at the bottom of the draw pile."
     ]
+  },
+  "Hoolheyak:SkinName": {
+    "TEXT": [
+      "Base",
+      "Carriage of the Winds of Time",
+      "Ritual of Immortality"
+    ]
   }
 }

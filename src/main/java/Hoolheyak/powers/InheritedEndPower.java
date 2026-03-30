@@ -47,10 +47,6 @@ public class InheritedEndPower extends BasePower {
 
     @Override
     public void updateDescription() {
-        // 建议在 JSON 本地化文本里这样写：
-        // DESCRIPTIONS[0] -> "每当你交替打出攻击牌与技能牌时，获得 "
-        // DESCRIPTIONS[1] -> " 点能量并抽 "
-        // DESCRIPTIONS[2] -> " 张牌。"
         this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[2];
     }
 }
